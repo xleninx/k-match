@@ -12,15 +12,15 @@ class UsersController < ApplicationController
     @connection = Connection.new
     @connection.prospective_id = current_user.id
     #location
-    @student = User.where("country_id = ? AND right = ?", current_user.country_id, 1)
+    @student = User.where("country_id = ? AND user_rights = ?", current_user.country_id, 1)
     #program
     if @student.count > 0
-      @student = User.where("country_id = ? AND right = ? AND program_id = ?", current_user.country_id, 1, current_user.program_id)
+      @student = User.where("country_id = ? AND user_rights = ? AND program_id = ?", current_user.country_id, 1, current_user.program_id)
       unless @student.count > 0
-        @student = User.where("country_id = ? AND right = ?", current_user.country_id, 1)
+        @student = User.where("country_id = ? AND user_rights = ?", current_user.country_id, 1)
       end
     else
-      @student = User.where("right = ? AND program_id", 1, current_user.program_id)
+      @student = User.where("user_rights = ? AND program_id", 1, current_user.program_id)
     end
     #industry
 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
-    @user.right = params[:right]
+    @user.user_rights = params[:right]
     @user.country_id = params[:country_id]
     @user.program_id = params[:program_id]
     @user.class = params[:class]
@@ -117,7 +117,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
-    @user.right = params[:right].to_i
+    @user.user_rights = params[:right].to_i
     @user.country_id = params[:country_id].to_i
     @user.state = params[:state]
     @user.program_id = params[:program_id].to_i

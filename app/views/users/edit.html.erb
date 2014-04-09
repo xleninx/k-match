@@ -3,8 +3,8 @@
 </div>
 
 <%= form_tag(user_url(@user), method: 'patch', class: 'form-horizontal') do %>
-  <% if current_user.right? %>
-    <%= hidden_field_tag 'right', current_user.right %>
+  <% if current_user.user_rights? %>
+    <%= hidden_field_tag 'right', current_user.user_rights %>
   <% elsif params["t"] == "crnt" %>
     <%= hidden_field_tag 'right', 1 %>
   <% else %>

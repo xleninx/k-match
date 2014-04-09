@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-6">
   <h4>You currently have
-  <% if current_user.right > 0%>
+  <% if current_user.user_rights > 0%>
   <%= current_user.connectee.count %>
   <% else%>
   <%= current_user.connector.count %>
@@ -13,10 +13,12 @@
   active request connections</h4>
   </div>
   <div class="col-md-6">
-  <%= link_to "Request a connection", new_user_url, class: "btn btn-primary" %>
+    <% unless current_user.user_rights > 0%>
+      <%= link_to "Request a connection", new_user_url, class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
-<% if current_user.right > 0%>
+<% if current_user.user_rights > 0%>
 <ul>
 <% current_user.connectee.each do |connect| %>
   <li><%= connect.prospect.full_name %> | <%= connect.prospect.email %> | <%= connect.status %>
