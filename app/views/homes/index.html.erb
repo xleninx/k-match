@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h1>Welcome to Kellogg's Prospective Student Page</h1>
+</div>
+<% if user_signed_in? && current_user.right == 0%>
+<div class="row">
+  <div class="cold-md-2"></div>
+  <div class="col-md-4">
+    <%= link_to "Connect with a current student", users_url, class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "Update my Profile", edit_user_url(current_user.id), class: "btn btn-primary" %>
+  </div>
+</div>
+<% elsif user_signed_in? && current_user.right == 1%>
+<div class="row">
+  <div class="cold-md-2"></div>
+  <div class="col-md-4">
+    <%= link_to "Check my connection requests", users_url, class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "Update my Profile", edit_user_url(current_user.id), class: "btn btn-primary" %>
+  </div>
+</div>
+<% elsif user_signed_in? && current_user.right == 2%>
+<div class="row">
+  <div class="cold-md-2"></div>
+  <div class="col-md-4">
+    <%= link_to "Analytics", "#", class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+<% elsif user_signed_in? && current_user.right == 3%>
+<div class="row">
+  <div class="cold-md-2"></div>
+  <div class="col-md-4">
+    <%= link_to "Check my connection requests", "#", class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "Update my Profile", edit_user_url(current_user.id), class: "btn btn-primary" %>
+  </div>
+</div>
+<% else %>
+<div class="row">
+  <h4>To connect with a current or prospective student, you first need to create a profile</h4>
+</div>
+<div class="row">
+  <div class="cold-md-2"></div>
+  <div class="col-md-4">
+    <%= link_to "I am a Prospective Student", edit_user_url(current_user.id, t: "prsp"), class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "I am a Current Student", edit_user_url(current_user.id, t: "crnt"), class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+
+
+

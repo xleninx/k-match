@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1>Editing Before Industry #<%= @before_industry.id %></h1>
+</div>
+
+<%= form_tag(before_industry_url(@before_industry), method: 'patch', class: 'form-horizontal') do %>
+  <div class="form-group">
+    <%= label_tag :user_id, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= text_field_tag :user_id, @before_industry.user_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :industry_id, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-6">
+      <%= number_field_tag :industry_id, @before_industry.industry_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-6">
+      <%= submit_tag "Update Before Industry", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

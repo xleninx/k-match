@@ -1,0 +1,11 @@
+<p>Dear <%= @user.email %>,</p>
+<p>&nbsp;</p>
+<p>Thank you for registering to You@Kellogg.</p>
+<p>Our objective is to help you connect with relevant students at Kellogg and learn more about what Kellogg truly is.</p>
+
+<p>&nbsp;</p>
+<p>To be able to make a connection request, you first need to create a profile for us to match you.</p>
+<p><%= link_to "Create profile", edit_user_url(@user) %></p>
+<p>&nbsp;</p>
+<p>Thank you,<br>
+The You@Kellogg team</p>

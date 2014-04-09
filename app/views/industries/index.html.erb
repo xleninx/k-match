@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>Industries</h1>
+</div>
+
+<p><%= link_to 'Add a New Industry', new_industry_url, class: 'btn btn-primary' %></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @industries.each do |industry| %>
+      <tr>
+        <td><%= industry.name %></td>
+        <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, industry_url(industry), class: 'btn btn-primary' %></td>
+        <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_industry_url(industry), class: 'btn btn-warning' %></td>
+        <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, industry_url(industry), method: 'delete', data: { confirm: "Do you really want to delete this industry?" }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

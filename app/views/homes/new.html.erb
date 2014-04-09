@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1>New Home</h1>
+</div>
+
+<%= form_tag(homes_url, method: 'post', class: 'form-horizontal') do %>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-6">
+      <%= submit_tag "Create Home", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

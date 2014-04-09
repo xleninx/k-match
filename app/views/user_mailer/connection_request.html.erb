@@ -1,0 +1,22 @@
+<p>Dear <%= @student.full_name %>,</p>
+<p>&nbsp;</p>
+<p>A prospective student has asked to be connected with a current student.</p>
+<p>Your profile was found to be most compatible.</p>
+<p>&nbsp;</p>
+<p>Prospective Student Profile</p>
+<ul>
+  <li>Name: <%= @prospect.full_name %></li>
+  <li>Email: <%= @prospect.email %></li>
+  <li>Country: <%= @prospect.country.name %></li>
+</ul>
+<p>&nbsp;</p>
+<p>We would ask that you please reach out to <%= @prospect.first_name %> within 2 days</p>
+<p>&nbsp;</p>
+<p>As soon as you reach out, please confirm via this link:</p>
+<p><%= link_to "I have reached out to #{@prospect.first_name}", "#" %></p>
+<p>If you do not have time to reply within 2 days, please confirm via this link:</p>
+<p><%= link_to "I don't have time to email #{@prospect.first_name}", "#" %></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Thank you,<br>
+The You@Kellogg team</p>
