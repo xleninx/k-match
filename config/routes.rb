@@ -1,6 +1,7 @@
 KMatch::Application.routes.draw do
-  root to: 'homes#index'
+  root to: 'pages#index'
   # Routes for the Home resource:
+
   # CREATE
   get '/homes/new', controller: 'homes', action: 'new', as: 'new_home'
   post '/homes', controller: 'homes', action: 'create', as: 'homes'

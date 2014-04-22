@@ -18,3 +18,12 @@ body {
 footer{
   padding: 20px;
 }
+.image-header{
+  background-image: url("/img/header.jpg");
+  height: 400px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  
+}
