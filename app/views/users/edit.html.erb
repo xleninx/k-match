@@ -1,6 +1,12 @@
-<div class="page-header">
-  <h1>My Profile</h1>
-</div>
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="text-center">Welcome to You@Kellogg</h1>
+    <hr>
+  </div>
+
+<div class="col-md-11 col-md-offset-2">
+  <dl class="faq" style="counter-increment: my-badass-counter+1;">
+    <dd style="padding-bottom:33px;font-size:20px"><strong>Tell us a little about yourselft</strong>.</dd>
+  </dl>
 
 <%= form_tag(user_url(@user), method: 'patch', class: 'form-horizontal') do %>
   <% if current_user.user_rights? %>
@@ -11,22 +17,17 @@
     <%= hidden_field_tag 'right', 0 %>
   <% end %>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
+
     <div class="col-md-8">
       <b>Contact Information</b>
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-8">
       <%= text_field_tag :email, current_user.email, placeholder:'Email Address', class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-4">
       <%= text_field_tag :first_name, current_user.first_name, placeholder:'First Name', class: 'form-control' %>
     </div>
@@ -36,15 +37,13 @@
   </div>
   <div>&nbsp;</div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
+
     <div class="col-md-8">
+    <hr>
       <b>Current Job Information</b>
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-4">
       <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country', class: 'form-control') %>
     </div>
@@ -53,8 +52,6 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-4">
       <%= select_tag(:before_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.before_industry.try(:industry_id)), prompt: 'Please select your current job industry', class: 'form-control') %>
     </div>
@@ -64,22 +61,18 @@
   </div>
   <div>&nbsp;</div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-8">
+      <hr>
       <b>MBA and Job Interest Information</b>
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-8">
       <%= select_tag(:program_id, options_from_collection_for_select(Program.all, :id, :name, current_user.program_id), prompt: 'Please select your program of interest', class: 'form-control') %>
+
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-4">
       <%= select_tag(:after_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.after_industry.try(:industry_id)), prompt: 'Please select your industry of interest', class: 'form-control') %>
     </div>
@@ -89,8 +82,6 @@
   </div>
 
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-4">
       <%= select_tag(:interest1_id, options_from_collection_for_select(Interest.all, :id, :name, current_user.interests[0].try(:id)), prompt: 'Please select your 1st club of interest', class: 'form-control') %>
     </div>
@@ -99,8 +90,6 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="col-md-1">
-    </div>
     <div class="col-md-4">
       <%= select_tag(:interest3_id, options_from_collection_for_select(Interest.all, :id, :name, current_user.interests[2].try(:id)), prompt: 'Please select your 3rd club of interest', class: 'form-control') %>
     </div>
@@ -112,3 +101,5 @@
     </div>
   </div>
 <% end %>
+  
+</div>

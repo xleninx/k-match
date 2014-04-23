@@ -5,6 +5,14 @@ KMatch::Application.routes.draw do
   get '/community_details', to: 'pages#community_details'
   get '/academics', to: 'pages#academics'
   get '/vision', to: 'pages#vision'
+  get '/sign_up', to: 'pages#sign_up'
+  get '/sign_up2', to: 'pages#sign_up2'
+  get '/profile-admin', to: 'pages#profile-admin'
+  get '/profile-current', to: 'pages#profile-current'
+  get '/profile-prospect', to: 'pages#profile-prospect'
+  get '/profile-leader', to: 'pages#profile-leader'
+  get '/prospective-intro', to: 'pages#prospective-intro'
+  get '/connect-page', to: 'pages#connect-page'
 
   # Routes for the Home resource:
   # CREATE

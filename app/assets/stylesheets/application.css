@@ -30,6 +30,10 @@ hr{
   border-top: 2px solid #C4C4C4; 
 }
 
+i.fa{
+  padding-right: 7px;
+}
+
 .image-header{
   background-image: url("/img/header.jpg");
   height: 100%;
@@ -57,7 +61,20 @@ hr{
   padding:0 50px;
 }
 
-div.academics-row > .row:not(:last-child) > div{
+.row-connect .row:not(:last-child){
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.row-connect .row{
+  padding-top: 25px;
+  padding-bottom:25px;
+}
+
+.row-connect .row > * >img{
+  padding-right: 10px;
+}
+
+div.academics-row > .row:not(:last-child) > .line{
   border-bottom: 1px solid #DFDFDF;
   padding-bottom: 25px;
 }
@@ -65,6 +82,7 @@ div.academics-row > .row:not(:last-child) > div{
 div.academics-row > .row > div > img{
   width: 130px;
   margin: 0 20px 0 0;
+
 }
 
 .faq {
@@ -91,17 +109,22 @@ div.academics-row > .row > div > img{
   font-size: 17px;
 }
 
-li{
-  padding: 7px 34px;
+
+.months{
+  margin: 0;
+}
+
+.months > li{
+  padding: 7px 33px;
   display: inline-block;
   background-color: gray;
   color:rgb(241, 241, 241);
   position: relative;
   margin-right: 24px;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-li:before{
+.months > li:before{
   right: 82%;
   top: 50%;
   border: solid transparent;
@@ -116,7 +139,7 @@ li:before{
   margin-top: -21px;
 }
 
-li:after{
+.months > li:after{
   left: 100%;
   top: 50%;
   border: solid transparent;
@@ -129,4 +152,10 @@ li:after{
   border-left-color: gray;
   border-width: 21px;
   margin-top: -21px;
+}
+
+.months-containter{
+  max-height:52px;
+  overflow-x:hidden;
+
 }
