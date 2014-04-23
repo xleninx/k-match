@@ -12,18 +12,121 @@
  *= require_tree .
  */
 body {
-  padding-top: 60px;
+  background-color:rgb(241, 241, 241); 
 }
 
 footer{
   padding: 20px;
 }
+
+a{
+  color: orange; 
+}
+
+a:hover{
+  color: orange;
+}
+hr{
+  border-top: 2px solid #C4C4C4; 
+}
+
 .image-header{
   background-image: url("/img/header.jpg");
-  height: 400px;
+  height: 100%;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
-  
+}
+
+.img-center img{
+  margin:auto;
+}
+
+.img-container{
+  background-color: white;
+  border: 2px solid #DFDFDF;
+  border-radius: 4px;
+}
+
+.navbar-default{
+  background-color: #6D3D7C;
+}
+
+.row{
+  padding:0 50px;
+}
+
+div.academics-row > .row:not(:last-child) > div{
+  border-bottom: 1px solid #DFDFDF;
+  padding-bottom: 25px;
+}
+
+div.academics-row > .row > div > img{
+  width: 130px;
+  margin: 0 20px 0 0;
+}
+
+.faq {
+  counter-reset: my-badass-counter;
+}
+.faq dd {
+  position: relative;
+  padding: 4px 0 10px 0;
+  margin: 0 0 0px 0;
+  padding-left: 40px;
+  line-height: 30px;
+  font-size: 17px;
+}
+.faq dd:before {
+  content: counter(my-badass-counter);
+  counter-increment: my-badass-counter;
+  position: absolute;
+  left: 0;
+  background-color: #6D3D7C;
+  border-radius: 50px;
+  color: white;
+  padding: 0 11px;
+  font-weight:bold;
+  font-size: 17px;
+}
+
+li{
+  padding: 7px 34px;
+  display: inline-block;
+  background-color: gray;
+  color:rgb(241, 241, 241);
+  position: relative;
+  margin-right: 24px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+li:before{
+  right: 82%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: gray;
+  border-left-color: transparent;
+  border-width: 21px;
+  margin-top: -21px;
+}
+
+li:after{
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: gray;
+  border-width: 21px;
+  margin-top: -21px;
 }

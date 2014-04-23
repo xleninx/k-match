@@ -1,7 +1,12 @@
 KMatch::Application.routes.draw do
   root to: 'pages#index'
-  # Routes for the Home resource:
+  # Routes for statics pages
+  get '/community', to: 'pages#community'
+  get '/community_details', to: 'pages#community_details'
+  get '/academics', to: 'pages#academics'
+  get '/vision', to: 'pages#vision'
 
+  # Routes for the Home resource:
   # CREATE
   get '/homes/new', controller: 'homes', action: 'new', as: 'new_home'
   post '/homes', controller: 'homes', action: 'create', as: 'homes'

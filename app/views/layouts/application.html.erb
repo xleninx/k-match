@@ -4,20 +4,17 @@
   <meta charset="utf-8">
   <title>KMatch</title>
 
-  <%= stylesheet_link_tag  "bootstrap"%>
-
-  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css">  -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css"> 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
-  <%= stylesheet_link_tag  "application", madia: "all"%>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <%= stylesheet_link_tag  "application", madia: "all"%>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "bootstrap.min" %> 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header"> 
       <%= link_to "You@Kellogg", root_url, :class => "navbar-brand" %>
@@ -26,7 +23,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-        <form class="navbar-form navbar-right" style="padding-right:40px; padding-top:5px">
+        <form class="navbar-form navbar-right" style="padding-right:40px; padding-top:5px; margin-right:0">
           <% if user_signed_in? %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-warning btn-sm" %>
             <%= link_to current_user.email, edit_user_registration_path, class: "btn btn-default btn-sm"  %>
@@ -57,7 +54,7 @@
 
 
   
-  <footer class="bs-docs-footer" >
+  <footer class="bs-docs-footer container-fluid" >
     
     <div class="row" id="footer">
 
