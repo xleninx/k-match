@@ -13,7 +13,9 @@ KMatch::Application.routes.draw do
   get '/profile-leader', to: 'pages#profile-leader'
   get '/prospective-intro', to: 'pages#prospective-intro'
   get '/connect-page', to: 'pages#connect-page'
-
+  get '/connection-accepted', to: 'pages#connection-accepted'
+  get '/students-search', to: 'pages#students-search'
+  get '/dashboard', to: 'pages#dashboard'
   # Routes for the Home resource:
   # CREATE
   get '/homes/new', controller: 'homes', action: 'new', as: 'new_home'

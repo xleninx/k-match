@@ -12,7 +12,7 @@
  *= require_tree .
  */
 body {
-  background-color:rgb(241, 241, 241); 
+  background-color:rgb(245, 245, 245); 
 }
 
 footer{
@@ -158,4 +158,29 @@ div.academics-row > .row > div > img{
   max-height:52px;
   overflow-x:hidden;
 
+}
+.breadcrumb{
+  background-image: -webkit-gradient(
+  linear,
+  left top,
+  left bottom,
+  color-stop(0, #F0F0F0),
+  color-stop(1, #CFCFCF)
+);
+background-image: -o-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
+background-image: -moz-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
+background-image: -webkit-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
+background-image: -ms-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
+background-image: linear-gradient(to bottom, #F0F0F0 0%, #CFCFCF 100%);
+}
+
+.well{
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #EBEBEB;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
 }
