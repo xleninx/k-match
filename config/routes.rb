@@ -16,6 +16,8 @@ KMatch::Application.routes.draw do
   get '/connection-accepted', to: 'pages#connection-accepted'
   get '/students-search', to: 'pages#students-search'
   get '/dashboard', to: 'pages#dashboard'
+  get '/alumni', to: 'pages#alumni'
+
   # Routes for the Home resource:
   # CREATE
   get '/homes/new', controller: 'homes', action: 'new', as: 'new_home'
