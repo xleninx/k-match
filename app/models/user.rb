@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_many :connectee, :class_name => "Connection", :foreign_key => "student_id"
 
   validates :email, uniqueness: true
-  validates :first_name,  presence: true
 
   def full_name
     return "#{first_name} #{last_name}".titleize
