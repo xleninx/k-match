@@ -218,3 +218,7 @@ a.navbar-brand:hover{
 .fa{
   font-size: 18px
 }
+.btn{
+  padding: 10px 15px 6px;
+  font-weight: bold;
+}
