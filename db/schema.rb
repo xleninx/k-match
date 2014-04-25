@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409064622) do
+ActiveRecord::Schema.define(version: 20140424220726) do
 
   create_table "after_functions", force: true do |t|
     t.integer "user_id"
@@ -73,6 +73,11 @@ ActiveRecord::Schema.define(version: 20140409064622) do
 
   create_table "programs", force: true do |t|
     t.string "name"
+  end
+
+  create_table "programs_users", force: true do |t|
+    t.integer "program_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|

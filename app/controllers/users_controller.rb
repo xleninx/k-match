@@ -114,17 +114,19 @@ class UsersController < ApplicationController
   end
 
   def update
+
     @user = User.find_by(id: params[:id])
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
     @user.user_rights = params[:right].to_i
     @user.country_id = params[:country_id].to_i
     @user.state = params[:state]
-    @user.program_id = params[:program_id].to_i
+    @user.program_ids = params[:user][:program_ids].reject{|id| id == ""}
     if params[:right].to_i == 1
       @user.grad_year = params[:email].split('@')[0].reverse[0..3].reverse.to_i
     end
 
+    @user.before_industry.delete if @user.before_industry
     bf_ind = BeforeIndustry.new
     bf_ind.user_id = current_user.id
     bf_ind.industry_id = params[:before_industry_id].to_i
@@ -133,6 +135,7 @@ class UsersController < ApplicationController
       render 'edit'
     end
 
+    @user.after_industry.delete if @user.after_industry
     af_ind = AfterIndustry.new
     af_ind.user_id = current_user.id
     af_ind.industry_id = params[:after_industry_id].to_i
@@ -141,6 +144,7 @@ class UsersController < ApplicationController
       render 'edit'
     end
 
+    @user.before_function.delete if @user.before_function
     bf_fnc = BeforeFunction.new
     bf_fnc.user_id = current_user.id
     bf_fnc.function_id = params[:before_function_id].to_i
@@ -149,6 +153,7 @@ class UsersController < ApplicationController
       render 'edit'
     end
 
+    @user.after_function.delete if @user.after_function
     af_fnc = AfterFunction.new
     af_fnc.user_id = current_user.id
     af_fnc.function_id = params[:after_function_id].to_i
@@ -157,29 +162,10 @@ class UsersController < ApplicationController
       render 'edit'
     end
 
-    int1 = Preference.new
-    int1.user_id = current_user.id
-    int1.interest_id = params[:interest1_id].to_i
-    if int1.save
-    else
-      render 'edit'
-    end
-
-    int2 = Preference.new
-    int2.user_id = current_user.id
-    int2.interest_id = params[:interest2_id].to_i
-    if int2.save
-    else
-      render 'edit'
-    end
-
-    int3 = Preference.new
-    int3.user_id = current_user.id
-    int3.interest_id = params[:interest3_id].to_i
-    if int3.save
-    else
-      render 'edit'
-    end
+    @user.preferences.destroy_all
+    params[:user][:interest_ids].each do |p|
+      render 'edit' unless Preference.create({:user_id => current_user.id, :interest_id => p.to_i})
+    end  
 
     if @user.save
       redirect_to homes_url, notice: "User updated successfully."
