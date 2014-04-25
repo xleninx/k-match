@@ -8,6 +8,9 @@ gem 'devise'
 # Email management
 gem 'mail'
 
+# Active Admin
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 

@@ -1,4 +1,8 @@
 KMatch::Application.routes.draw do
+
+  devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: 'pages#index'
   # Routes for statics pages
   get '/community', to: 'pages#community'
@@ -35,7 +39,7 @@ KMatch::Application.routes.draw do
   delete '/homes/:id', controller: 'homes', action: 'destroy'
   #------------------------------
 
-  devise_for :users
+  
   # Routes for the Match resource:
     # CREATE
   get '/matches/new', controller: 'matches', action: 'new', as: 'new_match'

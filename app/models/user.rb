@@ -32,3 +32,4 @@ class User < ActiveRecord::Base
     return "#{first_name} #{last_name}".titleize
   end
 end
+
