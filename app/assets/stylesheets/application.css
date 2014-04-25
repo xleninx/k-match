@@ -214,3 +214,7 @@ a.navbar-brand:hover{
 .row-profile > hr{
   margin: 30px 13px
 }
+
+.fa{
+  font-size: 18px
+}
