@@ -222,3 +222,12 @@ a.navbar-brand:hover{
   padding: 10px 15px 6px;
   font-weight: bold;
 }
+
+#footer > * > *> .fa{
+  font-size: 30px;
+  padding:0;
+}
+
+#footer > * > a:hover{
+  text-decoration: none;
+}
