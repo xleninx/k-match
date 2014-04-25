@@ -13,11 +13,14 @@
  */
 body {
   background-color:rgb(245, 245, 245); 
-/*  font-family: 'FrutigerLTStd45Light';*/
+  font-family: 'FrutigerLTStd45Light';
 }
 
-footer{
-  padding: 20px;
+footer.container-fluid{
+  margin-top: 40px;
+  background-color:rgb(250,250,250);
+  padding: 20px 25px;
+  border-top: 2px solid #c4c4c4;
 }
 
 a{
@@ -25,7 +28,7 @@ a{
 }
 
 a:hover{
-  color: orange;
+  color: #ff7e00;
 }
 hr{
   border-top: 2px solid #C4C4C4; 
@@ -71,8 +74,12 @@ i.fa{
   padding-bottom:25px;
 }
 
-.row-connect .row > * >img{
+.row-connect .row > dd > * >img{
   padding-right: 10px;
+}
+
+.row-connect .row > dd{
+
 }
 
 div.academics-row > .row:not(:last-child) > .line{
@@ -102,7 +109,7 @@ div.academics-row > .row > div > img{
   counter-increment: my-badass-counter;
   position: absolute;
   left: 0;
-  background-color: #6D3D7C;
+  background-color: #B479C7;
   border-radius: 50px;
   color: white;
   padding: 0 11px;
@@ -184,4 +191,26 @@ background-image: linear-gradient(to bottom, #F0F0F0 0%, #CFCFCF 100%);
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+a.navbar-brand:hover{
+  color:white !important;
+}
+
+.subtitle{
+  color: rgb(66, 71, 213)
+}
+
+.btn-update{
+  background-color: transparent;
+  color: #ff7e00;
+  border-width: 2px
+}
+
+.row-profile{
+  padding: 0 23px;
+}
+
+.row-profile > hr{
+  margin: 30px 13px
 }

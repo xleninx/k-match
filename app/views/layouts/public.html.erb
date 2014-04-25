@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css"> 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <%= stylesheet_link_tag  "application", madia: "all"%>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "bootstrap.min" %> 
+  <%= stylesheet_link_tag  "application", madia: "all"%>
   <%= csrf_meta_tags %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header"> 
+    <div class="navbar-header" style="padding-left:25px"> 
       <%= link_to "You@Kellogg", root_url, :class => "navbar-brand" %>
     </div>
 
@@ -42,14 +42,13 @@
 
 
 
-  
   <footer class="bs-docs-footer container-fluid" >
     
-    <div class="row" id="footer">
+    <div id="footer" >
 
-      <div class="col-md-4 ">
-        <a class="text-warning" href="">TERMS OF USE&nbsp;&nbsp;</a>
-        <a class="text-warning" href="">CONTACT</a>
+      <div class="col-md-4" style="padding-left:20px; text-decoration:underline">
+        <a class="" href="" style="padding-right:10px">TERMS OF USE</a>
+        <a class="" href="">CONTACT</a>
       </div> 
       
       <div class="col-md-4 ">
