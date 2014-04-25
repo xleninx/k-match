@@ -10,5 +10,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) << [:email, :first_name, :last_name]
   end
+
+  def after_sign_in_path_for(resource)
+    edit_user_path(current_user)
+  end
+
 end
 

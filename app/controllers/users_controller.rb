@@ -168,9 +168,9 @@ class UsersController < ApplicationController
     end  
 
     if @user.save
-      redirect_to homes_url, notice: "User updated successfully."
+      redirect_to root_path, notice: "User updated successfully."
     else
-      render 'edit'
+       render 'edit'
     end
   end
 

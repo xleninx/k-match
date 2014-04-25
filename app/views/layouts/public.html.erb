@@ -23,17 +23,15 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
         <form class="navbar-form navbar-right" style="padding-right:40px; padding-top:5px; margin-right:0">
           <% if user_signed_in? %>
             <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn btn-warning btn-sm" %>
-            <%= link_to current_user.email, edit_user_registration_path, class: "btn btn-default btn-sm"  %>
+            <%= link_to current_user.email , edit_user_path(current_user), class: "btn btn-default btn-sm"  %>
           <% else %>
             <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-warning btn-sm"  %>
             <%= link_to "LOGIN", new_user_session_path, class: "btn btn-warning btn-sm" %>
           <% end %>
         </form>
-
     </div><!-- /.navbar-collapse -->
   </nav>
 
