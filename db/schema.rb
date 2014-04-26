@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425232519) do
+ActiveRecord::Schema.define(version: 20140426024510) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,26 +46,6 @@ ActiveRecord::Schema.define(version: 20140425232519) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "after_functions", force: true do |t|
-    t.integer "user_id"
-    t.integer "function_id"
-  end
-
-  create_table "after_industries", force: true do |t|
-    t.integer "user_id"
-    t.integer "industry_id"
-  end
-
-  create_table "before_functions", force: true do |t|
-    t.integer "user_id"
-    t.integer "function_id"
-  end
-
-  create_table "before_industries", force: true do |t|
-    t.integer "user_id"
-    t.integer "industry_id"
-  end
-
   create_table "connections", force: true do |t|
     t.integer  "student_id"
     t.integer  "prospective_id"
@@ -94,14 +74,14 @@ ActiveRecord::Schema.define(version: 20140425232519) do
     t.string "name"
   end
 
+  create_table "interests_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "interest_id"
+  end
+
   create_table "matches", force: true do |t|
     t.integer "match_index"
     t.integer "user_id"
-  end
-
-  create_table "preferences", force: true do |t|
-    t.integer "user_id"
-    t.integer "interest_id"
   end
 
   create_table "programs", force: true do |t|
@@ -137,6 +117,10 @@ ActiveRecord::Schema.define(version: 20140425232519) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
+    t.integer  "before_industry_id"
+    t.integer  "after_industry_id"
+    t.integer  "before_function_id"
+    t.integer  "after_function_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

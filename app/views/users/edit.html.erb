@@ -17,6 +17,12 @@
     <%= hidden_field_tag 'right', 0 %>
   <% end %>
 
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+
   <div class="form-group">
     <div class="col-md-10">
       <b>Contact Information</b>
@@ -57,10 +63,10 @@
 
   <div class="form-group">
     <div class="col-md-5">
-      <%= select_tag(:before_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.before_industry.try(:industry_id)), prompt: 'Please select your current job industry', class: 'form-control') %>
+      <%= select_tag(:before_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.before_industry_id), prompt: 'Please select your current job industry', class: 'form-control') %>
     </div>
     <div class="col-md-5">
-      <%= select_tag(:before_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.before_function.try(:function_id)), prompt: 'Please select your current job function', class: 'form-control') %>
+      <%= select_tag(:before_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.before_function_id), prompt: 'Please select your current job function', class: 'form-control') %>
     </div>
   </div>
 
@@ -93,10 +99,10 @@
 
   <div class="form-group">
     <div class="col-md-5">
-      <%= select_tag(:after_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.after_industry.try(:industry_id)), prompt: 'Please select your industry of interest', class: 'form-control') %>
+      <%= select_tag(:after_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.after_industry_id), prompt: 'Please select your industry of interest', class: 'form-control') %>
     </div>
     <div class="col-md-5">
-      <%= select_tag(:after_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.after_function.try(:function_id)), prompt: 'Please select your function of interest', class: 'form-control') %>
+      <%= select_tag(:after_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.after_function_id), prompt: 'Please select your function of interest', class: 'form-control') %>
     </div>
   </div>
 

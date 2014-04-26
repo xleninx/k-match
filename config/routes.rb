@@ -1,7 +1,8 @@
 KMatch::Application.routes.draw do
 
   devise_for :users
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  #devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :admin_users, controller: 'active_admin/devise/sessions'
   ActiveAdmin.routes(self)
   root to: 'pages#index'
   # Routes for statics pages
