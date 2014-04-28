@@ -28,7 +28,12 @@
         </div>
 
     <div class="col-md-offset-3">
-      <%= f.submit "Next -->", class: "btn btn-warning", style: "font-size:20px; padding:10px 30px" %>
+
+
+      <%= button_tag(type: 'submit', class: "btn btn-warning", style: "font-size:20px; padding:10px 30px") do %>
+        NEXT <span class="fa fa-long-arrow-right"></span>
+      <% end %>
+
     </div>
     <% end %>
 

@@ -233,3 +233,12 @@ a.navbar-brand:hover{
 #footer > * > a:hover{
   text-decoration: none;
 }
+
+#error_explanation > h2 {
+  font-size: 18px;
+  color:red;
+}
+
+#error_explanation > ul{
+  list-style-type: decimal;
+}
