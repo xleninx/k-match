@@ -124,7 +124,7 @@
     <div class="form-group">
       <div class="col-md-10">
 
-        <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Professional"), :id, :name, current_user.after_function_id), placeholder: 'Please select your function of interest', class: 'chosen-select form-control', multiple: true, "data-placeholder" => "Professional Clubs of Interest") %>
+        <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Professional"), :id, :name, current_user.interest_ids), placeholder: 'Please select your function of interest', class: 'chosen-select form-control', multiple: true, "data-placeholder" => "Professional Clubs of Interest") %>
 
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="form-group">
       <div class="col-md-10">
 
-        <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Affinity"), :id, :name, current_user.after_function_id), placeholder: 'Please select your function of interest', class: 'form-control chosen-select', multiple: true, "data-placeholder" => "Affinity Clubs of Interest") %>
+        <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Affinity"), :id, :name, current_user.interest_ids), placeholder: 'Please select your function of interest', class: 'form-control chosen-select', multiple: true, "data-placeholder" => "Affinity Clubs of Interest") %>
 
       </div>
     </div>

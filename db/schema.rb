@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428150318) do
+ActiveRecord::Schema.define(version: 20140428205709) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 20140428150318) do
     t.string   "last_name"
     t.integer  "user_rights"
     t.integer  "country_id"
-    t.integer  "program_id"
     t.integer  "grad_year"
     t.integer  "contact_count"
     t.string   "email",                  default: "", null: false

@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   end
 
   has_and_belongs_to_many :programs
-  belongs_to :program
   belongs_to :country
 
   belongs_to :before_industry, :class_name => 'Industry'
@@ -52,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_btn()
-    
+
   end
 end
 
