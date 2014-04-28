@@ -82,10 +82,10 @@ class UsersController < ApplicationController
     @user.before_function_id = params[:before_function_id].to_i
     @user.after_function_id = params[:after_function_id].to_i
 
-    @user.interest_ids = params[:interest_ids].reject{|id| id == ""}
+    @user.interest_ids = params[:interest_ids]
 
     if @user.save
-      redirect_to root_path, notice: "User updated successfully."
+      redirect_to profile_path, notice: "User updated successfully."
     else
       render 'edit'
     end
@@ -150,5 +150,9 @@ class UsersController < ApplicationController
 ["WV", "West Virginia"],
 ["WI", "Wisconsin"],
 ["WY", "Wyoming"]]
+  end
+
+  def profile
+   redirect_to edit_user_path(current_user) unless current_user.first_name
   end
 end

@@ -17,7 +17,7 @@
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header" style="padding-left:25px"> 
+    <div class="navbar-header" style="padding-left:25px">
       <%= link_to "You@Kellogg", root_url, :class => "navbar-brand" %>
     </div>
 
@@ -26,7 +26,7 @@
         <form class="navbar-form navbar-right" style="padding-right:40px; padding-top:5px; margin-right:0">
           <% if user_signed_in? %>
             <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn btn-warning btn-sm" %>
-            <%= link_to current_user.email , edit_user_path(current_user), class: "btn btn-default btn-sm"  %>
+            <%= link_to current_user.email , profile_path, class: "btn btn-default btn-sm"  %>
           <% else %>
             <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-warning btn-sm"  %>
             <%= link_to "LOGIN", new_user_session_path, class: "btn btn-warning btn-sm" %>

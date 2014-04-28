@@ -45,5 +45,14 @@ class User < ActiveRecord::Base
   def us_country?
     country_id == 234
   end
+
+  def rigths_string(id)
+    string = ["Prospective Student","Current Student","Leader Student","Admin Student"]
+    string[id]
+  end
+
+  def profile_btn()
+    
+  end
 end
 

@@ -1,0 +1,79 @@
+
+<div class="container-fluid">
+<!--   <div class="row row-profile" style="padding-top:20px">
+    <p class="bg-primary text-center" style="padding:10px; background-color:rgb(200,200,200); font-size:17px">Your request for connection has been sent. A current student will reach out to you shortly. <a href="#" class="btn btn-warning btn-sm">OR, CANCEL YOUR REQUEST</a></p>
+  </div> -->
+
+  <div class="row row-profile">
+    <div class="col-md-10">
+      <h2><%= current_user.full_name %></h2>
+      <p style="padding-bottom:15px">
+        <%= current_user.rigths_string(current_user.user_rights) %>
+      </p>
+      <p><i class="fa fa-map-marker"></i><%= current_user.country.name %><%= ", #{current_user.state}" if current_user.state? %></p>
+      <!-- <p style="font-style:italic">You have an ongoing connection</p> -->
+    </div>
+
+
+    <div class="col-md-2">
+      <% if current_user.user_rights == 0 %>    
+        <%= link_to "UPDATE PROFILE", edit_user_path(current_user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">MAKE CONNECTION</a>
+     
+
+      <% elsif current_user.user_rights == 1 %>
+        <%= link_to "UPDATE PROFILE", edit_user_path(current_user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">CHECK CONNECTIONS</a>
+      
+
+      <% elsif current_user.user_rights == 2 %>
+        <%= link_to "UPDATE PROFILE", edit_user_path(current_user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">ANALYTICS</a>
+     
+
+      <% elsif current_user.user_rights == 3 %>
+        <form class="form-horizontal" style="padding-top:10px">
+          <div class="input-group  input-group-sm">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" placeholder="Search" class="form-control" />
+          </div>
+        </form>
+        <a href="#" class="btn btn-warning btn-sm btn-block btn-update" style="margin-top:10px">UPDATE PROFILE</a>
+        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">CHECK CONNECTIONS</a>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="row row-profile">
+    <hr>
+    <div class="col-md-10">
+      <h4>I am interested in:</h4>
+    </div>  
+
+    <% unless current_user.interests.count == 0 %>
+      <% current_user.interests.each do |club| %>
+        <div class="col-sm-5">
+          <p><i class="fa fa-check-circle-o"></i><%= club.name %></p>
+        </div>
+      <% end %>
+     <% else %>
+        <div class="col-sm-5">
+          <p><i class="fa fa-check-circle-o"></i>Nothing</p>
+        </div>
+     <% end %>    
+  </div>
+
+   <div class="row row-profile">
+    <hr>
+    <div class="col-md-10">
+      <p><i class="fa fa-briefcase fa-2x"></i>Before Kellogg I worked in <%= current_user.before_industry.name %> doing <%= current_user.before_function.name %></p>
+
+     <% if current_user.after_industry_id? && current_user.after_function_id? %> 
+      <p><i class="fa fa-long-arrow-right fa-2x"></i>After kellog I want to work in <%= current_user.after_industry.name %> doing <%= current_user.after_function.name %></p>
+      <% end %>
+     </div> 
+  </div>
+
+
+</div>

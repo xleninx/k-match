@@ -236,6 +236,7 @@ KMatch::Application.routes.draw do
   # READ
   get '/users', controller: 'users', action: 'index'
   get '/users/:id', controller: 'users', action: 'show', as: 'user'
+  get '/profile', to: "users#profile"
 
   # UPDATE
   get '/users/:id/edit', controller: 'users', action: 'edit', as: 'edit_user'

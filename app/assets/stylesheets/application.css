@@ -220,10 +220,10 @@ a.navbar-brand:hover{
 .fa{
   font-size: 18px
 }
-.btn{
+/*.btn{
   padding: 10px 15px 6px;
   font-weight: bold;
-}
+}*/
 
 #footer > * > *> .fa{
   font-size: 30px;
