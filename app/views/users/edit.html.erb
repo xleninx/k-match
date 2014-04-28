@@ -1,3 +1,6 @@
+  <%= javascript_include_tag "chosen.jquery.min" %> 
+  <%= javascript_include_tag "edit_profile" %> 
+  <%= stylesheet_link_tag  "chosen" %>
   <div class="col-md-6 col-md-offset-3">
     <h1 class="text-center">Welcome to You@Kellogg</h1>
     <hr>
@@ -5,8 +8,10 @@
 
 <div class="col-md-10 col-md-offset-2">
   <dl class="faq" style="counter-increment: my-badass-counter+1;">
-    <dd style="padding-bottom:33px;font-size:20px"><strong>Tell us a little about yourself</strong>.</dd>
+    <dd style="padding-bottom:33px;font-size:20px"><strong>Tell us a little about yourself</strong>. </dd>
   </dl>
+
+  <p class="col-md-10"><span class="pull-right">Requires Fields (*)</span></p>
 
 <%= form_tag(user_url(@user), method: 'patch', class: 'form-horizontal') do %>
   <% if current_user.user_rights? %>
@@ -37,10 +42,10 @@
 
   <div class="form-group">
     <div class="col-md-5">
-      <%= text_field_tag :first_name, current_user.first_name, placeholder:'First Name', class: 'form-control' %>
+      <%= text_field_tag :first_name, current_user.first_name, placeholder:'First Name (*)', class: 'form-control' %>
     </div>
     <div class="col-md-5">
-      <%= text_field_tag :last_name, current_user.last_name, placeholder:'Last Name', class: 'form-control' %>
+      <%= text_field_tag :last_name, current_user.last_name, placeholder:'Last Name (*)', class: 'form-control' %>
     </div>
   </div>
 
@@ -53,20 +58,20 @@
 
   <div class="form-group">
     <div class="col-md-5">
-      <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country', class: 'form-control') %>
+      <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country (*)', class: 'form-control') %>
     </div>
     <div class="col-md-5">
-      <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (only US)', class: 'form-control') %>
+      <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (*)(only US)', class: 'form-control') %>
     </div>
   </div>
 
 
   <div class="form-group">
     <div class="col-md-5">
-      <%= select_tag(:before_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.before_industry_id), prompt: 'Please select your current job industry', class: 'form-control') %>
+      <%= select_tag(:before_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.before_industry_id), prompt: 'Please select your current job industry (*)', class: 'form-control') %>
     </div>
     <div class="col-md-5">
-      <%= select_tag(:before_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.before_function_id), prompt: 'Please select your current job function', class: 'form-control') %>
+      <%= select_tag(:before_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.before_function_id), prompt: 'Please select your current job function (*)', class: 'form-control') %>
     </div>
   </div>
 
@@ -79,7 +84,7 @@
 
   <div class="form-group">
     <div class="col-md-10">
-      <b>Programs of interest</b>
+      <b>Programs of interest (*)</b>
     </div>
   </div>
 
@@ -115,13 +120,24 @@
 
   <div class="form-group">
     <div class="col-md-10">
-      <%= collection_check_boxes(:user, :interest_ids, Interest.all, :id, :name, {}, {class: ""}) do |b| %>
-        <div class="col-md-6">
-          <div class="checkbox" > 
-            <%=  b.label(:"data-value" => b.value) { b.check_box + b.text } %>
-          </div>
-        </div>
-      <% end %>
+
+      <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Professional"), :id, :name, current_user.after_function_id), prompt: 'Please select your function of interest', class: 'chosen-select form-control', multiple: true, "data-placeholder" => "Professional Clubs of Interest") %>
+
+    </div>
+  </div>
+
+  <div>&nbsp;</div>
+  <div class="form-group">
+    <div class="col-md-10">
+      <b>Affinity Clubs of Interest - Max 3.</b>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-10">
+
+      <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Affinity"), :id, :name, current_user.after_function_id), placeholder: 'Please select your function of interest', class: 'form-control chosen-select', multiple: true, "data-placeholder" => "Affinity Clubs of Interest") %>
+
     </div>
   </div>
 

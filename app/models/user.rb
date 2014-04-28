@@ -4,6 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_create do
+    if self.email.include? "@kellogg.northwestern.edu"
+      self.user_rights = 1
+    else
+      self.user_rights = 0
+    end
+  end
+
   has_and_belongs_to_many :programs
   belongs_to :program
   belongs_to :country
@@ -15,18 +23,6 @@ class User < ActiveRecord::Base
   belongs_to :after_function, :class_name => 'Function'
 
   has_and_belongs_to_many :interests
-
-  # has_one :before_industry
-  # has_one :industry, through: :before_industry
-
-  # has_one :after_industry
-  # has_one :industry, through: :after_industry
-
-  # has_one :before_function
-  # has_one :function, through: :before_function
-
-  # has_one :after_function
-  # has_one :function, through: :after_function
 
   has_many :connector, :class_name => "Connection", :foreign_key => "prospective_id"
   has_many :connectee, :class_name => "Connection", :foreign_key => "student_id"
@@ -44,7 +40,7 @@ class User < ActiveRecord::Base
 
   def admin?
      false
-   end
+  end
 
   def us_country?
     country_id == 234

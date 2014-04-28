@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-industries = ["Accounting", "Advertising", "Aerospace / Aviation / Defense", "Agribusiness", "Construction", "Consulting", "Consumer Products", "Economic Development / Microfinance", "Education", "Energy / Utilities", "Engineering Services", "Entertainment / Leisure / Recreation", "Environmental Services & Sustainability", "Executive Search", "Financial", "Government", "Healthcare", "Hospitality / Tourism", "Human Resources / Recruitment", "International Trade - Import / Export", "Law / Legal Services", "Manufacturing", "Media", "Natural Resources", "Nonprofit", "Real Estate", "Retail", "Sports & Sports Management", "Tech", "Telecom", "Transportation / Logistics"]
+industries = ["Advertising", "Aerospace", "Arts", "Chemicals/Rubber/Plastics", "Consulting", "Consulting: Financial Advisory Services", "Consulting: General Management", "Consulting: Healthcare", "Consulting: Information Technology", "Consulting: Logistics", "Consulting: Strategy", "Consulting: Products", "Education", "Energy/Utilities", "Entertainment/Leisure/Sports", "Environmental/Agriculture", "Executive Search", "Fin Serv: Accounting/Audit/Tax", "Fin Serv: Commercial Banking", "Fin Serv: Diversified Financial Services", "Fin Serv: Insurance", "Fin Serv: Investment Banking & Brokerage", "Fin Serv: Investment/Portfolio Management", "Fin Serv: Merchant Banking", "Fin Serv: Mergers & Acquisitions", "Fin Serv: Private Equity/ Venture Capital", "Financial Services", "Food Services/Lodging", "Government", "Green Business", "Healthcare/Biotechnology/Pharmaceuticals", "Industrial Equipment/Machinery", "Legal Services", "Marketing/Media/Communications", "Military", "Not-For-Profit", "Other", "Paper/Forest Products", "Printing/Publishing", "Real Estate/Construction/Engineering", "Retail/Wholesale", "Technology", "Technology Communications & Information Systems", "Technology Computers/Hardware", "Technology E-Commerce/Internet", "Technology Electronics", "Technology Semiconductors", "Technology Software", "Telecommunications", "Transportation & Equipment", "Widely Diversified Manufacturing", "Widely Diversified Services"]
 
   Industry.destroy_all
   industries.each do |industry|
@@ -16,7 +16,7 @@ industries = ["Accounting", "Advertising", "Aerospace / Aviation / Defense", "Ag
   puts "There are now #{Industry.count} industries registered"
 
 # Seed functions
-functions = ["Accounting", "Administration", "Business Development", "Buyer / Merchandising", "Consulting", "Corporate Development", "Economic Analysis / Research", "Education (Administrator/ Faculty)", "Engineering", "Entrepreneurship", "Finance", "Fundraising / Development", "Health Care / Medical Professional", "Human Resources", "Journalist / Author / Writer / Editor", "Lawyer / Legal Professional", "Legislative Aide / Lobbying / Advocate", "Management", "Manufacturing", "Marketing", "Military", "Multimedia Production / Graphic Design", "Purchasing", "Research & Development", "Real Estate", "Sales", "Strategic Planning", "Tech"]
+functions = ["Accounting/Control", "Administration", "Advertising", "Asset Management", "Brand/Product Management", "Business Development", "Business Development/Strategy/Research", "Consulting", "Corporate Finance", "Development", "Economic Analysis", "Entrepreneur/Owner", "Entrepreneur/Small Business", "Fin. – Accounting/Control", "Fin. – Banking", "Fin. – Commercial Banking", "Fin. – Corporate Finance/Underwriting", "Fin. – Financial Advisory", "Fin. – Investment Banking/Brokerage", "Fin. – Investment Portfolio Management", "Fin. – Management", "Fin. – Mergers and Acquisitions", "Fin. – Private Client Services", "Fin. – Public Finance", "Fin.- Research (Equity/Fixed Inc.)", "Fin. – Sales & Trading", "Fin.- Treasury, Analyst", "Fin.- Venture Capital/Private Equity", "General Management", "Healthcare", "Human Resources", "Information Systems", "Information Technology", "International Development", "Investor Relations/PR/Communications", "Law/Legal", "Lending/Relationship Management", "Management Consulting", "Market Research", "Marketing – Advertising", "Marketing – Brand/Product Management", "Marketing – Research", "Marketing – Sales", "Mergers and Acquisitions", "Operations/Logistics", "Operations/Production", "Other", "Private Client Services", "Property Management", "Public Finance", "Public Relations", "Real Estate", "Research & Development Management", "Research (Buy Side)", "Research (Sell Side)", "Sales", "Sales and Trading", "Strategic Planning (Internal)", "Treasury Analysis", "Venture Capital/Private Equity"]
 
   Function.destroy_all
   functions.each do |function|
@@ -27,12 +27,60 @@ functions = ["Accounting", "Administration", "Business Development", "Buyer / Me
   puts "There are now #{Function.count} functions registered"
 
 # Seed interests
-interests = ["Big Data and Analytics Club", "Black Management Association", "Chinese", "Business Club", "Consulting Club", "Energy Club", "Entrepreneurship  Club", "European Business Club", "Family Enterprise Club", "Food and Agribusiness Club", "Gay & Lesbian Management Association", "General Management Club", "Healthcare Club", "High Tech Club", "Hispanic Management Association", "India Business Club", "Innovation & Design Association", "Investment Management Club", "Kellogg Veterans Association", "Latin American Hispanic and Iberian Management Association", "Marketing Club", "Media & Entertainment Club", "Middle East and North Africa Club", "Operations Club", "Private Equity & Venture Capital Club", "Real Estate Club", "Retail + Luxury Goods Club", "Sports Business Club", "Strategy & Business Development Club", "Women's Business Association"]
+interests = [{"name" => "Africa Business Club", "type_club" => "Affinity"},
+{"name" => "Asian Management Association", "type_club" => "Affinity"},
+{"name" => "Australia/New Zealand/Oceania Management Association", "type_club" => "Affinity"},
+{"name" => "Black Management Association", "type_club" => "Affinity"},
+{"name" => "California Business Club", "type_club" => "Affinity"},
+{"name" => "Canada Club", "type_club" => "Affinity"},
+{"name" => "Catholics At Kellogg", "type_club" => "Affinity"},
+{"name" => "Chinese Business Club", "type_club" => "Affinity"},
+{"name" => "Christian Fellowship", "type_club" => "Affinity"},
+{"name" => "European Business Club", "type_club" => "Affinity"},
+{"name" => "Family Enterprise Club", "type_club" => "Affinity"},
+{"name" => "Gay And Lesbian Management Association", "type_club" => "Affinity"},
+{"name" => "India Business Club", "type_club" => "Affinity"},
+{"name" => "Japan Club", "type_club" => "Affinity"},
+{"name" => "Jewish Business Association", "type_club" => "Affinity"},
+{"name" => "Kellogg Veterans Association", "type_club" => "Affinity"},
+{"name" => "Latin American Hispanic And Iberian Management Association", "type_club" => "Affinity"},
+{"name" => "Latter-Day Saints Student Association", "type_club" => "Affinity"},
+{"name" => "Middle East And North Africa Club", "type_club" => "Affinity"},
+{"name" => "Muslim Cultural Business Association", "type_club" => "Affinity"},
+{"name" => "Southeast Asia Club", "type_club" => "Affinity"},
+{"name" => "Women'S Business Association", "type_club" => "Affinity"},
+{"name" => "Automotive Club", "type_club" => "Professional"},
+{"name" => "Big Data And Analytics Club", "type_club" => "Professional"},
+{"name" => "Business Leadership Club", "type_club" => "Professional"},
+{"name" => "Corporate Finance Club", "type_club" => "Professional"},
+{"name" => "Distressed Management Club", "type_club" => "Professional"},
+{"name" => "Education Industry Club", "type_club" => "Professional"},
+{"name" => "Emerging Markets Club", "type_club" => "Professional"},
+{"name" => "Energy Club", "type_club" => "Professional"},
+{"name" => "Entrepeneurship Club", "type_club" => "Professional"},
+{"name" => "Food And Agribusiness Club", "type_club" => "Professional"},
+{"name" => "General Management Club", "type_club" => "Professional"},
+{"name" => "High Tech Club", "type_club" => "Professional"},
+{"name" => "Hospitaltity Club", "type_club" => "Professional"},
+{"name" => "Hub", "type_club" => "Professional"},
+{"name" => "Innovation And Design Association", "type_club" => "Professional"},
+{"name" => "Investment Banking And Capital Markets", "type_club" => "Professional"},
+{"name" => "Investment Management Club", "type_club" => "Professional"},
+{"name" => "Media And Entertainment Club", "type_club" => "Professional"},
+{"name" => "Net Impact", "type_club" => "Professional"},
+{"name" => "Operations Management Club", "type_club" => "Professional"},
+{"name" => "Private Equity And Venture Capital Club", "type_club" => "Professional"},
+{"name" => "Real Estate Club", "type_club" => "Professional"},
+{"name" => "Retail And Luxury Goods Club", "type_club" => "Professional"},
+{"name" => "Sports Business Club", "type_club" => "Professional"},
+{"name" => "Strategy And Business Development Club", "type_club" => "Professional"},
+{"name" => "Transportation Club", "type_club" => "Professional"}]
 
   Interest.destroy_all
   interests.each do |interest|
     int = Interest.new
-    int.name = interest
+    int.name = interest["name"]
+    int.type_club = interest["type_club"]
     int.save
   end
   puts "There are now #{Interest.count} interests registered"

@@ -82,7 +82,7 @@ class UsersController < ApplicationController
     @user.before_function_id = params[:before_function_id].to_i
     @user.after_function_id = params[:after_function_id].to_i
 
-    @user.interest_ids = params[:user][:interest_ids].reject{|id| id == ""}
+    @user.interest_ids = params[:interest_ids].reject{|id| id == ""}
 
     if @user.save
       redirect_to root_path, notice: "User updated successfully."
