@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  before_create do
-    if self.email.include? "@kellogg.northwestern.edu"
-      self.user_rights = 1
-    else
-      self.user_rights = 0
-    end
-  end
+#  before_create do
+#    if self.email.include? "@kellogg.northwestern.edu"
+#      self.user_rights = 1
+#    else
+#      self.user_rights = 0
+#    end
+#  end
 
   has_and_belongs_to_many :programs
   belongs_to :country
@@ -33,24 +33,25 @@ class User < ActiveRecord::Base
   validates :country, presence: true, :on => :update
   validates :state, presence: true, :on => :update, if: :us_country?
 
+  ROLES = ["Prospective","Current","Leader","Admin"]
+
   def full_name
     return "#{first_name} #{last_name}".titleize
-  end
-
-  def admin?
-     false
   end
 
   def us_country?
     country_id == 234
   end
 
-  def rigths_string(id)
-    string = ["Prospective Student","Current Student","Leader Student","Admin Student"]
-    string[id]
+  def rigths_string
+    ROLES[user_rights] << " Student"
   end
 
-  def profile_btn()
+  def admin?
+    user_rights == 3
+  end
+
+  def profile_btn
 
   end
 end
