@@ -24,6 +24,13 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'autotest'
+  gem 'launchy'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
