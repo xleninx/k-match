@@ -8,5 +8,6 @@ FactoryGirl.define do
     password '12345678'
     password_confirmation '12345678'
     user_rights 0
+    association :country
   end
 end
