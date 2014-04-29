@@ -24,7 +24,48 @@
   color: #6D3D7C;
 }
 
+#header #utility_nav a:hover {
+  color: #6D3D7C;
+}
+
 #header h1 {
   color:white;
   font-size: 19px;
+}
+
+.well{
+  text-align: center;
+}
+
+.title-module{
+  display: block;
+  font-size: 85px;
+
+  }
+
+.description-module{
+  display: block;
+  font-size: 15px;
+}
+
+.title-size{
+  font-size: 85px;
+}
+
+.description-size{
+  font-size: 25px;
+}
+
+hr {
+  border: 1px solid #C4C4C4;
+}
+
+.title-program{
+  display: block;
+  font-size: 60px;
+}
+
+.title-description{
+  display: block;
+  font-size: 15px;
 }
