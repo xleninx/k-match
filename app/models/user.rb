@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def rigths_string
-    ROLES[user_rights] << " Student"
+    ROLES[user_rights] + " Student"
   end
 
   def admin?

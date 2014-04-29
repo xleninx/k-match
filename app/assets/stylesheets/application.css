@@ -169,20 +169,7 @@ div.academics-row > .row > div > img{
   overflow-x:hidden;
 
 }
-.breadcrumb{
-  background-image: -webkit-gradient(
-  linear,
-  left top,
-  left bottom,
-  color-stop(0, #F0F0F0),
-  color-stop(1, #CFCFCF)
-);
-background-image: -o-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
-background-image: -moz-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
-background-image: -webkit-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
-background-image: -ms-linear-gradient(bottom, #F0F0F0 0%, #CFCFCF 100%);
-background-image: linear-gradient(to bottom, #F0F0F0 0%, #CFCFCF 100%);
-}
+
 
 .well{
   min-height: 20px;

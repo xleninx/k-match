@@ -55,7 +55,7 @@ ActiveAdmin.register_page "Dashboard" do
                 span class: "title-program" do p.users.count end
 
                 span class: "title-description" do "Program #{p.name}" end
-                hr style: "margin: 20px 35px; border: 1px solid \##{rand(0xffffff).to_s(16)};"
+                hr style: " border: 1px solid \##{rand(0xffffff).to_s(16)};"
             end
         # div class: "col-sm-2" do
         #     span class: "title-program" do "1" end
