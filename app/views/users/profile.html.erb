@@ -8,7 +8,7 @@
     <div class="col-md-10">
       <h2><%= current_user.full_name %></h2>
       <p style="padding-bottom:15px">
-        <%= current_user.rigths_string(current_user.user_rights) %>
+        <%= current_user.rigths_string %>
       </p>
       <p><i class="fa fa-map-marker"></i><%= current_user.country.name %><%= ", #{current_user.state}" if current_user.state? %></p>
       <!-- <p style="font-style:italic">You have an ongoing connection</p> -->

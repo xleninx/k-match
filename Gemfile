@@ -8,6 +8,9 @@ gem 'devise'
 # Email management
 gem 'mail'
 
+# Export xlsx for Active admin
+gem 'activeadmin-axlsx'
+
 # Active Admin
 gem 'activeadmin', github: 'gregbell/active_admin'
 

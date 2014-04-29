@@ -1,0 +1,30 @@
+#header.header{
+  background: #6D3D7C;
+  font-size: 15px;
+  padding: 16px 0;
+}
+
+#header ul.tabs > li a {
+  color:white;
+  padding: 6px 10px 6px 10px;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+   border-radius: 5px;
+   text-shadow: none;
+}
+
+#header ul.tabs > li.current > a {
+  background: rgba(250,250,250,0.8);
+  color: #6D3D7C;
+}
+
+#header ul.tabs > li:hover > a {
+  background: rgba(250,250,250,0.8);
+  color: #6D3D7C;
+}
+
+#header h1 {
+  color:white;
+  font-size: 19px;
+}
