@@ -26,8 +26,8 @@ functions = ["Accounting/Control", "Administration", "Advertising", "Asset Manag
   end
   puts "There are now #{Function.count} functions registered"
 
-# Seed interests
-interests = [{"name" => "Africa Business Club", "type_club" => "Affinity"},
+# Seed clubs
+clubs = [{"name" => "Africa Business Club", "type_club" => "Affinity"},
 {"name" => "Asian Management Association", "type_club" => "Affinity"},
 {"name" => "Australia/New Zealand/Oceania Management Association", "type_club" => "Affinity"},
 {"name" => "Black Management Association", "type_club" => "Affinity"},
@@ -76,14 +76,14 @@ interests = [{"name" => "Africa Business Club", "type_club" => "Affinity"},
 {"name" => "Strategy And Business Development Club", "type_club" => "Professional"},
 {"name" => "Transportation Club", "type_club" => "Professional"}]
 
-  Interest.destroy_all
-  interests.each do |interest|
-    int = Interest.new
-    int.name = interest["name"]
-    int.type_club = interest["type_club"]
+  Club.destroy_all
+  clubs.each do |club|
+    int = Club.new
+    int.name = club["name"]
+    int.type_club = club["type_club"]
     int.save
   end
-  puts "There are now #{Interest.count} interests registered"
+  puts "There are now #{Club.count} clubs registered"
 
 # Seed programs
 programs = ["1Y", "2Y", "JD-MBA", "MD-MBA", "MMM"]

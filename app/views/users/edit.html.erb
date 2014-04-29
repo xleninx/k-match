@@ -71,10 +71,10 @@
 
     <div class="form-group">
       <div class="col-md-5">
-        <%= select_tag(:before_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.before_industry_id), prompt: 'Please select your current job industry (*)', class: 'form-control') %>
+        <%= select_tag(:current_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.current_industry_id), prompt: 'Please select your current job industry (*)', class: 'form-control') %>
       </div>
       <div class="col-md-5">
-        <%= select_tag(:before_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.before_function_id), prompt: 'Please select your current job function (*)', class: 'form-control') %>
+        <%= select_tag(:current_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.current_function_id), prompt: 'Please select your current job function (*)', class: 'form-control') %>
       </div>
     </div>
 
@@ -107,10 +107,10 @@
 
     <div class="form-group">
       <div class="col-md-5">
-        <%= select_tag(:after_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.after_industry_id), prompt: 'Please select your industry of interest', class: 'form-control') %>
+        <%= select_tag(:interest_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.interest_industry_id), prompt: 'Please select your industry of interest', class: 'form-control') %>
       </div>
       <div class="col-md-5">
-        <%= select_tag(:after_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.after_function_id), prompt: 'Please select your function of interest', class: 'form-control') %>
+        <%= select_tag(:interest_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.interest_function_id), prompt: 'Please select your function of interest', class: 'form-control') %>
       </div>
     </div>
 
@@ -124,7 +124,7 @@
     <div class="form-group">
       <div class="col-md-10">
 
-        <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Professional"), :id, :name, current_user.interest_ids), placeholder: 'Please select your function of interest', class: 'chosen-select form-control', multiple: true, "data-placeholder" => "Professional Clubs of Interest") %>
+        <%= select_tag(:club_ids, options_from_collection_for_select(Club.where(type_club: "Professional"), :id, :name, current_user.club_ids), placeholder: 'Please select your function of interest', class: 'chosen-select form-control', multiple: true, "data-placeholder" => "Professional Clubs of Interest") %>
 
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="form-group">
       <div class="col-md-10">
 
-        <%= select_tag(:interest_ids, options_from_collection_for_select(Interest.where(type_club: "Affinity"), :id, :name, current_user.interest_ids), placeholder: 'Please select your function of interest', class: 'form-control chosen-select', multiple: true, "data-placeholder" => "Affinity Clubs of Interest") %>
+        <%= select_tag(:club_ids, options_from_collection_for_select(Club.where(type_club: "Affinity"), :id, :name, current_user.club_ids), placeholder: 'Please select your function of interest', class: 'form-control chosen-select', multiple: true, "data-placeholder" => "Affinity Clubs of Interest") %>
 
       </div>
     </div>

@@ -19,7 +19,7 @@
     <% @preferences.each do |preference| %>
       <tr>
         <td><%= preference.user_id %></td>
-        <td><%= preference.interest_id %></td>
+        <td><%= preference.club_id %></td>
         <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, preference_url(preference), class: 'btn btn-primary' %></td>
         <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_preference_url(preference), class: 'btn btn-warning' %></td>
         <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, preference_url(preference), method: 'delete', data: { confirm: "Do you really want to delete this preference?" }, class: 'btn btn-danger' %></td>

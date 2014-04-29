@@ -1,46 +1,46 @@
-class InterestsController < ApplicationController
+class ClubsController < ApplicationController
 
   def index
-    @interests = Interest.all
+    @clubs = Club.all
   end
 
   def show
-    @interest = Interest.find_by(id: params[:id])
+    @club = Club.find_by(id: params[:id])
   end
 
   def new
   end
 
   def create
-    @interest = Interest.new
-    @interest.name = params[:name]
+    @club = Club.new
+    @club.name = params[:name]
 
-    if @interest.save
-      redirect_to interests_url, notice: "Interest created successfully."
+    if @club.save
+      redirect_to clubs_url, notice: "Club created successfully."
     else
       render 'new'
     end
   end
 
   def edit
-    @interest = Interest.find_by(id: params[:id])
+    @club = Club.find_by(id: params[:id])
   end
 
   def update
-    @interest = Interest.find_by(id: params[:id])
-    @interest.name = params[:name]
+    @club = Club.find_by(id: params[:id])
+    @club.name = params[:name]
 
-    if @interest.save
-      redirect_to interests_url, notice: "Interest updated successfully."
+    if @club.save
+      redirect_to clubs_url, notice: "Club updated successfully."
     else
       render 'edit'
     end
   end
 
   def destroy
-    @interest = Interest.find_by(id: params[:id])
-    @interest.destroy
+    @club = Club.find_by(id: params[:id])
+    @club.destroy
 
-    redirect_to interests_url, notice: "Interest deleted."
+    redirect_to clubs_url, notice: "Club deleted."
   end
 end

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429124253) do
+ActiveRecord::Schema.define(version: 20140429194905) do
+
+  create_table "clubs", force: true do |t|
+    t.string "name"
+    t.string "type_club"
+  end
+
+  create_table "clubs_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "club_id"
+  end
 
   create_table "connections", force: true do |t|
     t.integer  "student_id"
@@ -35,16 +45,6 @@ ActiveRecord::Schema.define(version: 20140429124253) do
 
   create_table "industries", force: true do |t|
     t.string "name"
-  end
-
-  create_table "interests", force: true do |t|
-    t.string "name"
-    t.string "type_club"
-  end
-
-  create_table "interests_users", force: true do |t|
-    t.integer "user_id"
-    t.integer "interest_id"
   end
 
   create_table "matches", force: true do |t|
@@ -84,10 +84,10 @@ ActiveRecord::Schema.define(version: 20140429124253) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
-    t.integer  "before_industry_id"
-    t.integer  "after_industry_id"
-    t.integer  "before_function_id"
-    t.integer  "after_function_id"
+    t.integer  "current_industry_id"
+    t.integer  "interest_industry_id"
+    t.integer  "current_function_id"
+    t.integer  "interest_function_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
