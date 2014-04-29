@@ -17,13 +17,8 @@ class UserAffinity
           check_filter_relation_btm( filter )
         end
     end
-    # @users
-    puts " *** " * 50
-    puts @users.inspect
-    # .find(:all, :select => '*, count(*) AS count, users.id', :group => 'users.id', :order => 'count')
     users_low_connector
   end
-
 
   private
 
@@ -67,5 +62,5 @@ class UserAffinity
   def check_filter_attribute( attribute )
     filtered_users  = User.where( attribute => @user[attribute], :id => @users).group(:id).all
     validate_filter_result filtered_users
-  end  
+  end
 end
