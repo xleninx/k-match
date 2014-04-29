@@ -10,7 +10,7 @@ describe UserAffinity do
     let(:user){ User.where(:country => Country.last).first }
     let(:user_without_affinity){ User.where(:country => Country.first).first }
     let(:affinity){ UserAffinity.new(user) }
-    subject(:user_with_affinity){affinity.users_affinities}
+    subject(:user_with_affinity){affinity.users_with_affinities}
 
     describe "filter by country" do
       it{should have(2).user}
