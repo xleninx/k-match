@@ -76,13 +76,13 @@ class UsersController < ApplicationController
       @user.grad_year = params[:email].split('@')[0].reverse[0..3].reverse.to_i
     end
 
-    @user.before_industry_id = params[:before_industry_id].to_i
-    @user.after_industry_id = params[:after_industry_id].to_i
+    @user.current_industry_id = params[:current_industry_id].to_i
+    @user.interest_industry_id = params[:interest_industry_id].to_i
 
-    @user.before_function_id = params[:before_function_id].to_i
-    @user.after_function_id = params[:after_function_id].to_i
+    @user.current_function_id = params[:current_function_id].to_i
+    @user.interest_function_id = params[:interest_function_id].to_i
 
-    @user.interest_ids = params[:interest_ids]
+    @user.club_ids = params[:club_ids]
 
     if @user.save
       redirect_to profile_path, notice: "User updated successfully."

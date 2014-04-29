@@ -1,18 +1,18 @@
 <div class="page-header">
-  <h1>Editing Interest #<%= @interest.id %></h1>
+  <h1>Editing Club #<%= @club.id %></h1>
 </div>
 
-<%= form_tag(interest_url(@interest), method: 'patch', class: 'form-horizontal') do %>
+<%= form_tag(club_url(@club), method: 'patch', class: 'form-horizontal') do %>
   <div class="form-group">
     <%= label_tag :name, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
-      <%= text_field_tag :name, @interest.name, class: 'form-control' %>
+      <%= text_field_tag :name, @club.name, class: 'form-control' %>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-6">
-      <%= submit_tag "Update Interest", class: 'btn btn-primary' %>
+      <%= submit_tag "Update Club", class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

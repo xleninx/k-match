@@ -1,8 +1,8 @@
 <div class="page-header">
-  <h1>New Interest</h1>
+  <h1>New Club</h1>
 </div>
 
-<%= form_tag(interests_url, method: 'post', class: 'form-horizontal') do %>
+<%= form_tag(clubs_url, method: 'post', class: 'form-horizontal') do %>
   <div class="form-group">
     <%= label_tag :name, nil, class: 'col-md-2 control-label' %>
     <div class="col-md-6">
@@ -12,7 +12,7 @@
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-6">
-      <%= submit_tag "Create Interest", class: 'btn btn-primary' %>
+      <%= submit_tag "Create Club", class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

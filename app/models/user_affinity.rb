@@ -26,11 +26,11 @@ class UserAffinity
     { country: :relation,
       state: :attribute,
       programs: :relation_b_t_m,
-      interests: :relation_b_t_m,
-      before_industry: :relation,
-      before_function: :relation,
-      after_industry: :relation,
-      after_function: :relation
+      clubs: :relation_b_t_m,
+      current_industry: :relation,
+      current_function: :relation,
+      interest_industry: :relation,
+      interest_function: :relation
     }
   end
 
