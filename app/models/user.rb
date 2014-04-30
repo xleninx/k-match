@@ -41,7 +41,8 @@ class User < ActiveRecord::Base
   end
 
   def rigths_string
-    ROLES[user_rights] + " Student"
+    r = (user_rights == nil) ? 0 : user_rights
+    ROLES[r] + " Student"
   end
 
   def admin?
