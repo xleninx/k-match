@@ -2,14 +2,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-#  before_create do
-#    if self.email.include? "@kellogg.northwestern.edu"
-#      self.user_rights = 1
-#    else
-#      self.user_rights = 0
-#    end
-#  end
-
   has_many :connection,->{where "status = \"established\""}, :class_name => "Connection", :foreign_key => "prospective_id"
   has_many :connections_rejected,->{where "status = \"rejected\""}, :class_name => "Connection", :foreign_key => "current_id"
   has_many :request_connections,->{where "status = \"pending\""}, :class_name => "Connection", :foreign_key => "current_id"
