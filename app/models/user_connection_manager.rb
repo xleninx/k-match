@@ -1,8 +1,12 @@
 class UserConnectionManager
 
-  def initialize (user,message)
+  def initialize (user,message = '')
     @user = user
     @message = message
+  end
+
+  def cancel_request
+    @user.request_connections.first.delete unless @user.request_connections.empty?
   end
 
   def connection_rejected 

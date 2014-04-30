@@ -159,12 +159,19 @@ class UsersController < ApplicationController
   end
 
   def make_connection
-    # user_connection = UserConnectionManager.new(current_user, params[:message])
-    # user_connection.make_connection
-    UserMailer.connection_request(User.first, User.last).deliver
+    @user = User.find(current_user.id)
+    UserConnectionManager.new(@user,params[:message]).send_request
     redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
   end
 
+  def cancel_request
+    @user = User.find(current_user.id)
+    UserConnectionManager.new(@user).cancel_request
+    redirect_to profile_user_path(current_user), notice: "Connection has been canceled"
+  end
+
+    # user_connection = UserConnectionManager.new(current_user, params[:message])
+    # user_connection.make_connection
   def search
     @user = User.where('first_name || last_name like ? and user_rights <> 0', "%#{params[:search]}%")
   end

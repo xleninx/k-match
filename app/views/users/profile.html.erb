@@ -1,8 +1,11 @@
 
 <div class="container-fluid">
-<!--   <div class="row row-profile" style="padding-top:20px">
-    <p class="bg-primary text-center" style="padding:10px; background-color:rgb(200,200,200); font-size:17px">Your request for connection has been sent. A current student will reach out to you shortly. <a href="#" class="btn btn-warning btn-sm">OR, CANCEL YOUR REQUEST</a></p>
-  </div> -->
+  <div class="row row-profile" style="padding-top:20px">
+    <% unless @user.request_connections.empty? %>
+      <p class="bg-primary text-center" style="padding:10px; background-color:rgb(200,200,200); font-size:17px">Your request for connection has been sent. A current student will reach out to you shortly.
+      <%= link_to "OR, CANCEL YOUR REQUEST", cancel_request_path, class: "btn btn-warning btn-sm" %></p>
+    <% end %>
+  </div>
 
   <div class="row row-profile">
     <div class="col-md-10">
