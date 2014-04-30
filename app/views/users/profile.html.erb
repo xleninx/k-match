@@ -31,12 +31,12 @@
      
 
       <% elsif @user.user_rights == 3 %>
-        <form class="form-horizontal" style="padding-top:10px">
+        <%= form_tag(search_user_path, :method=>'get', style:"padding-top:10px") do %>
           <div class="input-group  input-group-sm">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" placeholder="Search" class="form-control" />
+            <%= text_field_tag "search", "", class: "form-control", placeholder: "Search" %>
           </div>
-        </form>
+        <% end %>
         <a href="#" class="btn btn-warning btn-sm btn-block btn-update" style="margin-top:10px">UPDATE PROFILE</a>
         <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">CHECK CONNECTIONS</a>
       <% end %>

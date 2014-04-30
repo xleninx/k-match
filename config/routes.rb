@@ -233,7 +233,7 @@ KMatch::Application.routes.draw do
 
   # READ
   get '/users', controller: 'users', action: 'index'
-  get '/users/:id', controller: 'users', action: 'show', as: 'user'
+  #get '/users/:id', controller: 'users', action: 'show', as: 'user'
   get 'users/:id/profile', to: "users#profile", as: "profile_user"
 
   # UPDATE
@@ -245,7 +245,10 @@ KMatch::Application.routes.draw do
 
   # Make Connection
   get 'users/:id/intro', to: 'users#intro', as: 'intro_user'
-  post 'users/:id/make_connection', to: 'user#make_connection', as: 'make_connection'
+  post 'users/:id/make_connection', to: 'users#make_connection', as: 'make_connection'
+
+  #SEARCH STUDENTS
+  get 'users/search', to: 'users#search', as: 'search_user'
   #------------------------------
 
   # The priority is based upon order of creation: first created -> highest priority.

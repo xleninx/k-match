@@ -159,8 +159,14 @@ class UsersController < ApplicationController
   end
 
   def make_connection
-    user_connection = UserConnectionManager.new(current_user, params[:message])
-    user_connection.make_connection
+    # user_connection = UserConnectionManager.new(current_user, params[:message])
+    # user_connection.make_connection
+    UserMailer.connection_request(User.first, User.last).deliver
+    redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
+  end
+
+  def search
+    @user = User.where('first_name || last_name like ? and user_rights <> 0', "%#{params[:search]}%")
   end
   
 end

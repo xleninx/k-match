@@ -1,0 +1,47 @@
+ <div class="container-fluid">
+
+  <%= form_tag(search_user_path, :method=>'get', style:"padding-top:10px;margin-right: 9px", class: "form-horizontal pull-right col-md-2") do %>
+    <div class="input-group  input-group-sm">
+      <span class="input-group-addon"><i class="fa fa-search"></i></span>
+      <%= text_field_tag "search", "", class: "form-control", placeholder: "Search" %>
+    </div>
+  <% end %>
+   <div class="clearfix"></div> 
+ <hr>
+
+<div class="container-fluid">
+  
+  <div class="row-connect">
+   
+  <% unless @user.count > 0 %>
+    <p class="text-center" style="font-size:20px">No results found</p>
+  <% end %> 
+
+   <% @user.each do |u| %> 
+    <div class="row row-profile" >
+      <div class="col-md-8">      
+        <h3><%= u.full_name %></h3>
+        <p><%= u.rigths_string %></p>
+        <div class="clearfix"></div>       
+      </div>
+      <div class="col-md-4 ">
+        <div class="pull-right" >
+          <form class="form-horizontal" style="padding-top:30px">
+            <div class="form-group">
+              <select class="form-control">
+                <option value="">Change user status</option>
+                <option value="1">Current Student</option>
+                <option value="2">Leader Student</option>
+                <option value="3">Admin Student</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <% end %>
+  </div> 
+</div>
+
+</div>  
