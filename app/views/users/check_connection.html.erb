@@ -8,8 +8,11 @@
 
   <div class="container row-connect">
     <dl class="faq">
+    <% if @request_connections.empty? %>
 
-    <% User.all.each do |u|%>
+    <% end %>
+
+    <% @request_connections.each do |u|%>
 
       <div class="row" >
         <div class="col-md-1" style="padding-top:30px">
@@ -22,8 +25,8 @@
           </div>
           <div class="col-md-4">
             <div class="pull-right" style="line-height: 110px;">
-              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(current_user,"accepted"), class: "btn btn-warning " %>
-              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(current_user,"rejected"), class: "btn btn-warning " %>
+              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(u,"accepted"), class: "btn btn-warning " %>
+              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(u,"rejected"), class: "btn btn-warning " %>
             </div>
           </div>
       </div>

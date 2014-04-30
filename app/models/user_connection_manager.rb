@@ -56,9 +56,7 @@ class UserConnectionManager
   end
 
   def connections_status(status)
-    current_connetion = @user.request_connections.first
-    current_connetion.status = status
-    current_connetion.save
+    @user.request_connections.first.update_attribute(:status => status)
   end
 
   def get_liders

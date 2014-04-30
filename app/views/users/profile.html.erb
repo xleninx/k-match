@@ -14,25 +14,22 @@
         <%= @user.rigths_string %>
       </p>
       <p><i class="fa fa-map-marker"></i><%= @user.country.name %><%= ", #{@user.state}" if @user.state? %></p>
-      <!-- <p style="font-style:italic">You have an ongoing connection</p> -->
+      <% unless @user.request_connections.empty? %>
+        <% disabled = 'disabled' %>
+        <p style="font-style:italic">You have an ongoing connection</p>
+      <% end %>
     </div>
 
     <div class="col-md-2">
-      <% if @user.user_rights == 0 %>    
-        <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
-        <%= link_to "MAKE CONNECTION", intro_user_path(@user), class: "btn btn-warning btn-sm btn-block", style:"margin-top:10px"  %>
-     
+      <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+      <% if @user.user_rights == 0 %>
+        <%= link_to "MAKE CONNECTION", intro_user_path(@user), class: "btn #{disabled} btn-warning btn-sm btn-block", style:"margin-top:10px"  %>
 
       <% elsif @user.user_rights == 1 %>
-        <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
-        <% link_to response_connection_path(current_user,"rejected")
-        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">CHECK CONNECTIONS</a>
-      
+        <%= link_to  "CHECK CONNECTIONS", check_connection_path(@user), class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
 
       <% elsif @user.user_rights == 2 %>
-        <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
-        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">ANALYTICS</a>
-     
+        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">ANALYTICS</a>     
 
       <% elsif @user.user_rights == 3 %>
         <%= form_tag(search_user_path, :method=>'get', style:"padding-top:10px") do %>

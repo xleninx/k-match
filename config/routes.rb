@@ -252,7 +252,8 @@ KMatch::Application.routes.draw do
   get 'users/:id/check_connection', to: 'users#check_connection', as: 'check_connection'
 
   #SEARCH STUDENTS
-  get 'users/search', to: 'users#search', as: 'search_user'
+  get 'users/:id/update_role', to: 'users#update_role', as: 'update_role'
+  get 'users/:id/search', to: 'users#search', as: 'search_user'
   #------------------------------
 
   # The priority is based upon order of creation: first created -> highest priority.

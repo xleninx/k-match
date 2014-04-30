@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_states, only: [:edit, :update]
+  before_action :load_user, only: [:profile, :make_connection, :check_connection,
+                                   :cancel_request, :response_connection,:search]
   
   def index
     @users = User.all
@@ -159,21 +161,36 @@ class UsersController < ApplicationController
   end
 
   def make_connection
-    @user = User.find(current_user.id)
     UserConnectionManager.new(@user,params[:message]).send_request
     redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
   end
 
   def cancel_request
-    @user = User.find(current_user.id)
     UserConnectionManager.new(@user).cancel_request
     redirect_to profile_user_path(current_user), notice: "Connection has been canceled"
   end
 
-    # user_connection = UserConnectionManager.new(current_user, params[:message])
-    # user_connection.make_connection
+  def response_connection
+    UserConnectionManager.new(@user)
+    @message = User.request_connection(params[:id]).message
+  end
+
+  def check_connection
+    @request_connections = User.request_connections
+  end
+
   def search
     @user = User.where('first_name || last_name like ? and user_rights <> 0', "%#{params[:search]}%")
+  end
+
+  def update_role
+   User.find(params[:user_id]).update_attribute(:user_rights, params[:user_role])
+   redirect_to search_user_path
+  end
+  
+  private
+  def load_user
+    @user = User.find(current_user.id)
   end
   
 end
