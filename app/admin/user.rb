@@ -1,5 +1,7 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :country, :user_rigths, :user_rights
+  permit_params :email, :first_name, :last_name, :country, :user_rigths, 
+  :programs, :current_industry, :current_function, :commit, :authenticity_token,
+  :country_id, :program_ids, :current_industry_id, :current_function_id, :user_rights, :utf8
 
   index do
     selectable_column
@@ -22,6 +24,9 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :country
+      f.input :programs
+      f.input :current_industry
+      f.input :current_function
       f.input :user_rights
     end
     f.actions
