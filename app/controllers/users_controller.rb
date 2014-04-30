@@ -42,6 +42,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def make_connection
+    user = User.find(current_user)
+    user_with_affinity = UserAffinity.new(user)
+    user.connection = user_with_affinity
+    user.connection.message = params[:message];
+    user.save
+  end
+
   def create
     @user = User.new
     @user.first_name = params[:first_name]

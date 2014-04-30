@@ -242,6 +242,8 @@ KMatch::Application.routes.draw do
 
   # DELETE
   delete '/users/:id', controller: 'users', action: 'destroy'
+  # Make Connection
+  delete '/users/make_connection', controller: 'users', action: 'make_connection'
   #------------------------------
 
   # The priority is based upon order of creation: first created -> highest priority.
