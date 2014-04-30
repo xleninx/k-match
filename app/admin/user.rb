@@ -27,7 +27,7 @@ ActiveAdmin.register User do
       f.input :programs
       f.input :current_industry
       f.input :current_function
-      f.input :user_rights
+      f.input :user_rights, :as => :select, :collection => Role.to_a
     end
     f.actions
   end
