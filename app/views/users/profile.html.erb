@@ -25,6 +25,7 @@
 
       <% elsif @user.user_rights == 1 %>
         <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+        <% link_to response_connection_path(current_user,"rejected")
         <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">CHECK CONNECTIONS</a>
       
 

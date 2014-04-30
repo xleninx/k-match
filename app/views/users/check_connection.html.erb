@@ -22,8 +22,8 @@
           </div>
           <div class="col-md-4">
             <div class="pull-right" style="line-height: 110px;">
-              <a href="#" class="btn btn-warning"><span class="fa fa-check-circle-o"></span> ACCEPT</a>
-              <a href="#" class="btn btn-warning"><span class="fa fa fa-times-circle-o"></span> REJECT</a>
+              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(current_user,"accepted"), class: "btn btn-warning " %>
+              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(current_user,"rejected"), class: "btn btn-warning " %>
             </div>
           </div>
       </div>

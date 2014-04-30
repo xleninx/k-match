@@ -248,6 +248,9 @@ KMatch::Application.routes.draw do
   post 'users/:id/make_connection', to: 'users#make_connection', as: 'make_connection'
   # Cancel Request
   get 'users/:id/cancel_request', to: 'users#cancel_request', as: 'cancel_request'
+  get 'users/:id/response_connection/:operation', to: 'users#response_connection', as: 'response_connection'
+  get 'users/:id/check_connection', to: 'users#check_connection', as: 'check_connection'
+
   #SEARCH STUDENTS
   get 'users/search', to: 'users#search', as: 'search_user'
   #------------------------------
