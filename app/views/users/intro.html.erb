@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="row" style="margin: 0 10%">
+      <h1 class="text-center">Make a Connection</h1>
+      <hr>
+    </div>
+    
+    <%= form_tag(make_connection_path(current_user), :method=>'post') do %>
+      <div class="form-group" style="padding:30px">
+        <%= text_area_tag "message", "", :size=>"10x10", class: "form-control", placeholder:"Introduce yourself in less than 100 words" %>
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <%= submit_tag 'SEND REQUEST', class: "btn btn-warning btn-lg" %>
+      </div>
+    <% end %>
+    
+  </div>
+</div>

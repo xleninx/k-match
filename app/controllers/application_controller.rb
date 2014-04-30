@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    resource.admin? ? admin_root_path : profile_path
+    resource.admin? ? admin_root_path : profile_user_path(current_user)
   end
 end
 

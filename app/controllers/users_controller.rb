@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_states, only: [:edit, :update]
+  
   def index
     @users = User.all
   end
@@ -40,14 +41,6 @@ class UsersController < ApplicationController
     else
       render 'index'
     end
-  end
-
-  def make_connection
-    user = User.find(current_user)
-    user_with_affinity = UserAffinity.new(user)
-    user.connection = user_with_affinity
-    user.connection.message = params[:message];
-    user.save
   end
 
   def create
@@ -93,7 +86,7 @@ class UsersController < ApplicationController
     @user.club_ids = params[:club_ids]
 
     if @user.save
-      redirect_to profile_path, notice: "User updated successfully."
+      redirect_to profile_user_path(current_user), notice: "User updated successfully."
     else
       render 'edit'
     end
@@ -162,5 +155,12 @@ class UsersController < ApplicationController
 
   def profile
    redirect_to edit_user_path(current_user) unless current_user.first_name
+   @user = User.find(params[:id])
   end
+
+  def make_connection
+    user_connection = UserConnectionManager.new(current_user, params[:message])
+    user_connection.make_connection
+  end
+  
 end

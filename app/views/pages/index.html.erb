@@ -5,7 +5,7 @@
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 
     <% if user_signed_in? %>
-      <%= link_to profile_path, class: "btn btn-warning btn-lg" do %>
+      <%= link_to profile_user_path(current_user), class: "btn btn-warning btn-lg" do %>
         START CONNECTING HERE <span class="fa fa-long-arrow-right"></span>
       <% end %>
     <% else %>
