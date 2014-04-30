@@ -35,7 +35,7 @@ class UserAffinity
   end
 
   def without_excluding_users ( users_exclude )
-    User.where.not(:id => @user.id).all
+    User.where.not(:id => @user.id, "user_rights" => [2,1] ).to_a
   end
 
   def validate_filter_result ( filtered_users )
@@ -43,7 +43,9 @@ class UserAffinity
   end
 
   def users_low_connector
-    User.find(:all, :select => '*, count(*) AS count, users.id', :conditions => ["users.id IN (?)", @users], :group => 'users.id', :order => 'count DESC')
+    User.find(:all, :select => '*, count(*) AS count, users.id', 
+      :conditions => ["users.id IN (?)", @users], 
+      :group => 'users.id', :order => 'count DESC')
   end
 
   def check_filter_relation ( relation, field )
