@@ -72,3 +72,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+#
+
+gem 'enumerate_it'
