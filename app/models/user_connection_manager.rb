@@ -1,8 +1,12 @@
 class UserConnectionManager
 
-  def initialize (user,message)
+  def initialize (user,message = '')
     @user = user
     @message = message
+  end
+
+  def cancel_request
+    @user.request_connections.first.delete unless @user.request_connections.empty?
   end
 
   def connection_rejected 
@@ -52,9 +56,7 @@ class UserConnectionManager
   end
 
   def connections_status(status)
-    current_connetion = @user.request_connections.first
-    current_connetion.status = status
-    current_connetion.save
+    @user.request_connections.first.update_attribute(:status => status)
   end
 
   def get_liders
