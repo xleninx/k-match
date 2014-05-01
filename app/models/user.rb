@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :connection,->{where "status = \"established\""}, :class_name => "Connection",
+  has_many :connection,->{where "status = 'established'"}, :class_name => "Connection",
    :foreign_key => "prospective_id"
-  has_many :connections_rejected,->{where "status = \"rejected\""}, :class_name => "Connection",
+  has_many :connections_rejected,->{where "connections.status = 'rejected'"}, :class_name => "Connection",
   :foreign_key => "current_id"
-  has_many :request_connections,->{where "status = \"pending\""}, :class_name => "Connection",
+  has_many :request_connections,->{where "connections.status = 'pending'"}, :class_name => "Connection",
    :foreign_key => "current_id"
 
   #User.joins(relation).where(field => @user.send(relation), :id => @users).group(:id).all

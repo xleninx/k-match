@@ -66,7 +66,7 @@ class UserConnectionManager
   end
   
   def get_lider_lower_connection
-    id_lider = get_liders.sort_by {|_key, value| value}.first.first
+    id_lider = get_liders.sort_by {|_key, value| value}.first
     User.find(id_lider)
   end
 
