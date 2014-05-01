@@ -21,26 +21,31 @@
     </div>
 
     <div class="col-md-2">
-      <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
-      <% if @user.user_rights == 0 %>
-        <%= link_to "MAKE CONNECTION", intro_user_path(@user), class: "btn #{disabled} btn-warning btn-sm btn-block", style:"margin-top:10px"  %>
+      <% if current_user.id == @user.id %>
+        <% if @user.user_rights == 0 %>
+          <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+          <%= link_to "MAKE CONNECTION", intro_user_path(@user), class: "btn #{disabled} btn-warning btn-sm btn-block", style:"margin-top:10px"  %>
 
-      <% elsif @user.user_rights == 1 %>
-        <%= link_to  "CHECK CONNECTIONS", check_connection_path(@user), class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
+        <% elsif @user.user_rights == 1 %>
+          <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+          <%= link_to  "CHECK CONNECTIONS", check_connection_path(@user), class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
 
-      <% elsif @user.user_rights == 2 %>
-        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">ANALYTICS</a>     
+        <% elsif @user.user_rights == 3 %>
+          <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">ANALYTICS</a> 
+          <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+          <%= link_to  "AANALYTICS", admin_root_path, class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
 
-      <% elsif @user.user_rights == 3 %>
-        <%= form_tag(search_user_path, :method=>'get', style:"padding-top:10px") do %>
-          <div class="input-group  input-group-sm">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <%= text_field_tag "search", "", class: "form-control", placeholder: "Search" %>
-          </div>
+        <% elsif @user.user_rights == 2 %>
+          <%= form_tag(search_user_path, :method=>'get', style:"padding-top:10px") do %>
+            <div class="input-group  input-group-sm">
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+              <%= text_field_tag "search", "", class: "form-control", placeholder: "Search" %>
+            </div>
+          <% end %>
+          <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
+          <%= link_to  "CHECK CONNECTIONS", check_connection_path(@user), class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
         <% end %>
-        <a href="#" class="btn btn-warning btn-sm btn-block btn-update" style="margin-top:10px">UPDATE PROFILE</a>
-        <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">CHECK CONNECTIONS</a>
-      <% end %>
+      <% end %>  
     </div>
 
   </div>

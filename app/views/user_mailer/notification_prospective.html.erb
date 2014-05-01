@@ -1,0 +1,17 @@
+<p>Dear <%= @prospect.full_name %>,</p>
+<p>&nbsp;</p>
+<p>It has successfully established a connection with a current student of kellogg.</p>
+<p>This student is the most compatible with your profile according.</p>
+<p>&nbsp;</p>
+<p>Current Student Profile</p>
+<ul>
+  <li>Name: <%= @student.full_name %></li>
+  <li>Email: <%= @student.email %></li>
+  <li>Country: <%= @student.country.name %></li>
+</ul>
+<p>&nbsp;</p>
+<p>You can visit the <%= @student.full_name %> profile at any time by clicking <%= link_to "here", profile_user_url(@student) %></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Thank you,<br>
+The You@Kellogg team</p>

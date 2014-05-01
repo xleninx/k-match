@@ -34,8 +34,9 @@ class User < ActiveRecord::Base
     User.joins("INNER JOIN connections ON connections.current_id = users.id")
   end
 
-  def self.request_connection id
-    request_connections.where(:id => id).first.request_connections.first
+  def self.request_connection(id)
+    request_connections.where(:id => id).first
+    # .request_connections.first
   end
 
   def full_name

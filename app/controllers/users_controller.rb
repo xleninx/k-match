@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_states, only: [:edit, :update]
   before_action :load_user, only: [:profile, :make_connection, :check_connection,
-                                   :cancel_request, :response_connection,:search]
+                                   :cancel_request,:search]
   
   def index
     @users = User.all
@@ -88,6 +88,11 @@ class UsersController < ApplicationController
     @user.club_ids = params[:club_ids]
 
     if @user.save
+      if current_user.contact_count != nil
+         else
+           HomeMailer.registration_confirmation(current_user).deliver
+           current_user.update_attribute(:contact_count, 0)
+      end
       redirect_to profile_user_path(current_user), notice: "User updated successfully."
     else
       render 'edit'
@@ -156,12 +161,13 @@ class UsersController < ApplicationController
   end
 
   def profile
-   redirect_to edit_user_path(current_user) unless current_user.first_name
+   redirect_to edit_user_path(current_user) unless current_user.first_name or current_user.country
    @user = User.find(params[:id])
   end
 
   def make_connection
     UserConnectionManager.new(@user,params[:message]).send_request
+    UserMailer.connection_request(@user, current_user).deliver
     redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
   end
 
@@ -171,8 +177,13 @@ class UsersController < ApplicationController
   end
 
   def response_connection
-    UserConnectionManager.new(@user)
-    @message = User.request_connection(params[:id]).message
+    @user = User.find(params[:id])
+    if (params[:operation] == "rejected")
+      UserConnectionManager.new(@user).connection_rejected
+    else
+      UserConnectionManager.new(@user).connection_accept
+    end
+    @message = Connection.connections_by_user_id(params[:id]).message
   end
 
   def check_connection
@@ -187,7 +198,12 @@ class UsersController < ApplicationController
    User.find(params[:user_id]).update_attribute(:user_rights, params[:user_role])
    redirect_to search_user_path
   end
-  
+
+  def notification_to_prospect_student
+    UserMailer.notification_prospective(current_user, User.find(params[:id])).deliver
+    redirect_to profile_user_path(current_user), notice: "Sending the notification was successful"
+  end
+
   private
   def load_user
     @user = User.find(current_user.id)

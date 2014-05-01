@@ -51,7 +51,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     div class: "col-sm-12 text-center" do 
         Program.all.each do |p|
-            div class: "col-sm-2" do
+            div class: "col-sm-2", style: "margin-left:35px" do
                 span class: "title-program" do p.users.count end
 
                 span class: "title-description" do "Program #{p.name}" end
