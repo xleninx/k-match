@@ -35,7 +35,7 @@ class UserAffinity
   end
 
   def without_excluding_users ( users_exclude )
-    User.where.not(:id => @user.id, "user_rights" => [2,1] ).to_a
+    User.where.not(:id => @user.id, "user_rights" => [3,2,0] ).to_a
   end
 
   def validate_filter_result ( filtered_users )

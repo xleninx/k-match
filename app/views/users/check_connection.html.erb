@@ -1,0 +1,75 @@
+ <div class="container-fluid">
+ <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="text-center">Received Connection Requests</h1>
+    <hr>
+  </div>
+ </div>
+
+  <div class="container row-connect">
+    <dl class="faq">
+    <% if @request_connections.empty? %>
+
+    <% end %>
+
+    <% @request_connections.each do |u|%>
+
+      <div class="row" >
+        <div class="col-md-1" style="padding-top:30px">
+          <dd></dd>
+        </div>    
+          <div class="col-md-7">     
+            <h3><%= u.full_name %></h3>
+            <p><%= u.rigths_string %></p>
+            <div class="clearfix"></div>        
+          </div>
+          <div class="col-md-4">
+            <div class="pull-right" style="line-height: 110px;">
+              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(u,"accepted"), class: "btn btn-warning " %>
+              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(u,"rejected"), class: "btn btn-warning " %>
+            </div>
+          </div>
+      </div>
+
+    <% end %>
+
+<!--     <div class="row" >
+      <dd>
+        <div class="col-md-8">      
+          <h3>Student Name</h3>
+          <p>Prospective Student</p>
+          <span class="text-muted visible-xs"><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
+          <div class="clearfix"></div>        
+        </div>
+        <div class="col-md-4 hidden-xs">
+          <div class="pull-right" style="line-height: 110px;">
+            <span class="text-muted "><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
+          </div>
+        </div>
+      </dd>
+    </div>
+
+    <div class="row" >
+      <dd>
+        <div class="col-md-8">      
+          <h3>Student Name</h3>
+          <p>Prospective Student</p>
+          <span class="text-muted visible-xs"><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+          <div class="clearfix"></div>        
+        </div>
+        <div class="col-md-4 hidden-xs">
+          <div class="pull-right" style="line-height: 110px;">
+            <span class="text-muted "><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+          </div>
+        </div>
+      </dd> -->
+    </div>
+
+
+    
+    </dl>
+   
+
+  </div>
+
+</div>  

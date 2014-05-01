@@ -1,0 +1,24 @@
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+    <% if params[:operation] == "accepted"%>
+      <h1 class="text-center"><i style="font-size:35px" class="fa fa-check-circle-o fa-3x"></i>Connection Accepted</h1>
+    <% else %> 
+      <h1 class="text-center"><i style="font-size:35px" class="fa fa-times-circle-o"></i>Connection Rejected</h1>
+    <% end %>
+      <hr>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3">
+      <p style="line-height:200%;">
+        <%= @message %>
+      </p>
+    </div>
+    <div class="col-md-4 col-md-offset-4" style="padding-top:30px">
+      <%= link_to '<i class="fa fa-user"></i>'.html_safe+"VIEW PROFILE", profile_user_path(params[:id]), class: "btn btn-warning" %>  
+
+      <%= link_to '<i class="fa fa-envelope"></i>'.html_safe+"SEND EMAIL", profile_user_path(params[:id]), class: "btn btn-warning" %>  
+    </div>
+  </div>
+ </div>
