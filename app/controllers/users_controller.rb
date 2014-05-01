@@ -161,7 +161,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-   redirect_to edit_user_path(current_user) unless current_user.first_name
+   redirect_to edit_user_path(current_user) unless current_user.first_name or current_user.country
    @user = User.find(params[:id])
   end
 
