@@ -56,7 +56,9 @@ class UserConnectionManager
   end
 
   def connections_status(status)
-    @user.request_connections.first.update_attribute(:status => status)
+    unless @user.request_connections.empty?
+      @user.request_connections.first.update_attributes(:status => status)
+    end
   end
 
   def get_liders
