@@ -9,7 +9,7 @@
   <div class="container row-connect">
     <dl class="faq">
     <% if @request_connections.empty? %>
-
+      <p class="text-center" style="font-size:20px">No found request in this moment</p>
     <% end %>
 
     <% @request_connections.each do |u|%>
