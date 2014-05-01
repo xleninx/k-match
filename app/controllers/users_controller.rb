@@ -88,6 +88,11 @@ class UsersController < ApplicationController
     @user.club_ids = params[:club_ids]
 
     if @user.save
+      if current_user.contact_count != nil
+         else
+           HomeMailer.registration_confirmation(current_user).deliver
+           current_user.update_attribute(:contact_count, 0)
+      end
       redirect_to profile_user_path(current_user), notice: "User updated successfully."
     else
       render 'edit'
@@ -162,6 +167,7 @@ class UsersController < ApplicationController
 
   def make_connection
     UserConnectionManager.new(@user,params[:message]).send_request
+    UserMailer.connection_request(@user, current_user).deliver
     redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
   end
 
@@ -191,6 +197,11 @@ class UsersController < ApplicationController
   def update_role
    User.find(params[:user_id]).update_attribute(:user_rights, params[:user_role])
    redirect_to search_user_path
+  end
+
+  def notification_to_prospect_student
+    UserMailer.notification_prospective(current_user, User.find(params[:id])).deliver
+    redirect_to profile_user_path(current_user), notice: "Sending the notification was successful"
   end
 
   private
