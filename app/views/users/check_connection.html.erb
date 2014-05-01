@@ -13,7 +13,7 @@
     <% end %>
 
     <% @request_connections.each do |u|%>
-
+      <% connection = Connection.connections_by_user_id(u)%>
       <div class="row" >
         <div class="col-md-1" style="padding-top:30px">
           <dd></dd>
@@ -21,30 +21,43 @@
           <div class="col-md-7">     
             <h3><%= u.full_name %></h3>
             <p><%= u.rigths_string %></p>
+              <% if (connection.status == "established") %>
+                <span class="text-muted visible-xs"><i class="fa fa-check-circle-o"></i>
+                ACCEPTED</span>
+              <% elsif (connection.status == "rejected") %>
+                <span class="text-muted visible-xs"><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+              <% end %>
+
             <div class="clearfix"></div>        
           </div>
           <div class="col-md-4">
-            <div class="pull-right" style="line-height: 110px;">
-              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(u,"accepted"), class: "btn btn-warning " %>
-              <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(u,"rejected"), class: "btn btn-warning " %>
-            </div>
+            <% if (connection.status == "established") %>
+              <div class="pull-right" style="line-height: 110px;">
+                <span class="text-muted "><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
+              </div>
+            <% elsif (connection.status == "rejected") %>
+              <span class="text-muted "><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+            <% elsif (connection.status == "pending") %>
+              <div class="pull-right" style="line-height: 110px;">
+                <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(u,"accepted"), class: "btn btn-warning " %>
+                <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(u,"rejected"), class: "btn btn-warning " %>
+              </div>
+            <% end %>
           </div>
       </div>
 
     <% end %>
-
-<!--     <div class="row" >
+<!-- 
+    <div class="row" >
       <dd>
         <div class="col-md-8">      
           <h3>Student Name</h3>
           <p>Prospective Student</p>
-          <span class="text-muted visible-xs"><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
+
           <div class="clearfix"></div>        
         </div>
         <div class="col-md-4 hidden-xs">
-          <div class="pull-right" style="line-height: 110px;">
-            <span class="text-muted "><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
-          </div>
+
         </div>
       </dd>
     </div>
@@ -54,17 +67,17 @@
         <div class="col-md-8">      
           <h3>Student Name</h3>
           <p>Prospective Student</p>
-          <span class="text-muted visible-xs"><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+
           <div class="clearfix"></div>        
         </div>
         <div class="col-md-4 hidden-xs">
           <div class="pull-right" style="line-height: 110px;">
-            <span class="text-muted "><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+
           </div>
         </div>
-      </dd> -->
+      </dd>
     </div>
-
+ -->
 
     
     </dl>

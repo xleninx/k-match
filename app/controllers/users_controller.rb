@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_states, only: [:edit, :update]
   before_action :load_user, only: [:profile, :make_connection, :check_connection,
-                                   :cancel_request, :response_connection,:search]
+                                   :cancel_request,:search]
   
   def index
     @users = User.all
@@ -171,8 +171,13 @@ class UsersController < ApplicationController
   end
 
   def response_connection
-    UserConnectionManager.new(@user)
-    @message = User.request_connection(params[:id]).message
+    @user = User.find(params[:id])
+    if (params[:operation] == "rejected")
+      UserConnectionManager.new(@user).connection_rejected
+    else
+      UserConnectionManager.new(@user).connection_accept
+    end
+    @message = Connection.connections_by_user_id(params[:id]).message
   end
 
   def check_connection
@@ -187,7 +192,7 @@ class UsersController < ApplicationController
    User.find(params[:user_id]).update_attribute(:user_rights, params[:user_role])
    redirect_to search_user_path
   end
-  
+
   private
   def load_user
     @user = User.find(current_user.id)
