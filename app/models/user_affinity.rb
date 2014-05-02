@@ -17,11 +17,12 @@ class UserAffinity
           check_filter_relation_btm( filter )
         end
     end
-    unless(@users.empty?)
-      @users
+    unless @users.empty?
+      User.sort_by_connections(@users)
     else
-      User.current_available
-    end
+      nil
+    end 
+    
   end
 
   private
@@ -39,7 +40,7 @@ class UserAffinity
   end
 
   def without_excluding_users ( users_exclude )
-    User.currents.where.not(:id => @user.id).to_a
+    User.currents.to_a
   end
 
   def validate_filter_result ( filtered_users )

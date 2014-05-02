@@ -19,12 +19,8 @@ class UserConnectionManager
 
   def send_request
     if make_request?
-      puts "entra1" * 50
-       x = make_connection
-      puts User.currents.first.inspect
-      x
-    else
-      puts "entra2" * 50
+       make_connection
+    else      
       remake_connection unless in_valid_time?
     end
 
@@ -46,7 +42,7 @@ class UserConnectionManager
     connection.status = "pending"
     if connection.save
       connection
-      else
+    else
       nil
     end
   end
@@ -58,10 +54,10 @@ class UserConnectionManager
 
   def user_avalaible_to_asig
     user_with_affinity = UserAffinity.new(@user).users_with_affinities
-    if(valid_numbers_connection? && user_with_affinity.empty?)
+    if(valid_numbers_connection? && !user_with_affinity)
       leader_lower_connection
     else
-      user_with_affinity.first
+      user_with_affinity
     end
   end
 
@@ -72,7 +68,7 @@ class UserConnectionManager
   end
   
   def leader_lower_connection
-    User.leaders_available.first
+    User.leader_available
   end
 
   def make_request?

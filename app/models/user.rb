@@ -2,30 +2,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  scope :admins, lambda{where(:user_rights => 3)}
-  scope :leaders, lambda{where(:user_rights => 2)}
-  scope :currents, lambda{where(:user_rights => 1)}
-  scope :prospectives, lambda{where(:user_rights => 0)}
+  scope :admins, lambda{where(:user_rights => Role::Admin)}
+  scope :leaders, lambda{where(:user_rights => Role::Leader)}
+  scope :currents, lambda{where(:user_rights => Role::Current)}
+  scope :prospectives, lambda{where(:user_rights => Role::Prospective)}
 
-  scope :with_connections, lambda{joins("LEFT JOIN connections ON connections.current_id = users.id").connections_not_nil}
+  scope :with_connections, lambda{joins("LEFT JOIN connections ON connections.current_id = users.id")}
+  scope :without_connections , lambda { with_connections.where("connections.current_id" => nil) }
   scope :connections_not_nil, lambda{where.not("connections.current_id" => nil)}
 
-  has_many :connection, :class_name => "Connection",:foreign_key => "prospective_id"
-  # has_many :connections_rejected, :class_name => "Connection",:foreign_key => "current_id"
+
+  has_many :connections, :class_name => "Connection",:foreign_key => "prospective_id"
   has_many :request_connections, :class_name => "Connection", :foreign_key => "current_id"
 
-
-
-  # has_many :connection,->{where "status = \"established\""}, :class_name => "Connection",
-  #  :foreign_key => "prospective_id"
   has_many :connections_rejected,->{where "status = \"rejected\""}, :class_name => "Connection",
   :foreign_key => "current_id"
-  # has_many :request_connections,->{where "status = \"pending\""}, :class_name => "Connection",
-  #  :foreign_key => "current_id"
-
-
-  #User.joins(relation).where(field => @user.send(relation), :id => @users).group(:id).all
-  #User.joins("INNER JOIN connections ON connections.current_id = users.id").where("current_id" => id) }
+  has_many :connections_rejected,->{where "status = \"rejected\""}, :class_name => "Connection",
+  :foreign_key => "prospective_id"
 
   belongs_to :current_industry, :class_name => 'Industry'
   belongs_to :interest_industry, :class_name => 'Industry'
@@ -43,39 +36,31 @@ class User < ActiveRecord::Base
 
   ROLES = ["Prospective","Current","Leader","Admin"]
 
-  def self.leaders_available
-    if leaders.with_connections.empty?
-      leaders
+  def self.leader_available
+   unless leaders.without_connections.empty?
+      leaders.without_connections.first
     else
       leader_lower_connection
     end
   end
 
   def self.leader_lower_connection
-    id_lider = leaders.with_connections.group("prospective_id").count.sort_by {|_key, value| value}.first.first
+    id_lider = leaders.with_connections.group("users.id").count.sort_by{|_key, x| x}.firs.first
     find(id_lider)
   end
 
-  def self.current_available
-    if currents.with_connections.empty?
-      currents
+  def self.sort_by_connections(ids)
+    users = where(:id => ids)
+    id_current = users.with_connections.group("current_id").count.sort_by {|_key, value| value}.first.first
+    unless id_current
+      currents.without_connections.first
     else
-      current_lower_connection
+      find(id_current)
     end
+
   end
-
-  def self.current_lower_connection
-    id_current = currents.with_connections.group("prospective_id").count.sort_by {|_key, value| value}.first.first
-    find(id_current)
-  end
-
-  # def self.request_connections
-  #   joins("INNER JOIN connections ON connections.current_id = users.id")
-  # end
-
   def self.request_connection(id)
     request_connections.where(:id => id).first
-    # .request_connections.first
   end
 
   def full_name
