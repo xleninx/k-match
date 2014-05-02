@@ -55,7 +55,7 @@ class UsersController < ApplicationController
       @user.email.include?("@kellogg.northwestern.edu") ? @user.user_rights = Role::CURRENT : @user.user_rights = Role::PROSPECTIVE
     end
 
-    if params[:right].to_i == Role::CURRENT
+    if @user.user_rights == Role::CURRENT
       @user.grad_year = params[:email].split('@')[0].reverse[0..3].reverse.to_i
     end
 
