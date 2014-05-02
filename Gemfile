@@ -5,6 +5,12 @@ gem 'starter_generators'
 # Authentication
 gem 'devise'
 
+#upload files
+gem 'carrierwave'
+
+#RMAgick
+gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
+
 # Email management
 gem 'mail'
 

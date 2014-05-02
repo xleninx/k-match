@@ -229,3 +229,12 @@ a.navbar-brand:hover{
 #error_explanation > ul{
   list-style-type: decimal;
 }
+
+.link_community{
+  color:white;
+}
+
+.link_community:hover{
+  color:white;
+  text-decoration: none;
+}

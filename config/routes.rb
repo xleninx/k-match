@@ -256,6 +256,11 @@ KMatch::Application.routes.draw do
   get 'users/:id/update_role', to: 'users#update_role', as: 'update_role'
   get 'users/:id/search', to: 'users#search', as: 'search_user'
 
+  #EVENTS
+  get '/events', to: 'events#index', as: ""
+  get '/events/:id', to: 'events#show', as: "events"
+  get '/events/month/:month', to: 'events#month', as: "event_month"
+
   #------------------------------
 
   # The priority is based upon order of creation: first created -> highest priority.
