@@ -19,27 +19,36 @@ class UserConnectionManager
 
   def send_request
     if make_request?
-      make_connection
+      puts "entra1" * 50
+       x = make_connection
+      puts User.currents.first.inspect
+      x
     else
+      puts "entra2" * 50
       remake_connection unless in_valid_time?
     end
+
   end
 
 
   private
 
   def make_connection
-    user_to_assig = validate_connection UserAffinity.new(@user).users_with_affinities
+    user_to_assig = user_avalaible_to_asig
     create_connection(user_to_assig, @message)
   end
 
   def create_connection(user_to_assig, message)
     connection = Connection.new
-    connection.current_user = @user
-    connection.prospective_user = user_to_assig.first
+    connection.current_user = user_to_assig
+    connection.prospective_user = @user
     connection.message = message
     connection.status = "pending"
-    connection.save 
+    if connection.save
+      connection
+      else
+      nil
+    end
   end
 
   def remake_connection
@@ -47,11 +56,12 @@ class UserConnectionManager
     make_connection
   end
 
-  def validate_connection( user_with_affinity )
+  def user_avalaible_to_asig
+    user_with_affinity = UserAffinity.new(@user).users_with_affinities
     if(valid_numbers_connection? && user_with_affinity.empty?)
-      get_lider_lower_connection
+      leader_lower_connection
     else
-      user_with_affinity
+      user_with_affinity.first
     end
   end
 
@@ -60,14 +70,9 @@ class UserConnectionManager
       @user.request_connections.first.update_attributes(:status => status)
     end
   end
-
-  def get_liders
-    User.joins(:request_connections).where("user_rights" => 2 ).group("prospective_id").count
-  end
   
-  def get_lider_lower_connection
-    id_lider = get_liders.sort_by {|_key, value| value}.first.first
-    User.find(id_lider)
+  def leader_lower_connection
+    User.leaders_available.first
   end
 
   def make_request?
