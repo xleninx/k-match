@@ -1,15 +1,25 @@
-ActiveAdmin.register_page "Current" do
+ActiveAdmin.register User, :as => "current" do
 
-  page_action :ex, :method => :post do
-    # do stuff here
-    redirect_to admin_current_path, :notice => "You did stuff!"
+
+  actions :all, :except => [:new, :delete]
+  config.batch_actions = false
+
+  scope_to {User.prospectives}
+  
+  index do
+    selectable_column
+    column :email
+    column :first_name
+    column :last_name
+    column :country
+    column :current_industry
+    column :current_function
+    column :grad_year
   end
 
-  action_item do
-    link_to "Do Stuff", admin_current_ex_path, :method => :post
-  end
-
-  content do
-    para "Hello World"
-  end
+  filter :email
+  filter :first_name
+  filter :last_name
+  filter :country
+  
 end

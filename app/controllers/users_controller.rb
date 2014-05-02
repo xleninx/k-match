@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    
   end
 
   def create
@@ -42,13 +41,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
-    @user.user_rights = params[:right].to_i
     @user.country_id = params[:country_id].to_i
     @user.state = params[:state]
     @user.program_ids = params[:user][:program_ids].reject{|id| id == ""}
-    if params[:right].to_i == Role::CURRENT
-      @user.grad_year = params[:email].split('@')[0].reverse[0..3].reverse.to_i
-    end
 
     @user.current_industry_id = params[:current_industry_id].to_i
     @user.interest_industry_id = params[:interest_industry_id].to_i
@@ -56,7 +51,13 @@ class UsersController < ApplicationController
     @user.interest_function_id = params[:interest_function_id].to_i
     @user.club_ids = params[:club_ids]
 
-    @user.email.include?("@kellogg.northwestern.edu") ? @user.user_rights = Role::CURRENT : @user.user_rights = Role::PROSPECTIVE
+    unless @user.user_rights?
+      @user.email.include?("@kellogg.northwestern.edu") ? @user.user_rights = Role::CURRENT : @user.user_rights = Role::PROSPECTIVE
+    end
+
+    if params[:right].to_i == Role::CURRENT
+      @user.grad_year = params[:email].split('@')[0].reverse[0..3].reverse.to_i
+    end
 
     if @user.save
       send_welcome_mail
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
 
 
   def profile
-   redirect_to edit_user_path(current_user) unless current_user.first_name or current_user.country
+   redirect_to edit_user_path(current_user) unless current_user.first_name 
    @user = User.find(params[:id])
   end
 
@@ -128,8 +129,7 @@ class UsersController < ApplicationController
       current_user.update_attribute(:contact_count, 0)
     end
   end
-  
-end
+
 
   def set_states
     @states = [["AL", "Alabama"],
@@ -184,3 +184,4 @@ end
 ["WI", "Wisconsin"],
 ["WY", "Wyoming"]]
   end
+end

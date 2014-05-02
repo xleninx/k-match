@@ -1,15 +1,23 @@
-ActiveAdmin.register_page "Prospective" do
+ActiveAdmin.register User, :as => "prospective" do
 
-    page_action :ex, :method => :post do
-      # do stuff here
-      redirect_to admin_prospective_path, :notice => "You did stuff!"
-    end
+  actions :all, :except => [:new, :delete]
+  config.batch_actions = false
 
-    action_item do
-      link_to "Do Stuff", admin_prospective_ex_path, :method => :post
-    end
+  scope_to {User.currents}
 
-    content do
-      para "Hello World"
-    end
+  index do
+    selectable_column
+    column :email
+    column :first_name
+    column :last_name
+    column :country
+    column :current_industry
+    column :current_function
   end
+
+  filter :email
+  filter :first_name
+  filter :last_name
+  filter :country
+  
+end

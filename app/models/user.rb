@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   #User.joins(relation).where(field => @user.send(relation), :id => @users).group(:id).all
   #User.joins("INNER JOIN connections ON connections.current_id = users.id").where("current_id" => id) }
 
-  
+  scope :prospectives, lambda{where(:user_rights => Role::PROSPECTIVE)}
+  scope :currents, lambda{where(:user_rights => Role::CURRENT)}
 
   belongs_to :current_industry, :class_name => 'Industry'
   belongs_to :interest_industry, :class_name => 'Industry'
