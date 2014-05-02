@@ -81,7 +81,7 @@ class UsersController < ApplicationController
 
   def make_connection
     UserConnectionManager.new(@user,params[:message]).send_request
-    UserMailer.connection_request(@user, current_user).deliver
+    notification_to_current_student
     redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
   end
 
@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   end
 
   def check_connection
-    @request_connections = current_user.request_connections
+    @request_connections = User.request_connections
   end
 
   def search
@@ -116,6 +116,11 @@ class UsersController < ApplicationController
   def notification_to_prospect_student
     UserMailer.notification_prospective(current_user, User.find(params[:id])).deliver
     redirect_to profile_user_path(current_user), notice: "Sending the notification was successful"
+  end
+
+  def notification_to_current_student
+    u = @user.request_pending_propective
+    UserMailer.connection_request(User.find(u.first.current_id), current_user).deliver
   end
 
   private

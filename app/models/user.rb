@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :connections, :class_name => "Connection",:foreign_key => "prospective_id"
-  has_many :request_connections, :class_name => "Connection", :foreign_key => "current_id"
+  has_many :connections, :class_name => "Connection",:foreign_key => "current_id"
+  has_many :request_connections, :class_name => "Connection", :foreign_key => "prospective_id"
 
   has_many :connections_rejected,->{where "connections.status = 'rejected'"}, :class_name => "Connection",
   :foreign_key => "current_id"
@@ -83,8 +83,8 @@ class User < ActiveRecord::Base
     user_rights == 3
   end
 
-  def profile_btn
-
-  end
+  def self.request_connections
+   User.joins("INNER JOIN connections ON connections.prospective_id = users.id")
+ end
 end
 

@@ -13,9 +13,9 @@
 <p>We would ask that you please reach out to <%= @prospect.first_name %> within 2 days</p>
 <p>&nbsp;</p>
 <p>As soon as you reach out, please confirm via this link:</p>
-<p><%= link_to "I have reached out to #{@prospect.first_name}", "#" %></p>
+<p><%= link_to "I have reached out to #{@prospect.first_name}", response_connection_url(@prospect.id,"rejected") %></p>
 <p>If you do not have time to reply within 2 days, please confirm via this link:</p>
-<p><%= link_to "I don't have time to email #{@prospect.first_name}", "#" %></p>
+<p><%= link_to "I don't have time to email #{@prospect.first_name}", response_connection_url(@prospect.id,"accepted") %></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Thank you,<br>
