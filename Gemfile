@@ -9,7 +9,7 @@ gem 'devise'
 gem 'carrierwave'
 
 #RMAgick
-gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
+gem 'rmagick', '2.13.2'
 
 # Email management
 gem 'mail'
