@@ -4,8 +4,8 @@ ActiveAdmin.register User, :as => "current" do
   actions :all, :except => [:new, :delete]
   config.batch_actions = false
 
-  scope_to {User.prospectives}
-  
+  scope_to {User.currents}
+
   index do
     selectable_column
     column :email

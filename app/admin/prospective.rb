@@ -3,7 +3,7 @@ ActiveAdmin.register User, :as => "prospective" do
   actions :all, :except => [:new, :delete]
   config.batch_actions = false
 
-  scope_to {User.currents}
+  scope_to {User.prospectives}
 
   index do
     selectable_column
