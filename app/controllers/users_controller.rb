@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @user = User.where('first_name || last_name like ? and user_rights <> #{Role::PROSPECTIVE}', "%#{params[:search]}%")
+    @user = User.where("first_name || last_name ilike ? and user_rights <> 0", "%#{params[:search]}%")
   end
 
   def update_role
