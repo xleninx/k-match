@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   :foreign_key => "current_id"
   has_many :request_rejected,->{where "connections.status = 'rejected' "}, :class_name => "Connection",
   :foreign_key => "prospective_id"
+  has_many :request_pending_propective,->{where "connections.status = 'pending' "}, :class_name => "Connection",
+  :foreign_key => "prospective_id"
+  has_many :request_pending_current,->{where "connections.status = 'pending' "}, :class_name => "Connection",
+  :foreign_key => "current_id"
 
   belongs_to :current_industry, :class_name => 'Industry'
   belongs_to :interest_industry, :class_name => 'Industry'

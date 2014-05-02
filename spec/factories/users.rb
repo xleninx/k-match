@@ -7,23 +7,23 @@ FactoryGirl.define do
     email
     password '12345678'
     password_confirmation '12345678'
-    user_rights Role::Prospective
+    user_rights Role::PROSPECTIVE
     association :country
 
 
     factory :prospective do
-      user_rights Role::Prospective
+      user_rights Role::PROSPECTIVE
     end
     factory :current do
-      user_rights Role::Current
+      user_rights Role::CURRENT
     end
 
     factory :leader do
-      user_rights Role::Leader
+      user_rights Role::LEADER
     end
 
     factory :admin do
-      user_rights Role::Admin
+      user_rights Role::ADMIN
     end 
   end
 end

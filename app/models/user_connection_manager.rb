@@ -6,7 +6,7 @@ class UserConnectionManager
   end
 
   def cancel_request
-    @user.request_connections.first.delete unless @user.request_connections.empty?
+    @user.request_pending_propective.first.delete unless @user.request_pending_propective.empty?
   end
 
   def connection_rejected 

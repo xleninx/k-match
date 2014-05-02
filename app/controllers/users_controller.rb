@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   end
 
   def check_connection
-    @request_connections = User.request_connections
+    @request_connections = current_user.request_connections
   end
 
   def search

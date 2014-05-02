@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
   <div class="row row-profile" style="padding-top:20px">
-    <% unless @user.request_connections.empty? %>
+    <% unless @user.request_pending_propective.empty? %>
       <p class="bg-primary text-center" style="padding:10px; background-color:rgb(200,200,200); font-size:17px">Your request for connection has been sent. A current student will reach out to you shortly.
       <%= link_to "OR, CANCEL YOUR REQUEST", cancel_request_path, class: "btn btn-warning btn-sm" %></p>
     <% end %>
@@ -14,7 +14,7 @@
         <%= @user.rigths_string %>
       </p>
       <p><i class="fa fa-map-marker"></i><%= @user.country.name %><%= ", #{@user.state}" if @user.state? %></p>
-      <% unless @user.request_connections.empty? %>
+      <% unless @user.request_pending_propective.empty? %>
         <% disabled = 'disabled' %>
         <p style="font-style:italic">You have an ongoing connection</p>
       <% end %>
