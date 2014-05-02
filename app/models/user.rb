@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def rigths_string
-    r = (user_rights == nil) ? 0 : user_rights
+    r = (user_rights == nil) ? Role::PROSPECTIVE : user_rights
     ROLES[r] + " Student"
   end
 

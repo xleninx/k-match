@@ -13,36 +13,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @connection = Connection.new
-    @connection.prospective_id = current_user.id
-    #location
-    @student = User.where("country_id = ? AND user_rights = ?", current_user.country_id, 1)
-    #program
-    if @student.count > 0
-      @student = User.where("country_id = ? AND user_rights = ? AND program_id = ?", current_user.country_id, 1, current_user.program_id)
-      unless @student.count > 0
-        @student = User.where("country_id = ? AND user_rights = ?", current_user.country_id, 1)
-      end
-    else
-      @student = User.where("user_rights = ? AND program_id", 1, current_user.program_id)
-    end
-    #industry
-
-    #function
-
-    #industry interest
-
-    #function interest
-
-    #club interest
-
-    @connection.student_id = @student.first.id
-    if @connection.save
-      UserMailer.connection_request(@student.first, current_user).deliver
-      redirect_to users_url, notice: "Connection initiated successfully."
-    else
-      render 'index'
-    end
+    
   end
 
   def create
@@ -75,24 +46,20 @@ class UsersController < ApplicationController
     @user.country_id = params[:country_id].to_i
     @user.state = params[:state]
     @user.program_ids = params[:user][:program_ids].reject{|id| id == ""}
-    if params[:right].to_i == 1
+    if params[:right].to_i == Role::CURRENT
       @user.grad_year = params[:email].split('@')[0].reverse[0..3].reverse.to_i
     end
 
     @user.current_industry_id = params[:current_industry_id].to_i
     @user.interest_industry_id = params[:interest_industry_id].to_i
-
     @user.current_function_id = params[:current_function_id].to_i
     @user.interest_function_id = params[:interest_function_id].to_i
-
     @user.club_ids = params[:club_ids]
 
+    @user.email.include?("@kellogg.northwestern.edu") ? @user.user_rights = Role::CURRENT : @user.user_rights = Role::PROSPECTIVE
+
     if @user.save
-      if current_user.contact_count != nil
-         else
-           HomeMailer.registration_confirmation(current_user).deliver
-           current_user.update_attribute(:contact_count, 0)
-      end
+      send_welcome_mail
       redirect_to profile_user_path(current_user), notice: "User updated successfully."
     else
       render 'edit'
@@ -102,9 +69,67 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
-
     redirect_to users_url, notice: "User deleted."
   end
+
+
+  def profile
+   redirect_to edit_user_path(current_user) unless current_user.first_name or current_user.country
+   @user = User.find(params[:id])
+  end
+
+  def make_connection
+    UserConnectionManager.new(@user,params[:message]).send_request
+    UserMailer.connection_request(@user, current_user).deliver
+    redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
+  end
+
+  def cancel_request
+    UserConnectionManager.new(@user).cancel_request
+    redirect_to profile_user_path(current_user), notice: "Connection has been canceled"
+  end
+
+  def response_connection
+    @user = User.find(params[:id])
+    if (params[:operation] == "rejected")
+      UserConnectionManager.new(@user).connection_rejected
+    else
+      UserConnectionManager.new(@user).connection_accept
+    end
+    @message = Connection.connections_by_user_id(params[:id]).message
+  end
+
+  def check_connection
+    @request_connections = User.request_connections
+  end
+
+  def search
+    @user = User.where('first_name || last_name like ? and user_rights <> #{Role::PROSPECTIVE}', "%#{params[:search]}%")
+  end
+
+  def update_role
+   User.find(params[:user_id]).update_attribute(:user_rights, params[:user_role])
+   redirect_to search_user_path
+  end
+
+  def notification_to_prospect_student
+    UserMailer.notification_prospective(current_user, User.find(params[:id])).deliver
+    redirect_to profile_user_path(current_user), notice: "Sending the notification was successful"
+  end
+
+  private
+  def load_user
+    @user = User.find(current_user.id)
+  end
+
+  def send_welcome_mail
+    if !current_user.contact_count and current_user.user_rights == Role::PROSPECTIVE
+      HomeMailer.registration_confirmation(current_user).deliver
+      current_user.update_attribute(:contact_count, 0)
+    end
+  end
+  
+end
 
   def set_states
     @states = [["AL", "Alabama"],
@@ -159,54 +184,3 @@ class UsersController < ApplicationController
 ["WI", "Wisconsin"],
 ["WY", "Wyoming"]]
   end
-
-  def profile
-   redirect_to edit_user_path(current_user) unless current_user.first_name or current_user.country
-   @user = User.find(params[:id])
-  end
-
-  def make_connection
-    UserConnectionManager.new(@user,params[:message]).send_request
-    UserMailer.connection_request(@user, current_user).deliver
-    redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
-  end
-
-  def cancel_request
-    UserConnectionManager.new(@user).cancel_request
-    redirect_to profile_user_path(current_user), notice: "Connection has been canceled"
-  end
-
-  def response_connection
-    @user = User.find(params[:id])
-    if (params[:operation] == "rejected")
-      UserConnectionManager.new(@user).connection_rejected
-    else
-      UserConnectionManager.new(@user).connection_accept
-    end
-    @message = Connection.connections_by_user_id(params[:id]).message
-  end
-
-  def check_connection
-    @request_connections = User.request_connections
-  end
-
-  def search
-    @user = User.where('first_name || last_name like ? and user_rights <> 0', "%#{params[:search]}%")
-  end
-
-  def update_role
-   User.find(params[:user_id]).update_attribute(:user_rights, params[:user_role])
-   redirect_to search_user_path
-  end
-
-  def notification_to_prospect_student
-    UserMailer.notification_prospective(current_user, User.find(params[:id])).deliver
-    redirect_to profile_user_path(current_user), notice: "Sending the notification was successful"
-  end
-
-  private
-  def load_user
-    @user = User.find(current_user.id)
-  end
-  
-end

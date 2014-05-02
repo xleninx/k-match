@@ -22,20 +22,19 @@
 
     <div class="col-md-2">
       <% if current_user.id == @user.id %>
-        <% if @user.user_rights == 0 %>
+        <% if @user.user_rights == Role::PROSPECTIVE %>
           <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
           <%= link_to "MAKE CONNECTION", intro_user_path(@user), class: "btn #{disabled} btn-warning btn-sm btn-block", style:"margin-top:10px"  %>
 
-        <% elsif @user.user_rights == 1 %>
+        <% elsif @user.user_rights == Role::CURRENT %>
           <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
           <%= link_to  "CHECK CONNECTIONS", check_connection_path(@user), class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
 
-        <% elsif @user.user_rights == 3 %>
-          <a href="#" class="btn btn-warning btn-sm btn-block" style="margin-top:10px">ANALYTICS</a> 
+        <% elsif @user.user_rights == Role::ADMIN %>
           <%= link_to "UPDATE PROFILE", edit_user_path(@user), class: "btn btn-warning btn-sm btn-block btn-update", style:"margin-top:20px"  %>
-          <%= link_to  "AANALYTICS", admin_root_path, class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
+          <%= link_to  "ANALYTICS", admin_root_path, class: "btn btn-warning btn-sm btn-block", style: "margin-top:10px"  %>
 
-        <% elsif @user.user_rights == 2 %>
+        <% elsif @user.user_rights == Role::LEADER %>
           <%= form_tag(search_user_path, :method=>'get', style:"padding-top:10px") do %>
             <div class="input-group  input-group-sm">
               <span class="input-group-addon"><i class="fa fa-search"></i></span>

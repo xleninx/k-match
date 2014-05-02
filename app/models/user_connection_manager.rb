@@ -62,7 +62,7 @@ class UserConnectionManager
   end
 
   def get_liders
-    User.joins(:request_connections).where("user_rights" => 2 ).group("prospective_id").count
+    User.joins(:request_connections).where("user_rights" => Role::LEADER ).group("prospective_id").count
   end
   
   def get_lider_lower_connection
