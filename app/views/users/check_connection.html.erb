@@ -9,7 +9,7 @@
   <div class="container row-connect">
     <dl class="faq">
     <% if @request_connections.empty? %>
-
+      <p class="text-center" style="font-size:20px">No found request in this moment</p>
     <% end %>
 
     <% @request_connections.each do |u|%>
@@ -19,7 +19,7 @@
           <dd></dd>
         </div>    
           <div class="col-md-7">     
-            <h3><%= u.full_name %></h3>
+            <h3><%= link_to u.full_name, profile_user_path(u), style: "color:#2c3e50" %></h3>
             <p><%= u.rigths_string %></p>
               <% if (connection.status == "established") %>
                 <span class="text-muted visible-xs"><i class="fa fa-check-circle-o"></i>
@@ -47,42 +47,6 @@
       </div>
 
     <% end %>
-<!-- 
-    <div class="row" >
-      <dd>
-        <div class="col-md-8">      
-          <h3>Student Name</h3>
-          <p>Prospective Student</p>
-
-          <div class="clearfix"></div>        
-        </div>
-        <div class="col-md-4 hidden-xs">
-
-        </div>
-      </dd>
-    </div>
-
-    <div class="row" >
-      <dd>
-        <div class="col-md-8">      
-          <h3>Student Name</h3>
-          <p>Prospective Student</p>
-
-          <div class="clearfix"></div>        
-        </div>
-        <div class="col-md-4 hidden-xs">
-          <div class="pull-right" style="line-height: 110px;">
-
-          </div>
-        </div>
-      </dd>
-    </div>
- -->
-
-    
     </dl>
-   
-
   </div>
-
 </div>  

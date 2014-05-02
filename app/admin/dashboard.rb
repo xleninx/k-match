@@ -13,7 +13,7 @@ ActiveAdmin.register_page "Dashboard" do
     div class: "col-sm-4" do
         div class: "well" do
             span class: "title-module" do
-                User.where(:user_rights=> 3).count
+                User.where(:user_rights => Role::PROSPECTIVE).count
             end
             span class: "description-module" do
                 "Registered Prospective Students"
@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
     div class: "col-sm-4" do
         div class: "well" do
             span class: "title-module" do
-                "250"
+                Connection.where(:status => "pending").count
             end
             span class: "description-module" do
                 "Conection Request"
@@ -51,7 +51,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     div class: "col-sm-12 text-center" do 
         Program.all.each do |p|
-            div class: "col-sm-2" do
+            div class: "col-sm-2", style: "margin-left:35px" do
                 span class: "title-program" do p.users.count end
 
                 span class: "title-description" do "Program #{p.name}" end

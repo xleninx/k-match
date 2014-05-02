@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row" style="margin: 0 10%">
+    <h1 class="text-center">The Kellogg Community</h1>
+    <hr>
+  </div>
+
+  <div class="row">
+    <img src="<%= @event.image.url %>" class="pull-left" style="margin:20px;" width="40%">
+      <h2><%= @event.title.titleize%></h2>
+      <p style="line-height:200%;"><%= @event.description %></p>
+  </div>
+</div>

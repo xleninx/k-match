@@ -52,7 +52,7 @@ class UserAffinity
   end
 
   def check_filter_relation ( relation, field )
-    filtered_users  = User.joins(relation).where(field => @user.send(relation), :id => @users).group(:id).all
+    filtered_users  = User.joins(relation).where(field => @user.send(relation), "users.id" => @users).group("users.id").all
     validate_filter_result filtered_users
   end
 

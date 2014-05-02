@@ -2,22 +2,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  scope :admins, lambda{where(:user_rights => Role::Admin)}
-  scope :leaders, lambda{where(:user_rights => Role::Leader)}
-  scope :currents, lambda{where(:user_rights => Role::Current)}
-  scope :prospectives, lambda{where(:user_rights => Role::Prospective)}
-
-  scope :with_connections, lambda{joins("LEFT JOIN connections ON connections.current_id = users.id")}
-  scope :without_connections , lambda { with_connections.where("connections.current_id" => nil) }
-  scope :connections_not_nil, lambda{where.not("connections.current_id" => nil)}
-
-
   has_many :connections, :class_name => "Connection",:foreign_key => "prospective_id"
   has_many :request_connections, :class_name => "Connection", :foreign_key => "current_id"
 
-  has_many :connections_rejected,->{where "status = \"rejected\""}, :class_name => "Connection",
+  has_many :connections_rejected,->{where "connections.status = 'rejected'"}, :class_name => "Connection",
   :foreign_key => "current_id"
-  has_many :connections_rejected,->{where "status = \"rejected\""}, :class_name => "Connection",
+  has_many :request_rejected,->{where "connections.status = 'rejected' "}, :class_name => "Connection",
   :foreign_key => "prospective_id"
 
   belongs_to :current_industry, :class_name => 'Industry'
@@ -27,6 +17,15 @@ class User < ActiveRecord::Base
   belongs_to :country
   has_and_belongs_to_many :programs
   has_and_belongs_to_many :clubs
+
+  scope :admins, lambda{where(:user_rights => Role::ADMIN)}
+  scope :leaders, lambda{where(:user_rights => Role::LEADER)}
+  scope :currents, lambda{where(:user_rights => Role::CURRENT)}
+  scope :prospectives, lambda{where(:user_rights => Role::PROSPECTIVE)}
+
+  scope :with_connections, lambda{joins("LEFT JOIN connections ON connections.current_id = users.id")}
+  scope :without_connections , lambda { with_connections.where("connections.current_id" => nil) }
+  scope :connections_not_nil, lambda{where.not("connections.current_id" => nil)}
 
   validates_presence_of :first_name, :last_name,:programs,
                         :current_industry,:current_function,
@@ -72,7 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def rigths_string
-    r = (user_rights == nil) ? 0 : user_rights
+    r = (user_rights == nil) ? Role::PROSPECTIVE : user_rights
     ROLES[r] + " Student"
   end
 

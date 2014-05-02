@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>Welcome to Kellogg's Prospective Student Page</h1>
 </div>
-<% if user_signed_in? && current_user.user_rights == 0%>
+<% if user_signed_in? && current_user.user_rights == Role::PROSPECTIVE %>
 <div class="row">
   <div class="cold-md-2"></div>
   <div class="col-md-4">
@@ -11,7 +11,7 @@
     <%= link_to "Update my Profile", edit_user_url(current_user.id), class: "btn btn-primary" %>
   </div>
 </div>
-<% elsif user_signed_in? && current_user.user_rights == 1%>
+<% elsif user_signed_in? && current_user.user_rights == Role::CURRENT %>
 <div class="row">
   <div class="cold-md-2"></div>
   <div class="col-md-4">
@@ -21,7 +21,7 @@
     <%= link_to "Update my Profile", edit_user_url(current_user.id), class: "btn btn-primary" %>
   </div>
 </div>
-<% elsif user_signed_in? && current_user.user_rights == 2%>
+<% elsif user_signed_in? && current_user.user_rights == Role::LEADER %>
 <div class="row">
   <div class="cold-md-2"></div>
   <div class="col-md-4">
@@ -30,7 +30,7 @@
   <div class="col-md-4">
   </div>
 </div>
-<% elsif user_signed_in? && current_user.user_rights == 3%>
+<% elsif user_signed_in? && current_user.user_rights == Role::ADMIN%>
 <div class="row">
   <div class="cold-md-2"></div>
   <div class="col-md-4">

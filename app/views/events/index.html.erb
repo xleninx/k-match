@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row" style="margin: 0 10%">
+
+    <h1 class="text-center">The Kellogg Community </h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="months-containter">
+      <ul class="text-center months">
+        <li><%= link_to "Sep", event_month_path(9), class: "link_community"%></li>
+        <li><%= link_to "Oct", event_month_path(10), class: "link_community"%></li>
+        <li><%= link_to "Nov", event_month_path(11), class: "link_community"%></li>
+        <li><%= link_to "Dec", event_month_path(12), class: "link_community"%></li>
+        <li><%= link_to "Jan", event_month_path(1), class: "link_community"%></li>
+        <li><%= link_to "Feb", event_month_path(2), class: "link_community"%></li>
+        <li><%= link_to "Mar", event_month_path(3), class: "link_community"%></li>
+        <li><%= link_to "Apr", event_month_path(4), class: "link_community"%></li>
+        <li><%= link_to "Jun", event_month_path(5), class: "link_community"%></li>
+      </ul>
+      
+    </div>
+  </div>
+
+  <div class="row">
+  <% if @event %>
+    <% @event.each do |e|%>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <img src="<%= e.image.url %>" alt="..." >
+          <div class="caption">
+            <h3><%= e.title%></h3>
+            <p><%= truncate(e.description, length: 200) %></p>
+            <%= link_to "Read More", events_path(e) %>
+          </div>
+        </div>
+      </div>
+    <% end %>  
+  <% end %>      
+  </div>
+</div>

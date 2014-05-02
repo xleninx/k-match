@@ -10,7 +10,6 @@
  <hr>
 
 <div class="container-fluid">
-  
   <div class="row-connect">
    
   <% unless @user.count > 0 %>
@@ -26,16 +25,12 @@
       </div>
       <div class="col-md-4 ">
         <div class="pull-right" >
-          <form class="form-horizontal" style="padding-top:30px">
+          <%= form_tag(update_role_path, :method=>'get', class: "form-horizontal", style: "padding-top:30px") do %>
             <div class="form-group">
-              <select class="form-control">
-                <option value="">Change user status</option>
-                <option value="1">Current Student</option>
-                <option value="2">Leader Student</option>
-                <option value="3">Admin Student</option>
-              </select>
+              <%= select_tag(:user_role, options_for_select(Role.to_a, u.user_rights), prompt: 'Select Status', class: 'form-control',:onchange => "this.form.submit();") %>
+              <%= hidden_field_tag :user_id, u.id %>
             </div>
-          </form>
+          <% end %>
         </div>
         <div class="clearfix"></div>
       </div>

@@ -5,6 +5,12 @@ gem 'starter_generators'
 # Authentication
 gem 'devise'
 
+#upload files
+gem 'carrierwave'
+
+#RMAgick
+gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
+
 # Email management
 gem 'mail'
 
@@ -17,9 +23,9 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-# Use sqlite3 as the database for Active Record
+# Use pg as the database for Active Record
+gem 'pg'
 group :development do
-  gem 'sqlite3'
 end
 
 group :production do
