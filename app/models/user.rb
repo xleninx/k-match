@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
 
   def self.request_connections
    User.joins("INNER JOIN connections ON connections.prospective_id = users.id")
- end
+  end
+
 end
 
