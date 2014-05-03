@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css"> 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <%= stylesheet_link_tag  "application" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "bootstrap.min" %> 
+  <%= stylesheet_link_tag  "application" %>
   <%= csrf_meta_tags %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,52 +17,50 @@
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header" style="padding-left:25px"> 
+    <div class="navbar-header" style="padding-left:25px">
       <%= link_to "You@Kellogg", root_url, :class => "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
         <form class="navbar-form navbar-right" style="padding-right:40px; padding-top:5px; margin-right:0">
           <% if user_signed_in? %>
-            <%= link_to current_user.email, profile_user_path(current_user), class: "btn btn-default btn-sm"  %>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-warning btn-sm" %>
+            <%= link_to current_user.email , profile_user_path(current_user), class: "btn btn-default btn-sm"  %>
+            <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn btn-warning btn-sm" %>
           <% else %>
-            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-warning btn-sm"  %>
-            <%= link_to "Login", new_user_session_path, class: "btn btn-warning btn-sm" %>
+            <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-warning btn-sm"  %>
+            <%= link_to "LOGIN", new_user_session_path, class: "btn btn-warning btn-sm" %>
           <% end %>
         </form>
-
     </div><!-- /.navbar-collapse -->
   </nav>
 
-
+  <div class="container-fluid">
     <%= yield %>
+  </div>
 
-  
+
+<div id="footer">
   <footer class="bs-docs-footer container-fluid" >
-    
-    <div id="footer" >
-
-      <div class="col-md-4 " style="padding-left:20px text-decoration:underline">
-        <a class="" href="" style="padding-right:10px">TEMS OF USE</a>
+    <div class="row container-inner">
+      <div class="col-md-4 col-sm-4 left" style="padding-left:20px; text-decoration:underline">
+        <a class="" href="" style="padding-right:10px">TERMS OF USE</a>
         <a class="" href="">CONTACT</a>
       </div> 
       
-      <div class="col-md-4 ">
+      <div class="col-md-4 col-sm-4 center">
         <p class="text-center">&copy; You@Kellog</p>
       </div> 
        
-      <div class="col-md-4">          
-          <a class="text-muted pull-right" href=""><i class="fa fa-twitter-square fa-2x"></i>&nbsp;</a>
-          <a class="text-muted pull-right" href=""><i class="fa fa-facebook-square fa-2x"></i>&nbsp;</a>
-          <a class="text-muted pull-right" href=""><i class="fa fa-google-plus-square fa-2x"></i>&nbsp;</a>       
+      <div class="col-md-4 col-sm-4 right">          
+          <a class="text-muted" href=""><i class="fa fa-twitter-square icons fa-2x"></i>&nbsp;</a>
+          <a class="text-muted" href=""><i class="fa fa-facebook-square icons fa-2x"></i>&nbsp;</a>
+          <a class="text-muted" href=""><i class="fa fa-google-plus-square icons fa-2x"></i>&nbsp;</a>       
       </div>
+      <div class="clearfix"></div>
     </div>
-
   </footer>
-
+</div>
 
 </body>
 </html>
