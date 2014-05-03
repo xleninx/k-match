@@ -24,8 +24,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'rails', '4.0.2'
 
 # Use pg as the database for Active Record
-# gem 'pg'
-gem 'sqlite3'
+gem 'pg'
 group :development do
 end
 

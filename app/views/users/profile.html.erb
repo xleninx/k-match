@@ -1,10 +1,12 @@
 
 <div class="container-fluid">
   <div class="row row-profile" style="padding-top:20px">
-    <% unless @user.request_pending_propective.empty? %>
+  <% if current_user.id == @user.id %>
+    <% unless @user.request_pending_propective.empty?  %>
       <p class="bg-primary text-center" style="padding:10px; background-color:rgb(200,200,200); font-size:17px">Your request for connection has been sent. A current student will reach out to you shortly.
       <%= link_to "OR, CANCEL YOUR REQUEST", cancel_request_path, class: "btn btn-warning btn-sm" %></p>
     <% end %>
+  <% end %>  
   </div>
 
   <div class="row row-profile">
