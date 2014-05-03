@@ -10,6 +10,8 @@ ActiveAdmin.register_page "Dashboard" do
       # end
     end
 
+    time = Time.parse(Connection.connection.execute("select  avg(update_request) as average from( select (updated_at - created_at) as update_request  from connections where status in('established', 'rejected' )) as x ").first["average"])
+
     div class: "col-sm-4" do
         div class: "well" do
             span class: "title-module" do
@@ -34,9 +36,9 @@ ActiveAdmin.register_page "Dashboard" do
 
     div class: "col-sm-4" do
         div class: "well" do
-            span class: "title-size" do "1" end 
+            span class: "title-size" do time.strftime("%k") end 
             span class: "description-size" do "hour" end
-            span class: "title-size" do "12" end
+            span class: "title-size" do time.strftime("%M") end
             span class: "description-size" do "mins." end
 
             span class: "description-module" do

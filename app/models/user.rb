@@ -87,4 +87,3 @@ class User < ActiveRecord::Base
     joins("INNER JOIN connections ON connections.prospective_id = users.id")
  end
 end
-

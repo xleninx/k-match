@@ -7,7 +7,7 @@ class Connection < ActiveRecord::Base
   def self.connections_by_user_id(id)
     # Connection.joins("INNER JOIN users ON connections.current_id = users.id").
     # current_user.
-    where("prospective_id"=> id ).first
+    where("prospective_id"=> id).first
   end
 
 end
