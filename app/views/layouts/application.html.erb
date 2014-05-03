@@ -37,7 +37,16 @@
     </div><!-- /.navbar-collapse -->
   </nav>
 
-
+    <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <p class="flash-error text-center"><%= flash[:alert] %></p>
+    </div>  
+    <% end %>
+    <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <p class="flash-notice text-center"><%= flash[:notice] %></p>
+    </div>
+    <% end %>
     <%= yield %>
 
   
