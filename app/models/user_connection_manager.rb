@@ -80,7 +80,7 @@ class UserConnectionManager
   end
 
   def request_empty?
-    @user.request_connections.empty?
+    @user.request_pending_propective.empty?
   end
 
   def valid_numbers_connection?
