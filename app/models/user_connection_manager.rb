@@ -6,7 +6,7 @@ class UserConnectionManager
   end
 
   def cancel_request
-    @user.request_connections.first.delete unless @user.request_connections.empty?
+    @user.request_pending_propective.first.delete unless @user.request_pending_propective.empty?
   end
 
   def connection_rejected 
@@ -19,27 +19,32 @@ class UserConnectionManager
 
   def send_request
     if make_request?
-      make_connection
-    else
+       make_connection
+    else      
       remake_connection unless in_valid_time?
     end
+
   end
 
 
   private
 
   def make_connection
-    user_to_assig = validate_connection UserAffinity.new(@user).users_with_affinities
+    user_to_assig = user_avalaible_to_asig
     create_connection(user_to_assig, @message)
   end
 
   def create_connection(user_to_assig, message)
     connection = Connection.new
-    connection.current_user = @user
-    connection.prospective_user = user_to_assig.first
+    connection.current_user = user_to_assig
+    connection.prospective_user = @user
     connection.message = message
     connection.status = "pending"
-    connection.save 
+    if connection.save
+      connection
+    else
+      nil
+    end
   end
 
   def remake_connection
@@ -47,9 +52,10 @@ class UserConnectionManager
     make_connection
   end
 
-  def validate_connection( user_with_affinity )
-    if(valid_numbers_connection? && user_with_affinity.empty?)
-      get_lider_lower_connection
+  def user_avalaible_to_asig
+    user_with_affinity = UserAffinity.new(@user).users_with_affinities
+    if(valid_numbers_connection? && !user_with_affinity)
+      leader_lower_connection
     else
       user_with_affinity
     end
@@ -60,14 +66,9 @@ class UserConnectionManager
       @user.request_connections.first.update_attributes(:status => status)
     end
   end
-
-  def get_liders
-    User.joins(:request_connections).where("user_rights" => Role::LEADER ).group("prospective_id").count
-  end
   
-  def get_lider_lower_connection
-    id_lider = get_liders.sort_by {|_key, value| value}.first
-    User.find(id_lider)
+  def leader_lower_connection
+    User.leader_available
   end
 
   def make_request?
@@ -79,7 +80,7 @@ class UserConnectionManager
   end
 
   def request_empty?
-    @user.request_connections.empty?
+    @user.request_pending_propective.empty?
   end
 
   def valid_numbers_connection?

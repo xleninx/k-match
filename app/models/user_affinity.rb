@@ -17,7 +17,12 @@ class UserAffinity
           check_filter_relation_btm( filter )
         end
     end
-    users_low_connector
+    unless @users.empty?
+      User.sort_by_connections(@users)
+    else
+      nil
+    end 
+    
   end
 
   private
@@ -35,7 +40,7 @@ class UserAffinity
   end
 
   def without_excluding_users ( users_exclude )
-    User.where.not(:id => @user.id, "user_rights" => [3,2,0] ).to_a
+    with_excluding_users(User.currents.to_a)
   end
 
   def validate_filter_result ( filtered_users )
@@ -43,9 +48,7 @@ class UserAffinity
   end
 
   def users_low_connector
-    User.find(:all, :select => '*, count(*) AS count, users.id', 
-      :conditions => ["users.id IN (?)", @users], 
-      :group => 'users.id', :order => 'count DESC')
+    User.current_lower_connection
   end
 
   def check_filter_relation ( relation, field )
@@ -64,5 +67,11 @@ class UserAffinity
   def check_filter_attribute( attribute )
     filtered_users  = User.where( attribute => @user[attribute], :id => @users).group(:id).all
     validate_filter_result filtered_users
+  end
+
+   def with_excluding_users ( users )
+    excluded_users = Array.new 
+    Connection.where("prospective_id = ? and status = ?", @user, "established").each{|connections| excluded_users << connections.current_user}
+    filtered_users = users - excluded_users
   end
 end

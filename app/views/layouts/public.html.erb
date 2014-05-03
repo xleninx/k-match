@@ -35,33 +35,32 @@
     </div><!-- /.navbar-collapse -->
   </nav>
 
-
+  <div class="container-fluid">
     <%= yield %>
+  </div>
 
 
-
+<div id="footer">
   <footer class="bs-docs-footer container-fluid" >
-    
-    <div id="footer" >
-
-      <div class="col-md-4" style="padding-left:20px; text-decoration:underline">
+    <div class="row container-inner">
+      <div class="col-md-4 col-sm-4 left" style="padding-left:20px; text-decoration:underline">
         <a class="" href="" style="padding-right:10px">TERMS OF USE</a>
         <a class="" href="">CONTACT</a>
       </div> 
       
-      <div class="col-md-4 ">
+      <div class="col-md-4 col-sm-4 center">
         <p class="text-center">&copy; You@Kellog</p>
       </div> 
        
-      <div class="col-md-4">          
-          <a class="text-muted pull-right" href=""><i class="fa fa-twitter-square fa-2x"></i>&nbsp;</a>
-          <a class="text-muted pull-right" href=""><i class="fa fa-facebook-square fa-2x"></i>&nbsp;</a>
-          <a class="text-muted pull-right" href=""><i class="fa fa-google-plus-square fa-2x"></i>&nbsp;</a>       
+      <div class="col-md-4 col-sm-4 right">          
+          <a class="text-muted" href=""><i class="fa fa-twitter-square icons fa-2x"></i>&nbsp;</a>
+          <a class="text-muted" href=""><i class="fa fa-facebook-square icons fa-2x"></i>&nbsp;</a>
+          <a class="text-muted" href=""><i class="fa fa-google-plus-square icons fa-2x"></i>&nbsp;</a>       
       </div>
+      <div class="clearfix"></div>
     </div>
-
   </footer>
-
+</div>
 
 </body>
 </html>

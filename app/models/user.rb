@@ -2,18 +2,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :connection,->{where "status = 'established'"}, :class_name => "Connection",
-   :foreign_key => "prospective_id"
+  has_many :connections, :class_name => "Connection",:foreign_key => "current_id"
+  has_many :request_connections, :class_name => "Connection", :foreign_key => "prospective_id"
+
   has_many :connections_rejected,->{where "connections.status = 'rejected'"}, :class_name => "Connection",
   :foreign_key => "current_id"
-  has_many :request_connections,->{where "connections.status = 'pending'"}, :class_name => "Connection",
-   :foreign_key => "current_id"
-
-  #User.joins(relation).where(field => @user.send(relation), :id => @users).group(:id).all
-  #User.joins("INNER JOIN connections ON connections.current_id = users.id").where("current_id" => id) }
-
-  scope :prospectives, lambda{where(:user_rights => Role::PROSPECTIVE)}
-  scope :currents, lambda{where(:user_rights => Role::CURRENT)}
+  has_many :request_rejected,->{where "connections.status = 'rejected' "}, :class_name => "Connection",
+  :foreign_key => "prospective_id"
+  has_many :request_pending_propective,->{where "connections.status = 'pending' "}, :class_name => "Connection",
+  :foreign_key => "prospective_id"
+  has_many :request_pending_current,->{where "connections.status = 'pending' "}, :class_name => "Connection",
+  :foreign_key => "current_id"
 
   belongs_to :current_industry, :class_name => 'Industry'
   belongs_to :interest_industry, :class_name => 'Industry'
@@ -23,6 +22,15 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :programs
   has_and_belongs_to_many :clubs
 
+  scope :admins, lambda{where(:user_rights => Role::ADMIN)}
+  scope :leaders, lambda{where(:user_rights => Role::LEADER)}
+  scope :currents, lambda{where(:user_rights => Role::CURRENT)}
+  scope :prospectives, lambda{where(:user_rights => Role::PROSPECTIVE)}
+
+  scope :with_connections, lambda{joins("LEFT JOIN connections ON connections.current_id = users.id")}
+  scope :without_connections , lambda { with_connections.where("connections.current_id" => nil) }
+  scope :connections_not_nil, lambda{where.not("connections.current_id" => nil)}
+
   validates_presence_of :first_name, :last_name,:programs,
                         :current_industry,:current_function,
                         :programs,:country, :on => :update
@@ -31,13 +39,31 @@ class User < ActiveRecord::Base
 
   ROLES = ["Prospective","Current","Leader","Admin"]
 
-  def self.request_connections
-    User.joins("INNER JOIN connections ON connections.current_id = users.id")
+  def self.leader_available
+   unless leaders.without_connections.empty?
+      leaders.without_connections.first
+    else
+      leader_lower_connection
+    end
   end
 
+  def self.leader_lower_connection
+    id_lider = leaders.with_connections.group("users.id").count.sort_by{|_key, x| x}.firs.first
+    find(id_lider)
+  end
+
+  def self.sort_by_connections(ids)
+    users = where(:id => ids)
+    id_current = users.with_connections.group("current_id").count.sort_by {|_key, value| value}.first.first
+    unless id_current
+      currents.without_connections.first
+    else
+      find(id_current)
+    end
+
+  end
   def self.request_connection(id)
     request_connections.where(:id => id).first
-    # .request_connections.first
   end
 
   def full_name
@@ -57,8 +83,7 @@ class User < ActiveRecord::Base
     user_rights == 3
   end
 
-  def profile_btn
-
-  end
+  def self.request_connections
+    joins("INNER JOIN connections ON connections.prospective_id = users.id")
+ end
 end
-
