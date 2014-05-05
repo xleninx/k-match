@@ -61,9 +61,9 @@ body > .container-fluid .jumbotron{
 
 
 @media (max-width: 767px) { 
-  
+
   .button-check-connect{
-  line-height: 0;
+    line-height: 0;
   }
   #footer .left{
     text-align: center;

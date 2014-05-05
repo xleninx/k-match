@@ -85,5 +85,10 @@ class User < ActiveRecord::Base
 
   def self.request_connections
     joins("INNER JOIN connections ON connections.prospective_id = users.id")
- end
+  end
+
+  def self.request_connections_pending
+    request_connections.where("connections.status = 'pending' ")
+  end
+
 end
