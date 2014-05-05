@@ -76,7 +76,8 @@
       <p><i class="fa fa-briefcase fa-2x"></i>Before Kellogg I worked in <%= @user.current_industry.name %> doing <%= @user.current_function.name %></p>
 
      <% if @user.interest_industry_id? && @user.interest_function_id? %> 
-      <p><i class="fa fa-long-arrow-right fa-2x"></i>After kellog I want to work in <%= @user.interest_industry.name %> doing <%= @user.interest_function.name %></p>
+     <% state = (@user.user_rights ==  Role::PROSPECTIVE)? 'After Kellogg I want to work in ': 'Previous Kellogg I worked in '; %>
+      <p><i class="fa fa-long-arrow-right fa-2x"></i><%=state%><%= @user.interest_industry.name %> doing <%= @user.interest_function.name %></p>
       <% end %>
      </div> 
   </div>

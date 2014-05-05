@@ -76,7 +76,7 @@ class UserConnectionManager
   end
 
   def in_valid_time?
-    (request_empty? && (@user.request_connections.first.create_at > 2.day.ago))
+    (!request_empty? && (@user.request_pending_propective.first.created_at > 2.day.ago))
   end
 
   def request_empty?

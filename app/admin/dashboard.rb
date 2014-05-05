@@ -10,7 +10,13 @@ ActiveAdmin.register_page "Dashboard" do
       # end
     end
 
-    time = Time.parse(Connection.connection.execute("select  avg(update_request) as average from( select (updated_at - created_at) as update_request  from connections where status in('established', 'rejected' )) as x ").first["average"])
+    time = Connection.connection.execute("select avg(update_request) as average from( select (updated_at - created_at) as update_request  from connections where status in('established', 'rejected' )) as x ").first["average"] 
+        
+    time = unless time
+        Time.parse('00:00:00')
+    else
+        Time.parse(time)
+    end
 
     div class: "col-sm-4" do
         div class: "well" do
@@ -59,41 +65,8 @@ ActiveAdmin.register_page "Dashboard" do
                 span class: "title-description" do "Program #{p.name}" end
                 hr style: " border: 1px solid \##{rand(0xffffff).to_s(16)};"
             end
-        # div class: "col-sm-2" do
-        #     span class: "title-program" do "1" end
-
-        #     span class: "title-description" do "1" end
-        #     hr style: "margin: 20px 35px; border: 1px solid green;"
-        # end
-        # div class: "col-sm-2" do
-        #     span class: "title-program" do "1" end
-
-        #     span class: "title-description" do "1" end
-        #     hr style: "margin: 20px 35px; border: 1px solid green;"
-        # end
-        # div class: "col-sm-2" do
-        #     span class: "title-program" do "1" end
-
-        #     span class: "title-description" do "1" end
-        #     hr style: "margin: 20px 35px; border: 1px solid green;"
-        # end
-        # div class: "col-sm-2" do
-        #     span class: "title-program" do "1" end
-
-        #     span class: "title-description" do "1" end
-        #     hr style: "margin: 20px 35px; border: 1px solid green;"
-        # end
-        # div class: "col-sm-2" do
-        #     span class: "title-program" do "1" end
-
-        #     span class: "title-description" do "1" end
-        #     hr style: "margin: 20px 35px; border: 1px solid green;"
-        # end
         end
     end 
-
-
-
 
   end # content
 end

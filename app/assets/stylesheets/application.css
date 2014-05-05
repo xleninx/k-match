@@ -55,9 +55,9 @@ i.fa{
   background-color: #6D3D7C;
 }
 
-.row{
+/*.row{
   padding:0 50px;
-}
+}*/
 
 .row-connect .row:not(:last-child){
   border-bottom: 1px solid #DFDFDF;
@@ -230,4 +230,12 @@ a.navbar-brand:hover{
 .link_community:hover{
   color:white;
   text-decoration: none;
+}
+
+.title-sub span{
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 19px;
+}
+.title-sub {
+  margin-bottom: 39px;
 }

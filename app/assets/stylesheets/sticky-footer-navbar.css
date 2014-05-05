@@ -51,7 +51,20 @@ body > .container-fluid .jumbotron{
     font-size: 30px;
   }
 
-@media (max-width: 768px) { 
+  .request_users>div{
+    height: 100px;
+  }
+
+.button-check-connect{
+  line-height: 110px;
+}
+
+
+@media (max-width: 767px) { 
+
+  .button-check-connect{
+    line-height: 0;
+  }
   #footer .left{
     text-align: center;
   }
@@ -61,6 +74,14 @@ body > .container-fluid .jumbotron{
   #footer .right{
     text-align: center;
   }
+  .title-sub span{
+  border-bottom: 0;
+  padding-bottom: 0;
+  }
+  .title-sub{
+    margin-bottom: 10.5px;
+  }
+
 }
 @media (min-width: 768px) and (max-width: 992px) { 
 

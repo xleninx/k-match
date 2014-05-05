@@ -1,12 +1,14 @@
  <div class="container-fluid">
  <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1 class="text-center">Received Connection Requests</h1>
-    <hr>
+  <div class="col-md-10 col-md-offset-1">
+    <h1 class="text-center title-sub ">
+        <span >Received Connection Requests</span>
+    </h1>
+    <hr  class="visible-xs">
   </div>
  </div>
 
-  <div class="container row-connect">
+  <div class="container-fluid row-connect">
     <dl class="faq">
     <% if @request_connections.empty? %>
       <p class="text-center" style="font-size:20px">No found request in this moment</p>
@@ -14,11 +16,12 @@
 
     <% @request_connections.each do |connection|%>
       <% u = connection.prospective_user %>
-      <div class="row" >
-        <div class="col-md-1" style="padding-top:30px">
+      <div class="row request_users" >
+        <div class="col-md-1 col-sm-1 col-xs-2" style="padding-top:30px">
           <dd></dd>
+          <div class="clearfix"></div>
         </div>    
-          <div class="col-md-7">     
+          <div class="col-md-7 col-sm-4 col-xs-10">     
             <h3><%= link_to u.full_name, profile_user_path(u), style: "color:#2c3e50" %></h3>
             <p><%= u.rigths_string %></p>
               <% if (connection.status == "established") %>
@@ -30,15 +33,15 @@
 
             <div class="clearfix"></div>        
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-6 ">
             <% if (connection.status == "established") %>
-              <div class="pull-right" style="line-height: 110px;">
+              <div class="pull-right button-check-connect">
                 <span class="text-muted "><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
               </div>
             <% elsif (connection.status == "rejected") %>
               <span class="text-muted "><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
             <% elsif (connection.status == "pending") %>
-              <div class="pull-right" style="line-height: 110px;">
+              <div class="pull-right button-check-connect" >
                 <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(u,"accepted"), class: "btn btn-warning " %>
                 <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "REJECT", response_connection_path(u,"rejected"), class: "btn btn-warning " %>
               </div>
