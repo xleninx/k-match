@@ -231,3 +231,11 @@ a.navbar-brand:hover{
   color:white;
   text-decoration: none;
 }
+
+.title-sub span{
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 19px;
+}
+.title-sub {
+  margin-bottom: 39px;
+}
