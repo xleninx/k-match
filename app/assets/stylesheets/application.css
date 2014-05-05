@@ -55,9 +55,9 @@ i.fa{
   background-color: #6D3D7C;
 }
 
-.row{
+/*.row{
   padding:0 50px;
-}
+}*/
 
 .row-connect .row:not(:last-child){
   border-bottom: 1px solid #DFDFDF;
