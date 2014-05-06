@@ -1,3 +1,4 @@
+=begin
 ActiveAdmin.register Event do
   permit_params :title, :description, :image, :month
   menu :priority => 100
@@ -22,3 +23,4 @@ ActiveAdmin.register Event do
       f.actions
     end
 end
+=end
