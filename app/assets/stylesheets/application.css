@@ -76,14 +76,14 @@ i.fa{
 
 }
 
-div.academics-row > .row:not(:last-child) > .line{
+div.academics-row > .row:not(:last-child){
   border-bottom: 1px solid #DFDFDF;
   padding-bottom: 25px;
 }
 
-div.academics-row > .row > div > img{
-  width: 130px;
-  margin: 0 20px 0 0;
+.academics-img{
+  width: 180px;
+  margin: 25px 20px 0 0;
 
 }
 

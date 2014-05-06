@@ -9,7 +9,7 @@ development:
   database: kmatch_development
   host: localhost
   pool: 5
-  username: root
+  username: postgres
   password: 1234
 
 # Warning: The database defined as "test" will be erased and
