@@ -6,4 +6,5 @@ class Footer < ActiveAdmin::Component
 
   end
  
-end=end
+end
+=end
