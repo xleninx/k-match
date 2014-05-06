@@ -1,8 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :country, :user_rigths, 
-  :programs, :current_industry, :current_function, :commit, :authenticity_token,
-  :country_id, :program_ids, :current_industry_id, :current_function_id, :user_rights, :utf8
-  actions :all, :except => [:new, :delete]
+  actions :all, :except => [:new]
   config.batch_actions = false
 
   index do
@@ -22,8 +19,6 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
 
-
-
 =begin
 
  form do |f|
@@ -40,11 +35,5 @@ ActiveAdmin.register User do
     f.actions
   end
 =end
-
-
-
-
-
-
   
 end

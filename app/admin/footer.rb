@@ -1,3 +1,4 @@
+=begin
 class Footer < ActiveAdmin::Component
  
   def build
@@ -5,4 +6,4 @@ class Footer < ActiveAdmin::Component
 
   end
  
-end
+end=end
