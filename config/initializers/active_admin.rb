@@ -1,5 +1,4 @@
 ActiveAdmin.setup do |config|
- config.view_factory.footer = Footer
   # == Site Title
   #
   # Set the title that is displayed on the main layout
