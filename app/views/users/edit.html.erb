@@ -18,7 +18,7 @@
 
     <p class="col-md-10"><span class="pull-right">Requires Fields (*)</span></p>
 
-    <%= form_tag("/users/#{@user.id}", method: 'patch', class: 'form-horizontal') do %>
+    <%= form_tag("/users/#{@user.id}", method: 'patch', id: 'edit_profile' , class: 'form-horizontal') do %>
     <% if current_user.user_rights? %>
       <%= hidden_field_tag 'right', current_user.user_rights %>
     <% elsif params["t"] == "crnt" %>
@@ -63,10 +63,11 @@
 
     <div class="form-group">
       <div class="col-md-5">
-        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country (*)', class: 'form-control') %>
+        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country (*)', id:'state_select', class: 'form-control ') %>
       </div>
       <div class="col-md-5">
-        <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (*)(only US)', class: 'form-control') %>
+        <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (*)(only US)', class: 'form-control hidden') %>
+         <%= text_field_tag :state, current_user.state, placeholder:'Please select your current state', id:'state_text', class: 'form-control' %>
       </div>
     </div>
 
