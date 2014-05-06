@@ -36,10 +36,10 @@
           <div class="col-md-4 col-sm-6 ">
             <% if (connection.status == "established") %>
               <div class="pull-right button-check-connect">
-                <span class="text-muted "><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
+                <span class="text-muted hidden-xs "><i class="fa fa-check-circle-o"></i>ACCEPTED</span>
               </div>
             <% elsif (connection.status == "rejected") %>
-              <span class="text-muted "><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
+              <span class="text-muted hidden-xs "><i class="fa fa fa-times-circle-o"></i>REJECTED</span>
             <% elsif (connection.status == "pending") %>
               <div class="pull-right button-check-connect" >
                 <%= link_to "<span class=\"fa fa-check-circle-o\"></span>".html_safe + "ACCEPT", response_connection_path(u,"accepted"), class: "btn btn-warning " %>
