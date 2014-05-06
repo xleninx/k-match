@@ -1,4 +1,7 @@
 ActiveAdmin.register Connection do
+
+  permit_params :current_user_id, :prospective_user_id, :status, :message
+
  index do
     selectable_column
     column "Receives Request", :current_user
