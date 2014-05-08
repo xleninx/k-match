@@ -12,8 +12,8 @@ KMatch::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "gmail.com",
-    :user_name            => "lenin@softwarecriollo.com",
-    :password             => "letmein123",
+    :user_name            => "connect@youatkellogg.com",
+    :password             => "iWp@4Hz8oSu!",
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
