@@ -259,5 +259,14 @@ a.navbar-brand:hover{
   padding-bottom: 19px;
 }
 .title-sub {
-  margin-bottom: 39px;
+  margin-bottom: 40px;
 }
+
+.event{
+  height: 500px;
+}
+
+.event-img{
+  height: 240px!important;
+}
+
