@@ -10,4 +10,12 @@ class Connection < ActiveRecord::Base
     where("prospective_id"=> id).first
   end
 
+  def connection_processed?
+    !has_status?(:pending)
+  end
+
+  def has_status?(in_status)
+    status == in_status.to_s
+  end
+
 end
