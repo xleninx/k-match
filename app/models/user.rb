@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    user_rights == 3
+    user_rights == Role::ADMIN
   end
 
   def self.request_connections

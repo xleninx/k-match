@@ -14,5 +14,19 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     resource.admin? ? admin_root_path : profile_user_path(current_user)
   end
+ 
+  def authenticate_active_admin_user!
+      authenticate_user!
+      unless false
+          flash[:alert] = 'You are not authorized to access this resource!'
+          redirect_to root_path
+      end
+  end
+
+  def access_denied_admin(resource)
+    flash[:alert] = 'You are not authorized to access this resource!'
+    redirect_to root_path
+  end
+
 end
 
