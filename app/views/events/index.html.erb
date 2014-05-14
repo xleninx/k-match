@@ -1,3 +1,8 @@
+<%
+def currentMonth month, current
+  (month==current)? 'current': ''
+end
+%>
 <div class="container-fluid">
   <div class="row" style="margin: 0 10%">
 
@@ -7,15 +12,15 @@
   <div class="row">
     <div class="months-containter">
       <ul class="text-center months">
-        <li><%= link_to "Sep", event_month_path(9), class: "link_community"%></li>
-        <li><%= link_to "Oct", event_month_path(10), class: "link_community"%></li>
-        <li><%= link_to "Nov", event_month_path(11), class: "link_community"%></li>
-        <li><%= link_to "Dec", event_month_path(12), class: "link_community"%></li>
-        <li><%= link_to "Jan", event_month_path(1), class: "link_community"%></li>
-        <li><%= link_to "Feb", event_month_path(2), class: "link_community"%></li>
-        <li><%= link_to "Mar", event_month_path(3), class: "link_community"%></li>
-        <li><%= link_to "Apr", event_month_path(4), class: "link_community"%></li>
-        <li><%= link_to "Jun", event_month_path(5), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,9)%>"><%= link_to "Sep", event_month_path(9), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,10)%>"><%= link_to "Oct", event_month_path(10), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,11)%>"><%= link_to "Nov", event_month_path(11), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,12)%>"><%= link_to "Dec", event_month_path(12), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,1)%>"><%= link_to "Jan", event_month_path(1), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,2)%>"><%= link_to "Feb", event_month_path(2), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,3)%>"><%= link_to "Mar", event_month_path(3), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,4)%>"><%= link_to "Apr", event_month_path(4), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,5)%>"><%= link_to "Jun", event_month_path(5), class: "link_community"%></li>
       </ul>
       
     </div>
@@ -25,10 +30,10 @@
   <% if @event %>
     <% @event.each do |e|%>
       <div class="col-md-4">
-        <div class="thumbnail">
-          <img src="<%= e.image.url %>" alt="..." >
+        <div class="thumbnail event">
+          <img src="<%= e.image.url %>" class="event-img" alt="..." >
           <div class="caption">
-            <h3><%= e.title%></h3>
+            <h3 style="min-height: 58px;"><%= truncate( e.title, length: 45)%></h3>
             <p><%= truncate(e.description, length: 200) %></p>
             <%= link_to "Read More", events_path(e) %>
           </div>

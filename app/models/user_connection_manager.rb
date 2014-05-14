@@ -23,7 +23,14 @@ class UserConnectionManager
     else      
       remake_connection unless in_valid_time?
     end
+  end
 
+  def connection_processed?
+    unless @user.request_connections.empty?
+      @user.request_connections.first.connection_processed?
+    else
+      true
+    end
   end
 
 

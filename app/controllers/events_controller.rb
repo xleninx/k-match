@@ -5,7 +5,8 @@ class EventsController < ApplicationController
   end
 
   def month
-    @event = Event.where("month = ?", Date::MONTHNAMES[params[:month].to_i]) 
+    @month = params[:month].to_i
+    @event = Event.where("month = ?", Date::MONTHNAMES[@month])
     render 'index'
   end
 

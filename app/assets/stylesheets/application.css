@@ -123,9 +123,10 @@ div.academics-row > .row:not(:last-child){
   background-color: gray;
   color:rgb(241, 241, 241);
   position: relative;
-  margin-right: 24px;
+  margin-right: 29px;
   font-size: 20px;
   margin-bottom: 10px;
+  height: 42px;
 }
 .months > li:before{
   right: 82%;
@@ -155,6 +156,18 @@ div.academics-row > .row:not(:last-child){
   border-left-color: gray;
   border-width: 21px;
   margin-top: -21px;
+}
+
+.months > li.current{
+  color:#fff;
+  background-color: #f39c12;
+}
+.months > li.current:before{
+  border-color: #f39c12;
+  border-left-color: transparent;
+}
+.months > li.current:after{
+  border-left-color: #f39c12;
 }
 
 .months-containter{
@@ -225,6 +238,15 @@ a.navbar-brand:hover{
 
 .link_community{
   color:white;
+  height: 42px;
+  width: 100px;
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  line-height: 40px;
+  text-align: center;
+  padding-left: 20px;
 }
 
 .link_community:hover{
@@ -237,5 +259,14 @@ a.navbar-brand:hover{
   padding-bottom: 19px;
 }
 .title-sub {
-  margin-bottom: 39px;
+  margin-bottom: 40px;
 }
+
+.event{
+  height: 500px;
+}
+
+.event-img{
+  height: 240px!important;
+}
+

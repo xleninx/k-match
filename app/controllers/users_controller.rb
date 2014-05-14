@@ -92,12 +92,16 @@ class UsersController < ApplicationController
 
   def response_connection
     @user = User.find(params[:id])
-    if (params[:operation] == "rejected")
-      UserConnectionManager.new(@user).connection_rejected
+    unless UserConnectionManager.new(@user).connection_processed?      
+      if (params[:operation] == "rejected")
+        UserConnectionManager.new(@user).connection_rejected
+      else
+        UserConnectionManager.new(@user).connection_accept
+      end
+      @message = Connection.connections_by_user_id(params[:id]).message
     else
-      UserConnectionManager.new(@user).connection_accept
+      @message = "This request was already has been processed."
     end
-    @message = Connection.connections_by_user_id(params[:id]).message
   end
 
   def check_connection

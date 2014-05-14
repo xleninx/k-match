@@ -23,6 +23,9 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
+# authorization management
+gem 'cancan'
+
 # Use pg as the database for Active Record
 gem 'pg'
 group :development do
