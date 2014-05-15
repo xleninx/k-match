@@ -36,9 +36,18 @@
   </nav>
 
   <div class="container-fluid">
+    <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <p class="flash-error text-center notice-fixed"><%= flash[:alert] %></p>
+    </div>  
+    <% end %>
+    <% if flash[:notice] %>
+    <div class="alert alert-success notice-fixed" >
+      <p class="flash-notice text-center"><%= flash[:notice] %></p>
+    </div>
+    <% end %>
     <%= yield %>
   </div>
-
 
 <div id="footer">
   <footer class="bs-docs-footer container-fluid" >

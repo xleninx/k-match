@@ -270,3 +270,8 @@ a.navbar-brand:hover{
   height: 240px!important;
 }
 
+.notice-fixed{
+  position: absolute;
+  width: 100%;
+  margin-left: -15px;
+}
