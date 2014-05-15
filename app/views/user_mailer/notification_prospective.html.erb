@@ -8,6 +8,8 @@
   <li>Name: <%= @student.full_name %></li>
   <li>Email: <%= @student.email %></li>
   <li>Country: <%= @student.country.name %></li>
+  <li>Industry: <%= @student.current_industry.name %></li>
+  <li>Function: <%= @student.current_function.name %></li>
 </ul>
 <p>&nbsp;</p>
 <p>You can visit the <%= @student.full_name %> profile at any time by clicking <%= link_to "here", profile_user_url(@student) %></p>

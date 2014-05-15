@@ -8,6 +8,8 @@
   <li>Name: <%= @prospect.full_name %></li>
   <li>Email: <%= @prospect.email %></li>
   <li>Country: <%= @prospect.country.name %></li>
+  <li>Industry: <%= @prospect.current_industry.name %></li>
+  <li>Function: <%= @prospect.current_function.name %></li>
 </ul>
 <p>&nbsp;</p>
 <p>We would ask that you please reach out to <%= @prospect.first_name %> within 2 days</p>
