@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     user_rights == Role::PROSPECTIVE
   end
 
+  def leader?
+    user_rights == Role::LEADER
+  end
+
   def generate_token_cancel_account
     self.cancel_account_token = Digest::MD5.hexdigest(email)
     self.save
