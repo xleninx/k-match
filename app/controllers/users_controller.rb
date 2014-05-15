@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_states, only: [:edit, :update]
   before_action :load_user, only: [:profile, :make_connection, :check_connection,
-                                   :cancel_request,:search]
+                                   :cancel_request,:search,:cancel_account,:cancel_account_action]
   
   def index
     @users = User.all
@@ -125,6 +125,25 @@ class UsersController < ApplicationController
   def notification_to_current_student
     u = @user.request_pending_propective
     UserMailer.connection_request(User.find(u.first.current_id), current_user).deliver
+  end
+
+  def cancel_account_action
+    if @user.valid_cancel_account?(params[:token],params[:user][:password])
+      @user.destroy
+      redirect_to root_path(), notice: "Your Account has ben deleted"
+    else
+      redirect_to cancel_account_url(@user,params[:token]), notice: "Invalid password"
+    end
+  end
+
+  def cancel_account
+    @token = params[:token]
+  end
+
+  def send_mail_cancel_account
+    current_user.generate_token_cancel_account
+    UserMailer.cancel_account(current_user).deliver
+    redirect_to profile_user_path(current_user), notice: "Was sent an email to your account with the instructions to cancel account."
   end
 
   private

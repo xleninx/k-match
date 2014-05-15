@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :connections, :class_name => "Connection",:foreign_key => "current_id"
   has_many :request_connections, :class_name => "Connection", :foreign_key => "prospective_id"
@@ -83,12 +83,35 @@ class User < ActiveRecord::Base
     user_rights == Role::ADMIN
   end
 
+  def current?
+    user_rights == Role::CURRENT
+  end
+
+  def prospective?
+    user_rights == Role::PROSPECTIVE
+  end
+
+  def generate_token_cancel_account
+    self.cancel_account_token = Digest::MD5.hexdigest(email)
+    self.save
+    self.cancel_account_token
+  end
+
   def self.request_connections
     joins("INNER JOIN connections ON connections.prospective_id = users.id")
   end
 
   def self.request_connections_pending
     request_connections.where("connections.status = 'pending' ")
+  end
+
+  def valid_cancel_account?(token,password)
+    # x = valid_password?(password)
+    puts '*****' * 50
+    puts password.inspect
+    # puts token.inspect
+    # puts cancel_account_token.inspect
+    (valid_password?(password) && token == cancel_account_token)
   end
 
 end

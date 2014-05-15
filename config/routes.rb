@@ -243,6 +243,10 @@ KMatch::Application.routes.draw do
   # DELETE
   delete '/users/:id', controller: 'users', action: 'destroy'
 
+  # cancel_account
+  get 'users/:id/cancel_account/:token', to: 'users#cancel_account', as: 'cancel_account'
+  post 'users/:id/cancel_account/', to: 'users#cancel_account_action', as: 'cancel_account_action'
+  get 'users/:id/send_mail_cancel_account', to: 'users#send_mail_cancel_account', as: 'send_mail_cancel_account'
   # Make Connection
   get 'users/:id/intro', to: 'users#intro', as: 'intro_user'
   post 'users/:id/make_connection', to: 'users#make_connection', as: 'make_connection'

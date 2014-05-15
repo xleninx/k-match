@@ -1,3 +1,4 @@
+<%= javascript_include_tag "profile" %> 
 
 <div class="container-fluid">
   <div class="row row-profile" style="padding-top:20px">
@@ -20,6 +21,7 @@
         <% disabled = 'disabled' %>
         <p style="font-style:italic">You have an ongoing connection</p>
       <% end %>
+      <%= link_to "Cancel Account", send_mail_cancel_account_path(@user), class: "cancel-account btn btn-warning btn-sm btn-block btn-block", style:"margin-top:20px;width:120px;"  %>
     </div>
 
     <div class="col-md-2">

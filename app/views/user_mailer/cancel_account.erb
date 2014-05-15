@@ -1,0 +1,12 @@
+<p>Dear <%= @user.email %>,</p>
+<p>&nbsp;</p>
+<p>Account Cancellation Confirmation You@Kellogg.</p>
+
+<p>&nbsp;</p>
+
+<p>Please confirm the cancellation of the account at the following link:</p>
+<p><%= link_to "Cancel Account", cancel_account_url(@user,@user.cancel_account_token) %></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Thank you,<br>
+The You@Kellogg team</p>

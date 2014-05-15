@@ -12,4 +12,9 @@ class UserMailer < ActionMailer::Base
     @prospect = prospect
     mail(:to => "#{prospect.full_name} <#{prospect.email}>", :subject => "You@Kellogg Connection Request")
   end
+
+  def cancel_account(user)
+    @user = user
+    mail(:to => "#{user.full_name} <#{user.email}>", :subject => "You@Kellogg Cancel Account")
+  end
 end
