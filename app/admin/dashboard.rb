@@ -35,7 +35,7 @@ ActiveAdmin.register_page "Dashboard" do
                 Connection.where(:status => "pending").count
             end
             span class: "description-module" do
-                "Conection Request"
+                "Connection Request"
             end
         end
     end
