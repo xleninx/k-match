@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   actions :all, :except => [:new]
   config.batch_actions = false
-
+  menu :priority => 10
   index do
     selectable_column
     id_column
@@ -9,7 +9,7 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :country
-    column "Rigths", :rigths_string
+    column "Rigths", :user_rights
     actions :defaults => false do |user|
       link_to "Delete", admin_user_path(user), :method => :delete, :data => {:confirm => "Are you sure?"}
     end 
