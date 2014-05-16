@@ -2,6 +2,27 @@ ActiveAdmin.register User do
   actions :all, :except => [:new]
   config.batch_actions = false
   menu :priority => 10
+
+  config.xlsx_builder.delete_columns :id, :user_rights,
+      :country_id, :grad_year, :contact_count,
+      :email, :encrypted_password, :reset_password_token,
+      :reset_password_sent_at, :remember_created_at,
+      :sign_in_count, :current_sign_in_at, :last_sign_in_at,
+      :current_sign_in_ip, :last_sign_in_ip, :confirmation_token,
+      :confirmed_at, :confirmation_sent_at, :created_at, :updated_at,
+      :state,:interest_industry_id,
+      :interest_function_id, :cancel_account_token
+
+  config.xlsx_builder.column('Country') do |resource|
+    (resource.country)? resource.country.name : ''
+  end
+  config.xlsx_builder.column('Current Industry') do |resource|
+    (resource.current_industry)? resource.current_industry.name : ''
+  end
+  config.xlsx_builder.column('Current Function') do |resource|
+    (resource.current_function)? resource.current_function.name : ''
+  end
+
   index do
     selectable_column
     id_column
@@ -18,22 +39,5 @@ ActiveAdmin.register User do
   filter :email
   filter :first_name
   filter :last_name
-
-=begin
-
- form do |f|
-    f.inputs "Admin Details" do
-      f.input :email
-      f.input :first_name
-      f.input :last_name
-      f.input :country
-      f.input :programs
-      f.input :current_industry
-      f.input :current_function
-      f.input :user_rights, :as => :select, :collection => Role.to_a
-    end
-    f.actions
-  end
-=end
   
 end
