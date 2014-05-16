@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-
+  skip_before_filter :authenticate_user!, :all
   def index
     @event = Event.all
   end
