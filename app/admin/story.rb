@@ -6,7 +6,7 @@ ActiveAdmin.register Story do
     id_column
     column :title
     column :description
-    column :month
+    column :year
     column :autor
     column :created_at
     column :updated_at
