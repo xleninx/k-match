@@ -4,11 +4,12 @@ ActiveAdmin.register Connection do
 
  index do
     selectable_column
-    column "Receives Request", :current_user
-    column "Sends Request", :prospective_user
+    column "Student", :current_user
+    column "Prospective", :prospective_user
     column :status
     column :message
     column :created_at
+    column :updated_at
     actions
   end
 
