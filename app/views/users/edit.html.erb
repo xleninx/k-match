@@ -81,7 +81,8 @@
       </div>
       <div class="col-md-5">
         <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (*)(only US)', class: 'form-control hidden') %>
-         <%= password_field :password, current_user.password, placeholder:'Please select your current password', id:'state_text', class: 'form-control' %>
+         <%= text_field_tag :state, current_user.state, placeholder:'Please select your current state', id:'state_text', class: 'form-control' %>
+
       </div>
     </div>
 

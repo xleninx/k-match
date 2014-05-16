@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   scope :admins, lambda{where(:user_rights => Role::ADMIN)}
   scope :leaders, lambda{where(:user_rights => Role::LEADER)}
   scope :currents, lambda{where(:user_rights => Role::CURRENT)}
+  scope :students, lambda{where(:user_rights => Role::CURRENT)}
   scope :prospectives, lambda{where(:user_rights => Role::PROSPECTIVE)}
 
   scope :with_connections, lambda{joins("LEFT JOIN connections ON connections.current_id = users.id")}
@@ -110,11 +111,6 @@ class User < ActiveRecord::Base
   end
 
   def valid_cancel_account?(token,password)
-    # x = valid_password?(password)
-    puts '*****' * 50
-    puts password.inspect
-    # puts token.inspect
-    # puts cancel_account_token.inspect
     (valid_password?(password) && token == cancel_account_token)
   end
 
