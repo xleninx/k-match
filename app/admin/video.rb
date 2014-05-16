@@ -1,12 +1,13 @@
-ActiveAdmin.register Event do
-  permit_params :title, :description, :image, :month
+ActiveAdmin.register Video do
+  permit_params :title, :url, :position
+  config.batch_actions = false
   menu  :priority => 100, :if => proc{ current_user.admin? }
   index do
     selectable_column
     id_column
     column :title
-    column :description
-    column :month
+    column :url
+    column :position
     column :created_at
     column :updated_at
     actions 
@@ -15,9 +16,8 @@ ActiveAdmin.register Event do
   form do |f|
       f.inputs "Admin Details" do
         f.input :title
-        f.input :description
-        f.input :image, :as => :file
-        f.input :month, :as => :select, :collection => Date::MONTHNAMES.compact
+        f.input :url
+        f.input :position,  :as => :select, :collection => VideoType.to_a
       end
       f.actions
     end

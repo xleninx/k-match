@@ -265,6 +265,11 @@ KMatch::Application.routes.draw do
   get '/events/:id', to: 'events#show', as: "events"
   get '/events/month/:month', to: 'events#month', as: "event_month"
 
+  #EVENTS
+  get '/stories', to: 'stories#index', as: ""
+
+  #EVENTS
+  get '/videos', to: 'videos#index', as: ""
   #------------------------------
 
   # The priority is based upon order of creation: first created -> highest priority.

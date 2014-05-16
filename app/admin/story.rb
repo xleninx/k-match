@@ -1,15 +1,16 @@
-ActiveAdmin.register Event do
-  permit_params :title, :description, :image, :month
-  menu  :priority => 100, :if => proc{ current_user.admin? }
+ActiveAdmin.register Story do
+  permit_params :title, :description, :image, :autor, :year
+  menu  :priority => 98, :if => proc{ current_user.admin? }
   index do
     selectable_column
     id_column
     column :title
     column :description
     column :month
+    column :autor
     column :created_at
     column :updated_at
-    actions 
+    actions
   end
 
   form do |f|
@@ -17,7 +18,8 @@ ActiveAdmin.register Event do
         f.input :title
         f.input :description
         f.input :image, :as => :file
-        f.input :month, :as => :select, :collection => Date::MONTHNAMES.compact
+        f.input :autor
+        f.input :year, :as => :select, :collection => [2010,2011,2012,2013,2014,2015]
       end
       f.actions
     end
