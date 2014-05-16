@@ -3,17 +3,20 @@
   <%= stylesheet_link_tag  "chosen" %>
   <%
     text = {}
-    if current_user.current?
-      text['current_job'] = 'Job Prior to Kellog '
-      text['programs'] = 'Program You Are Enrolled In (*)'
-      text['previous'] = 'Please Select Industry You Would Like to Work in After Kellog'
-      text['brand'] = 'Please Select Function You Want to Have After Kellogg'
+    unless current_user.prospective?
+      text['current_job'] = 'Job Prior to Kellogg'
+      text['current_industry'] = 'Your Job Industry Prior To Kellogg'
+      text['current_function'] = 'Your Job Function Prior To Kellogg'
+      text['programs'] = 'Program Your Are Enrolled In'      
     else
       text['current_job'] = 'Current Job Information'
-      text['programs'] = 'Programs of Interest (*)'
-      text['previous'] = 'Please Select Your Industry of Interest'
-      text['brand'] = 'Please Select Your Function of Interest'
+      text['current_industry'] = 'Your Current Job Industry'
+      text['current_function'] = 'Your Current Job Function'
+      text['programs'] = 'Program(s) You Are Interested in'
     end
+    text['next_job'] = 'Job Interest After Kellogg'
+    text['next_industry'] = 'Industry You Would Like to Work in After Kellogg'
+    text['next_function'] = 'Function You Would Like to Have After Kellogg'
 
   %>
 <div class="container-fluid">
@@ -27,10 +30,8 @@
 
   <div class="col-md-10 col-md-offset-2">
     <dl class="faq" style="counter-increment: my-badass-counter+1;">
-      <dd style="padding-bottom:33px;font-size:20px"><strong>Tell us a little about yourself</strong>. </dd>
+      <dd style="font-size:20px"><span>Tell us a little about yourself</span>. </dd>
     </dl>
-
-    <p class="col-md-10"><span class="pull-right">Requires Fields (*)</span></p>
 
     <%= form_tag("/users/#{@user.id}", method: 'patch', id: 'edit_profile' , class: 'form-horizontal') do %>
     <% if current_user.user_rights? %>
@@ -49,7 +50,7 @@
 
     <div class="form-group">
       <div class="col-md-10">
-        <b>Contact Information</b>
+        <b class="subtitle" >Contact Information</b>
       </div>
     </div>
 
@@ -61,26 +62,27 @@
 
     <div class="form-group">
       <div class="col-md-5">
-        <%= text_field_tag :first_name, current_user.first_name, placeholder:'First Name (*)', class: 'form-control' %>
+        <%= text_field_tag :first_name, current_user.first_name, placeholder:'First Name', class: 'form-control' %>
       </div>
       <div class="col-md-5">
-        <%= text_field_tag :last_name, current_user.last_name, placeholder:'Last Name (*)', class: 'form-control' %>
+        <%= text_field_tag :last_name, current_user.last_name, placeholder:'Last Name', class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-md-10">
       <hr>
-        <b><%=text['current_job']%></b>
+        <b class="subtitle" ><%=text['current_job']%></b>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-md-5">
-        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country (*)', id:'state_select', class: 'form-control ') %>
+        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.country_id), prompt: 'Please select your current country', id:'state_select', class: 'form-control ') %>
+
       </div>
       <div class="col-md-5">
-        <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (*)(only US)', class: 'form-control hidden') %>
+        <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state', class: 'form-control hidden') %>
          <%= text_field_tag :state, current_user.state, placeholder:'Please select your current state', id:'state_text', class: 'form-control' %>
 
       </div>
@@ -89,23 +91,23 @@
 
     <div class="form-group">
       <div class="col-md-5">
-        <%= select_tag(:current_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.current_industry_id), prompt: 'Please select your current job industry (*)', class: 'form-control') %>
+        <%= select_tag(:current_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.current_industry_id), prompt: text['current_industry'], class: 'form-control') %>
       </div>
       <div class="col-md-5">
-        <%= select_tag(:current_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.current_function_id), prompt: 'Please select your current job function (*)', class: 'form-control') %>
+        <%= select_tag(:current_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.current_function_id), prompt: text['current_function'], class: 'form-control') %>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-md-10">
         <hr>
-        <b>MBA and Job Interest Information</b>
+        <b class="subtitle" ><%=text['next_job']%></b>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-md-10">
-        <b><%=text['programs']%></b>
+        <b ><%=text['programs']%></b>
       </div>
     </div>
 
@@ -121,22 +123,12 @@
         <% end %>
       </div>
     </div>
-
-    <% 
-     if(current_user.user_rights == Role::PROSPECTIVE) 
-      text_for_industry = 'Please select your industry of interest'
-      text_for_funtion = 'Please select your function of interest'
-     else
-      text_for_industry = text['previous']
-      text_for_funtion = text['brand']
-     end
-    %>
     <div class="form-group">
       <div class="col-md-5">
-        <%= select_tag(:interest_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.interest_industry_id), prompt: text_for_industry, class: 'form-control') %>
+        <%= select_tag(:interest_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.interest_industry_id), prompt: text['next_industry'], class: 'form-control') %>
       </div>
       <div class="col-md-5">
-        <%= select_tag(:interest_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.interest_function_id), prompt: text_for_funtion, class: 'form-control') %>
+        <%= select_tag(:interest_function_id, options_from_collection_for_select(Function.all, :id, :name, current_user.interest_function_id), prompt: text['next_function'], class: 'form-control') %>
       </div>
     </div>
 

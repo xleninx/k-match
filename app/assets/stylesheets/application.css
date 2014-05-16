@@ -275,3 +275,13 @@ a.navbar-brand:hover{
   width: 100%;
   margin-left: -15px;
 }
+
+.required{
+  float: right;
+  margin-right: -12px;
+  line-height: 46px;
+}
+
+.subtitle{
+  color: #B479C7
+}

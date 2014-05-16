@@ -11,7 +11,7 @@ $(function(){
   });
 
   function check_select (country_id) {
-    if (country_id == 2067 || country_id == 2068){
+    if (country_id == 482 || country_id == 483){
       $('#state').removeClass('hidden');
       $('#state_text').addClass('hidden');
     }else{

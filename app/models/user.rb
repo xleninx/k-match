@@ -34,7 +34,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name,:programs,
                         :current_industry,:current_function,
-                        :programs,:country, :on => :update
+                        :interest_industry,:interest_function,
+                        :clubs,:country, :on => :update
   validates :email, uniqueness: true
   validates :state, presence: true, :on => :update, if: :us_country?
 
