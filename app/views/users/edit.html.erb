@@ -5,7 +5,7 @@
     text = {}
     unless current_user.prospective?
       text['current_job'] = 'Job Prior to Kellogg'
-      text['current_industry'] = 'Your Job Function Prior To Kellogg'
+      text['current_industry'] = 'Your Job Industry Prior To Kellogg'
       text['current_function'] = 'Your Job Function Prior To Kellogg'
       text['programs'] = 'Program Your Are Enrolled In'      
     else
@@ -89,7 +89,7 @@
       </div>
       <div class="col-md-5">
         <span class='required'>*</span>
-        <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state (*)(only US)', class: 'form-control hidden') %>
+        <%= select_tag(:state, options_for_select(@states, current_user.state), prompt: 'Please select your current state', class: 'form-control hidden') %>
          <%= text_field_tag :state, current_user.state, placeholder:'Please select your current state', id:'state_text', class: 'form-control' %>
 
       </div>
