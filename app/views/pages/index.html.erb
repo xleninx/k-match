@@ -2,7 +2,12 @@
 <div class="jumbotron image-header" >
   <div class="container col-md-8">
     <h1 style="font-size:58px">Connect with Kellogg students who share your background</h1>
-    <p>You@Kellogg is a student-created and led web application to help prospective students connect with current students and learn more about Kellogg. It was funded by the Kellogg Education Technology Incubator.</p>
+    <p>You@Kellogg is a student-created and led web application to help prospective students connect with current students and learn more about Kellogg. It was funded by the 
+      
+       <%= link_to 'http://kellogg.campusgroups.com/keti/competition/',style: "text-shadow: 1px 0 #553701;", class: "" do %>
+        Kellogg Education Technology Incubator.
+       <% end %>
+    </p>
 
     <% if user_signed_in? %>
       <%= link_to profile_user_path(current_user), class: "btn btn-warning btn-lg" do %>
@@ -30,14 +35,14 @@
 
     <div class="col-md-3" style="padding10px">
       <div class="img-container img-center">
-        <a href="/academics"><img src="img/academics.jpg" class="img-responsive" alt="Responsive image"></a>
+        <a href="/stories"><img src="img/academics.jpg" class="img-responsive" alt="Responsive image"></a>
         <div class="clearfix"></div>
       </div>
     </div>
 
     <div class="col-md-3" style="padding10px">
       <div class="img-container img-center">
-        <a href="/vision"><img src="img/vision.jpg" class="img-responsive" alt="Responsive image"></a>
+        <a href="/videos"><img src="img/vision.jpg" class="img-responsive" alt="Responsive image"></a>
         <div class="clearfix"></div>
       </div>
     </div>
