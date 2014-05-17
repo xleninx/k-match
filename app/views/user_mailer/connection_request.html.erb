@@ -10,6 +10,7 @@
   <li>Country: <%= @prospect.country.name %></li>
   <li>Industry: <%= @prospect.current_industry.name %></li>
   <li>Function: <%= @prospect.current_function.name %></li>
+  <li>Message: <%= @prospect.request_pending_propective.last.message %></li>
 </ul>
 <p>&nbsp;</p>
 <p>We would ask that you please reach out to <%= @prospect.first_name %> within 2 days</p>
