@@ -1,6 +1,6 @@
 ActiveAdmin.register Event do
   permit_params :title, :description, :image, :month
-  menu  :priority => 100, :if => proc{ current_user.admin? }
+  menu  :priority => 100, :if => proc{ current_user.leader? }
   index do
     selectable_column
     id_column

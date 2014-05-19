@@ -1,7 +1,7 @@
 ActiveAdmin.register Video do
   permit_params :title, :url, :position
   config.batch_actions = false
-  menu  :priority => 100, :if => proc{ current_user.admin? }
+  menu  :priority => 100, :if => proc{ current_user.leader? }
   index do
     selectable_column
     id_column
