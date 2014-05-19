@@ -20,7 +20,7 @@ class UserConnectionManager
   def send_request
     if make_request?
        make_connection
-    else      
+    else
       remake_connection unless in_valid_time?
     end
   end

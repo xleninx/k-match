@@ -5,14 +5,15 @@ class ConnectionChecker
 
   private
   def check_connection(connection)
-    if (connection.prospective_user.created_at < 2.day.ago)
+    prospective = connection.prospective_user
+    if (prospective && prospective.created_at < 2.day.ago)
       renew_connection connection
     end
   end
 
   def renew_connection(connection)
     user = connection.prospective_user
-    UserConnectionManager.new(user,"").send_request
+    UserConnectionManager.new(user,connection.message).send_request
   end
 
 end

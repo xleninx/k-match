@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def self.leader_lower_connection
-    id_lider = leaders.with_connections.group("users.id").count.sort_by{|_key, x| x}.firs.first
+    id_lider = leaders.with_connections.group("users.id").count.sort_by{|_key, x| x}.first.first
     find(id_lider)
   end
 

@@ -2,12 +2,11 @@ class UserAffinity
 
   def initialize(user, users_exclude = {})
     @user = user
-    @users = without_excluding_users( users_exclude )
   end
 
   def users_with_affinities
+    @users = without_excluding_users(nil)
     option_filters.each do |filter,type_filter|
-      puts @users
       case type_filter
         when :attribute
           check_filter_attribute( filter )
@@ -69,9 +68,9 @@ class UserAffinity
     validate_filter_result filtered_users
   end
 
-   def with_excluding_users ( users )
-    excluded_users = Array.new 
-    Connection.where("prospective_id = ? and status = ?", @user, "established").each{|connections| excluded_users << connections.current_user}
+  def with_excluding_users ( users )
+    excluded_users = Array.new
+    Connection.where("prospective_id = ? and status != ?", @user, "pending").each{|connections| excluded_users << connections.current_user}
     filtered_users = users - excluded_users
   end
 end
