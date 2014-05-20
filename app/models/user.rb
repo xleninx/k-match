@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   ROLES = ["Prospective","Current","Leader","Admin"]
 
   def update_profile?
-    respond_to?('update_profile')
+    respond_to?('update_profile') && update_profile
   end
 
   def self.leader_available
