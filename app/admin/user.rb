@@ -44,6 +44,13 @@ ActiveAdmin.register User do
     column :last_name
     column :country
     column "Rigths", :user_rights
+    column :programs, :sortable => :programs do |user|
+      names = []
+      user.programs.each do |program|
+        names << program.name
+      end
+      names.join(',')
+    end
     actions :defaults => false do |user|
       link_to "Delete", admin_user_path(user), :method => :delete, :data => {:confirm => "Are you sure?"}
     end 

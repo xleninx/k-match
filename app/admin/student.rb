@@ -9,6 +9,7 @@ ActiveAdmin.register User, :as => "student" do
     users.includes [:country,:current_industry,:current_function]
   end
 
+
   config.xlsx_builder.delete_columns :id, :user_rights,
       :grad_year, :contact_count,
       :email, :encrypted_password, :reset_password_token,
@@ -49,6 +50,13 @@ ActiveAdmin.register User, :as => "student" do
     column :current_industry, sortable: 'industries.name'
     column :current_function, sortable: 'functions.name'
     column :grad_year
+    column :programs, :sortable => :programs do |user|
+      names = []
+      user.programs.each do |program|
+        names << program.name
+      end
+      names.join(',')
+    end
   end
 
   filter :email

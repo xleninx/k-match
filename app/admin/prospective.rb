@@ -49,6 +49,13 @@ ActiveAdmin.register User, :as => "prospective" do
     column :country, sortable: 'countries.name'
     column :current_industry, sortable: 'industries.name'
     column :current_function, sortable: 'functions.name'
+    column :programs, :sortable => :programs do |user|
+      names = []
+      user.programs.each do |program|
+        names << program.name
+      end
+      names.join(',')
+    end
   end
 
   filter :email
