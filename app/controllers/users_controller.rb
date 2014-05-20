@@ -50,6 +50,7 @@ class UsersController < ApplicationController
     @user.current_function_id = params[:current_function_id].to_i
     @user.interest_function_id = params[:interest_function_id].to_i
     @user.club_ids = params[:club_ids]
+    @user.update_profile = true
 
     unless @user.user_rights?
       @user.email.include?("@kellogg.northwestern.edu") ? @user.user_rights = Role::CURRENT : @user.user_rights = Role::PROSPECTIVE

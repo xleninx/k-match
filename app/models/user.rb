@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  attr_accessor :update_profile
   has_many :connections, :class_name => "Connection",:foreign_key => "current_id"
   has_many :request_connections, :class_name => "Connection", :foreign_key => "prospective_id"
 
@@ -35,11 +36,15 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name,:programs,
                         :current_industry,:current_function,
                         :interest_industry,:interest_function,
-                        :clubs,:country, :on => :update
+                        :clubs,:country, :on => :update, if: :update_profile?
   validates :email, uniqueness: true
   validates :state, presence: true, :on => :update, if: :us_country?
 
   ROLES = ["Prospective","Current","Leader","Admin"]
+
+  def update_profile?
+    respond_to?('update_profile')
+  end
 
   def self.leader_available
    unless leaders.without_connections.empty?
