@@ -100,17 +100,10 @@
 
     <div class="form-group">
       <div class="col-md-10">
-        <hr>
-        <b class="subtitle" ><%=text['next_job']%></b>
+      <hr>
+        <b class="subtitle" ><%=text['programs']%></b>
       </div>
     </div>
-
-    <div class="form-group">
-      <div class="col-md-10">
-        <b ><%=text['programs']%></b>
-      </div>
-    </div>
-
 
     <div class="form-group">
       <div class="col-md-10">
@@ -123,6 +116,14 @@
         <% end %>
       </div>
     </div>
+
+    <div class="form-group">
+      <div class="col-md-10">
+        <hr>
+        <b class="subtitle" ><%=text['next_job']%></b>
+      </div>
+    </div>
+
     <div class="form-group">
       <div class="col-md-5">
         <%= select_tag(:interest_industry_id, options_from_collection_for_select(Industry.all, :id, :name, current_user.interest_industry_id), prompt: text['next_industry'], class: 'form-control') %>
