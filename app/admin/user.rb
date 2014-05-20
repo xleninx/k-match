@@ -4,23 +4,36 @@ ActiveAdmin.register User do
   menu :priority => 10
 
   config.xlsx_builder.delete_columns :id, :user_rights,
-      :country_id, :grad_year, :contact_count,
+      :grad_year, :contact_count,
       :email, :encrypted_password, :reset_password_token,
       :reset_password_sent_at, :remember_created_at,
       :sign_in_count, :current_sign_in_at, :last_sign_in_at,
       :current_sign_in_ip, :last_sign_in_ip, :confirmation_token,
       :confirmed_at, :confirmation_sent_at, :created_at, :updated_at,
-      :state,:interest_industry_id,
-      :interest_function_id, :cancel_account_token
+      :state,
+       :cancel_account_token
 
-  config.xlsx_builder.column('Country') do |resource|
-    (resource.country)? resource.country.name : ''
+  fields_belong = {country: 'Country',
+          current_industry: 'Current Industry',
+          current_function: 'Current Function',
+          interest_function: 'Interest Function',
+          interest_industry: 'Interest Industry'}
+
+  fields_belong.each do |key, value|
+    config.xlsx_builder.column(value) do |resource|
+      source = resource.send(key.to_s)
+      (source)? source.name : ''
+    end
   end
-  config.xlsx_builder.column('Current Industry') do |resource|
-    (resource.current_industry)? resource.current_industry.name : ''
-  end
-  config.xlsx_builder.column('Current Function') do |resource|
-    (resource.current_function)? resource.current_function.name : ''
+
+  fields_has_many = {clubs: 'Clubs' ,programs: 'Programs'}
+
+  fields_has_many.each do |key, value|
+    config.xlsx_builder.column(value) do |resource|
+      names = []
+      resource.send(:clubs).each{|x| names << x.name }
+      names.join(',')
+    end
   end
 
   index do
