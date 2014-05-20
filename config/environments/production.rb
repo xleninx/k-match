@@ -1,6 +1,6 @@
 KMatch::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { :host => 'http://youatkellogg.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => ENV["DOMAIN_MAILER"] }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -12,8 +12,8 @@ KMatch::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "gmail.com",
-    :user_name            => "connect@youatkellogg.com",
-    :password             => "iWp@4Hz8oSu!",
+    :user_name            => ENV["EMAIL_USER"],
+    :password             => ENV["EMAIL_PASSWORD"],
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
