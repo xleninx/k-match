@@ -4,7 +4,10 @@ ActiveAdmin.register Connection do
 
  index do
     selectable_column
-    column "Student", :current_user
+    column "User", :sortable => :current_user do |post|
+      name = (post.current_user)? post.current_user.full_name : ''
+      link_to name, admin_user_path(post.current_user)
+    end
     column "Prospective", :prospective_user
     column :status
     column :message
