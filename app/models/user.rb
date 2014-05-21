@@ -60,15 +60,15 @@ class User < ActiveRecord::Base
   end
 
   def self.sort_by_connections(ids)
-    users = where(:id => ids)
-    id_current = users.with_connections.group("current_id").count.sort_by {|_key, value| value}.first.first
+    users = where(:id => ids)    
+    id_current = users.with_connections.group("users.id").count.sort_by {|_key, value| value}.first.first
     unless id_current
-      currents.without_connections.first
+      users.without_connections.first
     else
       find(id_current)
     end
-
   end
+  
   def self.request_connection(id)
     request_connections.where(:id => id).first
   end
