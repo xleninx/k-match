@@ -1,4 +1,4 @@
-ActiveAdmin.register Function, :as => "functions" do
+ActiveAdmin.register Function, :as => "function" do
   menu :parent => "Data", :if => proc{ current_user.leader? }
   actions :all
   permit_params :name

@@ -1,4 +1,4 @@
-ActiveAdmin.register Industry, :as => "industries" do
+ActiveAdmin.register Industry, :as => "industry" do
   menu :parent => "Data", :if => proc{ current_user.leader? }
   actions :all
   permit_params :name

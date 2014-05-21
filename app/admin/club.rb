@@ -1,8 +1,8 @@
-ActiveAdmin.register Club, :as => "clubs" do
+ActiveAdmin.register Club, :as => "club" do
   menu :parent => "Data", :if => proc{ current_user.leader? }
   permit_params :name, :type_club
   config.batch_actions = true
-
+  actions :all
   index do
     selectable_column
     column :name
