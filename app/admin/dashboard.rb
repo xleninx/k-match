@@ -10,16 +10,16 @@ ActiveAdmin.register_page "Dashboard" do
       # end
     end
 
-    time = Connection.connection.execute("select avg(update_request) as average from( select (updated_at - created_at) as update_request  from connections where status in('established', 'rejected' )) as x ").first["average"] 
-    time = unless time
+    str_time = Connection.connection.execute("select avg(update_request) as average from( select (updated_at - created_at) as update_request  from connections where status in('established', 'rejected' )) as x ").first["average"] 
+    time = unless str_time
         Time.parse('00:00:00')
     else
-        days  = time.split(':')[0].to_i / 24
-        hours = time.split(':')[0].to_i % 24
-        time[0..1] = hours.to_s
-        time = days.to_s.rjust(2,'0') << 'T' << time
-        Time.parse(time)
+        days  = str_time.split(':')[0].to_i / 24
+        hours = str_time.split(':')[0].to_i % 24
+        str_time[0..1] = hours.to_s
+        Time.parse(str_time)
     end
+    str_day = (days)? days : time.strftime("%d")
 
     div class: "col-sm-4" do
         div class: "well" do
@@ -45,7 +45,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     div class: "col-sm-4" do
         div class: "well" do
-            span class: "title-size" do time.strftime("%d") end 
+            span class: "title-size" do days.to_s end 
             span class: "description-size" do "day" end
             span class: "title-size" do time.strftime("%k") end 
             span class: "description-size" do "hour" end
