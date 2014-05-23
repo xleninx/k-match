@@ -21,7 +21,7 @@ class Connection < ActiveRecord::Base
   def self.avg_connection
     data = {}
     str_time = Connection.connection.execute("select avg(update_request) as average from( select (updated_at - created_at) as update_request  from connections where status in('established', 'rejected' )) as x ").first["average"] 
-    time = '00:00:00' unless str_time
+    str_time = '00:00:00' unless str_time
     data[:days]  = str_time.split(':')[0].to_i / 24
     data[:hours] = str_time.split(':')[0].to_i % 24
     data[:minutes] = str_time.split(':')[1]
