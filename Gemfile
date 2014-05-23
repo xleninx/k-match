@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'starter_generators'
 
 # Authentication
-gem 'devise'
+gem 'devise', '3.2'
 
 #upload files
 gem 'carrierwave'
@@ -15,10 +15,10 @@ gem 'rmagick', '2.13.2'
 gem 'mail'
 
 # Export xlsx for Active admin
-gem 'activeadmin-axlsx'
+gem 'activeadmin-axlsx', '2.0.1'
 
 # Active Admin
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin', ref: '65aae6b68e78aad3071b2f85242b19fd3fccf426'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
