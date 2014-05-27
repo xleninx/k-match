@@ -27,7 +27,7 @@ class UserConnectionManager
 
   def connection_processed?
     unless @user.request_connections.empty?
-      @user.request_connections.first.connection_processed?
+      @user.request_connections.last.connection_processed?
     else
       true
     end
@@ -69,8 +69,8 @@ class UserConnectionManager
   end
 
   def connections_status(status)
-    unless @user.request_connections.empty?
-      @user.request_connections.first.update_attributes(:status => status)
+    unless @user.request_pending_propective.empty?
+      @user.request_pending_propective.first.update_attributes(:status => status)
     end
   end
   
