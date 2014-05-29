@@ -27,14 +27,14 @@ class UserAffinity
   private
 
   def option_filters
-    { country: :relation,
-      state: :attribute,
-      programs: :relation_b_t_m,
-      clubs: :relation_b_t_m,
+    { programs: :relation_b_t_m,
+      country: :relation,
       current_industry: :relation,
       current_function: :relation,
       interest_industry: :relation,
-      interest_function: :relation
+      interest_function: :relation,
+      clubs: :relation_b_t_m,
+      state: :attribute
     }
   end
 
