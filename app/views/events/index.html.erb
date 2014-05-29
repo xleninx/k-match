@@ -20,12 +20,18 @@ end
         <li class="<%=currentMonth(@month,2)%>"><%= link_to "Feb", event_month_path(2), class: "link_community"%></li>
         <li class="<%=currentMonth(@month,3)%>"><%= link_to "Mar", event_month_path(3), class: "link_community"%></li>
         <li class="<%=currentMonth(@month,4)%>"><%= link_to "Apr", event_month_path(4), class: "link_community"%></li>
-        <li class="<%=currentMonth(@month,5)%>"><%= link_to "Jun", event_month_path(5), class: "link_community"%></li>
+        <li class="<%=currentMonth(@month,5)%>"><%= link_to "May", event_month_path(5), class: "link_community"%></li>        
+        <li class="<%=currentMonth(@month,6)%>"><%= link_to "Jun", event_month_path(6), class: "link_community"%></li>
       </ul>
       
     </div>
   </div>
-
+  <div class="row">
+    <div class="col-md-12">
+      <p>Life at Kellogg is full of great events and activities. Here are some of the main Kellogg-wide events throughout the year. You can also find out more about life at Kellogg on the <a href="http://kelloggmbastudents.wordpress.com" target="_blank" >Kellogg MBA Student Blog</a>.
+      </p>
+    </div>
+  </div>
   <div class="row">
   <% if @event %>
     <% @event.each do |e|%>
