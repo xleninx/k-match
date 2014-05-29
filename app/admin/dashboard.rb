@@ -26,7 +26,7 @@ ActiveAdmin.register_page "Dashboard" do
     div class: "col-sm-4" do
         div class: "well" do
             span class: "title-module" do
-                Connection.where(:status => "pending").count
+                Connection.where(:status => "accepted").count
             end
             span class: "description-module" do
                 "Connection Request"
