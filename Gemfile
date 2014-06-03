@@ -15,7 +15,7 @@ gem 'carrierwave'
 gem 'fog', '1.22.1'
 
 #RMAgick
-# gem 'rmagick', '2.13.2'
+ gem 'rmagick', '2.13.2', :require => 'RMagick'
 
 # Email management
 gem 'mail'
