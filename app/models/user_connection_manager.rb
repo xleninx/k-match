@@ -38,7 +38,16 @@ class UserConnectionManager
 
   def make_connection
     user_to_assig = user_avalaible_to_asig
-    create_connection(user_to_assig, @message)
+    connection = create_connection(user_to_assig, @message)
+    puts 'connection_processed' if connection_processed?
+    delete_request_pending if (connection && connection_processed?)
+    connection
+  end
+
+  def delete_request_pending
+    unless @user.request_rejected.empty?
+      @user.request_rejected.destroy_all if connection_processed?
+    end
   end
 
   def create_connection(user_to_assig, message)
@@ -61,7 +70,7 @@ class UserConnectionManager
 
   def user_avalaible_to_asig
     user_with_affinity = UserAffinity.new(@user).users_with_affinities
-    if(valid_numbers_connection? && !user_with_affinity)
+    if(!valid_numbers_connection? || !user_with_affinity)
       leader_lower_connection
     else
       user_with_affinity
@@ -91,7 +100,7 @@ class UserConnectionManager
   end
 
   def valid_numbers_connection?
-    (@user.connections_rejected.count < 2)
+    (@user.request_rejected.count < 2)
   end
 
 end

@@ -25,11 +25,24 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.before(:suite) do
     begin
+      DatabaseCleaner.clean_with :truncation
+      DatabaseCleaner.strategy = :truncation
       FactoryGirl.lint
     ensure
 
     end
   end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

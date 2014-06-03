@@ -6,10 +6,16 @@ gem 'starter_generators'
 gem 'devise', '3.2'
 
 #upload files
+# gem 'carrierwave_direct'
 gem 'carrierwave'
 
+
+
+# Ruby cloud services library
+gem 'fog', '1.22.1'
+
 #RMAgick
-gem 'rmagick', '2.13.2'
+# gem 'rmagick', '2.13.2'
 
 # Email management
 gem 'mail'
@@ -42,6 +48,8 @@ group :development, :test do
   gem 'capybara'
   gem 'autotest'
   gem 'launchy'
+  gem 'sqlite3'
+  gem 'database_cleaner'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

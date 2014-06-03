@@ -55,13 +55,13 @@ class User < ActiveRecord::Base
   end
 
   def self.leader_lower_connection
-    id_lider = leaders.with_connections.group("users.id").count.sort_by{|_key, x| x}.first.first
+    id_lider = leaders.with_connections.group("users.id").count('connections.current_id').sort_by{|_key, x| x}.first.first
     find(id_lider)
   end
 
   def self.sort_by_connections(ids)
-    users = where(:id => ids)    
-    id_current = users.with_connections.group("users.id").count.sort_by {|_key, value| value}.first.first
+    users = where(:id => ids)   
+    id_current = users.with_connections.group("users.id").count('connections.current_id').sort_by {|_key, value| value}.first.first
     unless id_current
       users.without_connections.first
     else

@@ -46,9 +46,9 @@ class UserAffinity
     @users = filtered_users unless filtered_users.empty?
   end
 
-  def users_low_connector
-    User.current_lower_connection
-  end
+  # def users_low_connector
+  #   User.current_lower_connection
+  # end
 
   def check_filter_relation ( relation, field )
     filtered_users  = User.joins(relation).where(field => @user.send(relation), "users.id" => @users).group("users.id").all
