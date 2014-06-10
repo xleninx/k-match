@@ -285,3 +285,10 @@ a.navbar-brand:hover{
 .subtitle{
   color: #B479C7
 }
+
+.connections-center-v{
+  line-height: 100px;
+}
+.fa{
+  margin-right: 7px;
+}
