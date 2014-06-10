@@ -10,7 +10,7 @@ class UserConnectionManager
   end
 
   def connection_rejected 
-    connections_status(:rejected)
+    send_request if connections_status(:rejected)
   end
 
   def connection_accept
@@ -39,7 +39,6 @@ class UserConnectionManager
   def make_connection
     user_to_assig = user_avalaible_to_asig
     connection = create_connection(user_to_assig, @message)
-    puts 'connection_processed' if connection_processed?
     delete_request_pending if (connection && connection_processed?)
     connection
   end
@@ -79,6 +78,7 @@ class UserConnectionManager
 
   def connections_status(status)
     unless @user.request_pending_propective.empty?
+      @message = @user.request_pending_propective.first.message
       @user.request_pending_propective.first.update_attributes(:status => status)
     end
   end
