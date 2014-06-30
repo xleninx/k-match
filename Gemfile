@@ -34,6 +34,9 @@ gem 'cancan'
 
 # Use pg as the database for Active Record
 gem 'pg'
+
+gem 'exception_notification'
+
 group :development do
 end
 
