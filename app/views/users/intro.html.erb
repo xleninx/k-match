@@ -10,7 +10,7 @@
     
     <%= form_tag(make_connection_path(current_user), :method=>'post') do %>
       <div class="form-group" style="padding:30px">
-        <%= text_area_tag "message", "", :size=>"10x10", class: "form-control", placeholder:"Introduce yourself in less than 100 words" %>
+        <%= text_area_tag "message", "",:id => "connection-message", :size=>"10x10", class: "form-control", placeholder:"Introduce yourself in less than 250 words" %>
       </div>
       <div class="col-md-4 col-md-offset-4 text-center">
         <%= submit_tag 'SEND REQUEST', class: "btn btn-warning btn-lg" %>
@@ -19,3 +19,7 @@
     
   </div>
 </div>
+
+  <%= javascript_include_tag "jquery.plugin.min" %>
+  <%= javascript_include_tag "jquery.maxlength.min" %> 
+  <%= javascript_include_tag "make-connection" %> 
