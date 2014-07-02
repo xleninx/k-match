@@ -125,6 +125,13 @@ class UsersController < ApplicationController
 
   def notification_to_current_student
     u = @user.request_pending_propective
+    puts 'current_user' + '****'*50
+    puts current_user.inspect
+
+    puts 'User.find(u.first.current_id)' + '****'*50
+     x = User.find(u.first.current_id)
+    puts x.inspect
+
     UserMailer.connection_request(User.find(u.first.current_id), current_user).deliver
   end
 
