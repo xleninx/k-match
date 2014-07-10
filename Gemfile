@@ -9,8 +9,6 @@ gem 'devise', '3.2'
 # gem 'carrierwave_direct'
 gem 'carrierwave'
 
-
-
 # Ruby cloud services library
 gem 'fog', '1.22.1'
 

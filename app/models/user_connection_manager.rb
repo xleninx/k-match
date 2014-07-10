@@ -57,6 +57,7 @@ class UserConnectionManager
     connection.status = "pending"
     if connection.save
       connection
+      UserMailer.connection_request(user_to_assig, @user).deliver
     else
       nil
     end

@@ -82,7 +82,7 @@ class UsersController < ApplicationController
 
   def make_connection
     UserConnectionManager.new(@user,params[:message]).send_request
-    notification_to_current_student
+    #notification_to_current_student
     redirect_to profile_user_path(current_user), notice: "Connection initiated successfully."
   end
 
