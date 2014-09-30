@@ -12,120 +12,16 @@
   <div class="container academics-row">
   <% @stories.each do |story| %>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <img src="<%=story.image%>" class="pull-left academics-img" >
       </div>
-      <div class="col-md-10">
+      <div class="col-lg-10">
         <h3><%=story.title%></h3>
         <p><%=story.description%></p>
-        <p>-<%=story.autor%>,<%=story.year%></p>        
+        <p>- <%=story.autor%>, <%=story.year%></p>        
       </div>
     </div>
   <%end%>
- <!-- 
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Anwar Ali.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Analytical Consulting Lab</h3>
-         <p>I worked on a team with four students doing a consulting project for a Chicago business. My team and I defined the work methodology, brainstormed on possible solutions, and presented to our client. </p>
-         <p>- Anwar Ali, 2015</p>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Daniel Lu.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Research Methods in Marketing</h3>
-         <p>I’ve really enjoyed the many experiential learning opportunities I’ve had at Kellogg. These experiences really bring classroom learnings into the “real world” and teach tangible skills that I will take into my career. A popular marketing class I took is Research Methods in Marketing taught by Kelly Goldsmith. In the class, our group worked with a West Coast startup that wanted help better understanding their customer segments. It was rewarding being able to have so much influence into the future of our client.</p>
-         <p>- Daniel Lu, 2014</p>        
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Eric Hui.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Innovation Lab</h3>
-         <p>In Innovation Lab, I got the chance to explore my business concept and apply lean-start up tools to test the idea and see if there was a market for it. I learned a lot about myself and about being resourceful in the start-up context. I probably could have explored the idea on my own outside of the classroom, but the class provided support to help me learn about entrepreneurship in a fast-paced environment with the foundational support of the professors and fellow classmates who were helpful to vet the idea and provide suggestions on areas to pivot or additional resources to look into.</p>
-         <p>- Eric Hui, 2015</p>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Jim Poon.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>AB INBEV Consumer Insight Competition</h3>
-         <p>The class offered a great opportunity to address a real business challenge through ethnography. What we learned in class we applied immediately with our research participants – gathering self-reported behavior “diaries”, running interviews, and observing behavior directly during a weekend night out. We presented our insights and innovation recommendations directly to the Global CMO and his team. As someone switching from consulting to brand management, this was a unique way to get practical experience in ethnography – even if we didn’t win the prize money!</p>
-         <p>- Jim Poon, 2014</p>        
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Napat Phichaphop.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Global Lab</h3>
-         <p>The class allowed me and my team to engage in a real-world consulting project with a client in Brazil. I valued the class highly as it provided an opportunity to see the culmination of everything I have learned at Kellogg. The client was also very committed to making our learning experience a great one, not to mention that they also paid for the airfare and accommodation while we were in-country. On top of it all, getting to spend two weeks in Brazil with my team made this one of the most memorable things at Kellogg!</p>
-         <p>- Napat  Phichaphop, 2014</p>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Ouri Lahav.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Global Lab</h3>
-         <p>As part of Global Lab, I had the unique opportunity to go to India to help build out a strategy for an international water treatment company. Working closely with the local management, I had lots of opportunities to have direct impact on the business. Later on, when interviewed for jobs, this class was a great differentiator to be able to talk about my global business experience, my creativity in thinking about solutions in unfamiliar territories, an my understanding of how to think strategically about big and small business issues.</p>
-         <p>- Ouri Lahav, 2014</p>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Rhett Braunschweig.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Frameworks to Insights: Problem-Solving in Fast Forward</h3>
-         <p>Problem Solving in Fast Forward gave me the opportunity to work on real world problems facing two large companies. I worked in a small team to tackle the problems using hypothesis testing to arrive at practical solutions, all while receiving feedback every week from our clients' Directors of Strategy and our professor--a McKinsey partner. At the end of each project, we presented to our clients' CEOs. The class was a great opportunity to work on real world consulting engagements in a controlled environment and receive valuable feedback every step of the way.</p>
-         <p>- Rhett Braunschweig, 2015</p>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Sara Clay.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Innovation Lab</h3>
-         <p>Innovation Lab allowed me to work on my start-up with a great support system and resources. We met once a week and heard from successful entrepreneurs, shared our progress and got feedback and help from our peers.</p>
-         <p>- Sara Katherine Clay, 2015</p>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <img src="img/Vaibhav Goel.jpg" class="pull-left academics-img" >
-      </div>
-      <div class="col-md-10">
-         <h3>Venture Lab</h3>
-         <p>The Venture Lab gives a great opportunity to get a hands on experience of the Venture Capital industry. As an Associate intern, I participated in due diligence, investor meetings and term sheet negotiations. Meeting with entrepreneurs and evaluating their startups provides an exposure to assess a team’s capabilities, an ideas’ value proposition and the size and accessibility of the market opportunity. The investor meetings provide an insight into the evaluating business plans and being an efficient investor board member. Overall, this course is great for someone who is passionate about startups or VC industry.</p>
-         <p>- Vaibhav Goel, 2014</p>        
-      </div>
-    </div>
-     
-  </div> -->
 
     <div class="container" style="padding-top:40px">
       <div class="col-md-4 col-md-offset-4">
